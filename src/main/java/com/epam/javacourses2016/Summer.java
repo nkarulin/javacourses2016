@@ -6,6 +6,6 @@ package com.epam.javacourses2016;
 public class Summer {
 
     static public int sum(int a, int b) {
-        return a + b + 1;
+        return a + b;
     }
 }
