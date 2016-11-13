@@ -1,4 +1,4 @@
-package com.epam.javacourses2016.task8;
+package com.epam.javacourses2016.task12;
 
 import org.testng.annotations.Test;
 
@@ -7,9 +7,9 @@ import static org.testng.Assert.*;
 /**
  * Created by kodoo on 13.11.16.
  */
-public class SolvderTask8Test {
+public class SolverTask12Test {
     @Test
-    public void testIsNormalBrackets() throws Exception {
+    public void testTransform() throws Exception {
         //TODO
     }
 

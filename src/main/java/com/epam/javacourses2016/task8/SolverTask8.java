@@ -5,7 +5,7 @@ package com.epam.javacourses2016.task8;
  * Проверить правильность расстановки скобок.
  * При реализации использовать стек.
  */
-public class SolvderTask8 {
+public class SolverTask8 {
 
     /**
      * Проверяет правильность расстановки скобок.
