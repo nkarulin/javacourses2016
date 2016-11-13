@@ -19,6 +19,7 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     Set<Point2D> analyze(Set<Segment> segments) {
+        //TODO
         return null;
     }
 }

@@ -21,6 +21,7 @@ public class SolverTask16 {
      * @return Файл с результатами анализа.
      */
     IFileWithPoints analyze(Point2D center, int radius, File output) {
+        //TODO
         return null;
     }
 
