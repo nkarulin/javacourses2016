@@ -5,7 +5,7 @@ package com.epam.javacourses2016.task13;
  * В конструкторе класса передается количество вершин в графе.
  * Методы должны поддерживать быстрое добавление и удаление ребер.
  */
-public abstract class SolverTask13Abstract {
+public abstract class AbstractGraphCreator {
     /**
      * @param numberNodes Количество вершин в графе.
      * @return Граф указанной конфигурации.

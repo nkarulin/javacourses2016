@@ -4,10 +4,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/**
- * Created by kodoo on 13.11.16.
- */
-public class SolverTask13Test {
+public class AbstractGraphCreatorTest {
     @Test
     public void testCreateGraph() throws Exception {
         //TODO

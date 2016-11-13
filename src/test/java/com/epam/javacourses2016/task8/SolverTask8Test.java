@@ -4,9 +4,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-/**
- * Created by kodoo on 13.11.16.
- */
 public class SolverTask8Test {
     @Test
     public void testIsNormalBrackets() throws Exception {
