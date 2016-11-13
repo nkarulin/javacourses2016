@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class TestableTask5Test {
+public class SolverTask5Test {
     @Test
     public void testCalcResistance() throws Exception {
         //TODO:

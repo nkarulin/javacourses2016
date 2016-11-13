@@ -26,7 +26,7 @@ public class Task3Test {
 
     @Test(enabled = false, dataProvider = "poems")
     public void testTask3(String poemOut, String author, String ... poems) throws IOException {
-        TestableTask3 solver = new SolverTask3();
+        SolverTask3 solver = new SolverTask3();
 
         Set<Poem> poemsSet = new HashSet<>();
         for (String poem : poems) {

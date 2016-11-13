@@ -3,10 +3,19 @@ package com.epam.javacourses2016.task7;
 import java.util.List;
 
 /**
- * Created by kodoo on 13.11.16.
+ * Умножить два многочлена заданной степени, если коэффициенты многочленов хранятся в различных списках.
+ * Элемент списка с индексом i соответствует коэффициенту i-й степени.
+ * Степень результирующего многочлена равна сумме максимальных ненулевых степеней исходных многочленов.
+ * Случай, когда многочлен вырождается в 0 описывается состоянием [0].
  */
-public class SolverTask7 implements TestableTask7 {
-    @Override
+public class SolverTask7 {
+
+    /**
+     * Осуществляет перемножение двух многочленов.
+     * @param first Первый многочлен.
+     * @param second Второй многочлен.
+     * @return Многочлен, полученный в результате перемножения.
+     */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
         return null;
     }

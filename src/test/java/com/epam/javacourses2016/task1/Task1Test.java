@@ -19,7 +19,7 @@ public class Task1Test {
     @Test(enabled = false, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
-        TestableTask1 solver = new SolverTask1();
+        SolverTask1 solver = new SolverTask1();
 
         File in = Files.createTempFile("task1", "in").toFile();
 

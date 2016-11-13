@@ -9,12 +9,16 @@ import java.util.List;
  * Найти приближенное число R методом наименьших квадратов.
  * Для повышения точности вычислений использовать класс {@link java.math.BigDecimal}
  */
-public interface TestableTask5 {
+public class SolverTask5 {
 
     /**
      * Вычисляет сопротивление методом наименьших квадратов.
+     *
      * @param measurements Измерения в ходе эксперимента.
      * @return Вычисленное по исходным данным сопротивление.
      */
-    double calcResistance(List<Measurement> measurements);
+    double calcResistance(List<Measurement> measurements) {
+        //TODO
+        return 0;
+    }
 }

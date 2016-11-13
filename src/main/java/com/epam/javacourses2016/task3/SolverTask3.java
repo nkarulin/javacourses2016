@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by kodoo on 13.11.16.
+ * Занести строки, составляющие стихотворения указанного автора, в список.
+ * Провести сортировку по возрастанию длин строк.
  */
-public class SolverTask3 implements TestableTask3 {
+public class SolverTask3 {
 
-    @Override
+    /**
+     * Формирует упорядоченный список строк из стихотворений указанного автора.
+     * @param poems Анализируемое множество стихотворений.
+     * @param author Автор, стихотворения которого необходимо выбрать.
+     * @return Список, упорядоченных по длине строк, составляющих стихотворения автора.
+     */
     public List<String> sortPoems(Set<Poem> poems, String author) {
         //TODO: realize solver of a task
         return null;
