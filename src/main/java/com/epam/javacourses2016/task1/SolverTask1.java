@@ -2,8 +2,9 @@ package com.epam.javacourses2016.task1;
 
 import com.epam.javacourses2016.task3.Poem;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -19,22 +20,32 @@ public class SolverTask1 {
      * @param output Файл с выходными данными.
      * @return Список строк, прочитанных из входного файла в прямом порядке.
      */
-    public List<String> sortPoems(Set<Poem> poems, String author) {
-        List<String> lines = new ArrayList<>();
-        for (Poem p : poems) {
-            if (p.getAuthor().equals(author)) {
-                lines = p.getLines();
+    public List<String> reverseFile(File input, File output) {
+        List<String> list = new ArrayList<>();
+        List<String> reversedList = list;
+        try (BufferedReader br = new BufferedReader(new FileReader(input)))
+        {
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        for (int i = lines.size() - 1; i >= 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (lines.get(j).length() > lines.get(j + 1).length()) {
-                    String t = lines.get(j);
-                    lines.set(j, lines.get(j+1));
-                    lines.set(j+1, t);
-                }
+        Collections.reverse(reversedList);
+        try {
+            if (!output.exists()) {
+                output.createNewFile();
             }
+            FileWriter fw = new FileWriter(output.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (String s : reversedList) {
+                bw.write(s);
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return lines;
+        return list;
     }
 }
