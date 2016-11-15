@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class Task1Test {
 
-    @Test(enabled = false, dataProvider = "lines")
+    @Test(enabled = true, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
         SolverTask1 solver = new SolverTask1();
@@ -25,15 +25,15 @@ public class Task1Test {
 
         try (FileWriter write = new FileWriter(in)) {
             for (String line : lines) {
-                write.write(line);
+                write.write(line + '\n');
             }
         }
 
         File out = Files.createTempFile("task1", "out").toFile();
 
+        Collections.reverse(lines);
         Assert.assertEquals(solver.reverseFile(in, out), lines);
 
-        Collections.reverse(lines);
         try (BufferedReader reader = new BufferedReader(new FileReader(out))) {
             for (String line : lines) {
                 Assert.assertEquals(reader.readLine(), line);
