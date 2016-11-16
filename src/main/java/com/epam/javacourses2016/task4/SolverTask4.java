@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task4;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,8 +18,9 @@ public class SolverTask4 {
      * @return Результат пересечения множеств.
      */
     public Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> intersectionedSet = new HashSet<>(first);
+        intersectionedSet.retainAll(second);
+        return intersectionedSet;
     }
 
     /**
@@ -28,7 +30,8 @@ public class SolverTask4 {
      * @return Результат объединения множеств.
      */
     public Set<Integer> union(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> unionedSet = new HashSet<>(first);
+        unionedSet.addAll(second);
+        return unionedSet;
     }
 }
