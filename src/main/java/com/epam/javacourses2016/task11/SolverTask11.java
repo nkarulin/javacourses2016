@@ -16,8 +16,11 @@ public class SolverTask11 {
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
-    public String emulate(ArrayList<String> peoples) {
-        return null;
+    public static String emulate(ArrayList<String> peoples) {
+        for (int i = 0; i < peoples.size(); i+=2) {
+            peoples.remove(i);
+        }
+        return peoples.get(peoples.size());
     }
 
     /**
@@ -25,7 +28,23 @@ public class SolverTask11 {
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
-    public String emulate(LinkedList<String> peoples) {
-        return null;
+    public static String emulate(LinkedList<String> peoples) {
+        for (int i = 0; i < peoples.size(); i+=2) {
+            peoples.remove(i);
+        }
+        return peoples.get(peoples.size());
+    }
+
+    public static void main(String[] args) {
+        ArrayList<String> ppl = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            ppl.add("3"+i);
+        }
+        LinkedList<String> ppl1 = new LinkedList<>();
+        for (int i = 0; i < 5; i++) {
+            ppl1.add("4"+i);
+        }
+        System.out.println(emulate(ppl));
+        System.out.println(emulate(ppl1));
     }
 }
