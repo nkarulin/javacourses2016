@@ -1,7 +1,8 @@
 package com.epam.javacourses2016.task4;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Интерфейс для юнит-тестирования задания №4.
@@ -19,12 +20,10 @@ public class SolverTask4 {
      */
     public Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
         //TODO
-        Set<Integer> firstSet = new HashSet<>();
-        firstSet.addAll(first);
-        Set<Integer> secondSet = new HashSet<>();
-        secondSet.addAll(second);
-        firstSet.retainAll(secondSet);
-        return firstSet;
+        Set<Integer> interSet = first.stream()
+                                .filter(second::contains)
+                                .collect(Collectors.toSet());
+        return interSet;
     }
 
     /**
@@ -35,11 +34,7 @@ public class SolverTask4 {
      */
     public Set<Integer> union(Set<Integer> first, Set<Integer> second) {
         //TODO
-        Set<Integer> firstSet = new HashSet<>();
-        firstSet.addAll(first);
-        Set<Integer> secondSet = new HashSet<>();
-        secondSet.addAll(second);
-        firstSet.addAll(second);
-        return firstSet;
+        Set<Integer> unionSet = Stream.concat(first.stream(), second.stream()).collect(Collectors.toSet());
+        return unionSet;
     }
 }
