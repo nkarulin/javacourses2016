@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task4;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,7 +19,12 @@ public class SolverTask4 {
      */
     public Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
         //TODO
-        return null;
+        Set<Integer> firstSet = new HashSet<>();
+        firstSet.addAll(first);
+        Set<Integer> secondSet = new HashSet<>();
+        secondSet.addAll(second);
+        firstSet.retainAll(secondSet);
+        return firstSet;
     }
 
     /**
@@ -29,6 +35,11 @@ public class SolverTask4 {
      */
     public Set<Integer> union(Set<Integer> first, Set<Integer> second) {
         //TODO
-        return null;
+        Set<Integer> firstSet = new HashSet<>();
+        firstSet.addAll(first);
+        Set<Integer> secondSet = new HashSet<>();
+        secondSet.addAll(second);
+        firstSet.addAll(second);
+        return firstSet;
     }
 }
