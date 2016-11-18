@@ -3,27 +3,14 @@ package com.epam.javacourses2016.task4;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.testng.Assert.*;
-
-
 public class Task4Test {
 
-    @DataProvider(name = "params")
-    private Object[][] numbers() {
-        return new Object[][]{
-                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{4, 5, 6, 7, 8}},
-                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{1, 2, 3, 4, 5}},
-                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{6, 7, 8, 9, 10}},
-        };
-    }
-
-    @Test(dataProvider = "params")
+    @Test(enabled = false, dataProvider = "params")
     public void testIntersection(Integer[] first, Integer[] second) throws Exception {
         SolverTask4 solver = new SolverTask4();
 
@@ -49,5 +36,14 @@ public class Task4Test {
         numbers.addAll(secondSet);
 
         Assert.assertEquals(solver.union(firstSet, secondSet), numbers);
+    }
+
+    @DataProvider(name = "params")
+    private Object[][] numbers() {
+        return new Object[][]{
+                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{4, 5, 6, 7, 8}},
+                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{1, 2, 3, 4, 5}},
+                {new Integer[]{1, 2, 3, 4, 5}, new Integer[]{6, 7, 8, 9, 10}},
+        };
     }
 }

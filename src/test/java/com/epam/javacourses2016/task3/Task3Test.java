@@ -4,13 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import static org.testng.Assert.*;
 
 public class Task3Test {
 
@@ -23,7 +24,7 @@ public class Task3Test {
         };
     }
 
-    @Test(enabled = true, dataProvider = "poems")
+    @Test(enabled = false, dataProvider = "poems")
     public void testTask3(String poemOut, String author, String[] poems) throws IOException {
         SolverTask3 solver = new SolverTask3();
 
