@@ -23,8 +23,8 @@ public class SolverTask1 {
         List<String> lines = fileReader(input);
         Collections.reverse(lines);
         fileWriter(output, lines);
-        lines = fileReader(output);
 
+        Collections.reverse(lines);
         return lines;
     }
 

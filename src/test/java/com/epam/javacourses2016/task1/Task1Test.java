@@ -31,9 +31,9 @@ public class Task1Test {
 
         File out = Files.createTempFile("task1", "out").toFile();
 
-        Collections.reverse(lines);
         Assert.assertEquals(solver.reverseFile(in, out), lines);
 
+        Collections.reverse(lines);
         try (BufferedReader reader = new BufferedReader(new FileReader(out))) {
             for (String line : lines) {
                 Assert.assertEquals(reader.readLine(), line);
