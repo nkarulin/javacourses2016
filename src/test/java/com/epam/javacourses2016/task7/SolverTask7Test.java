@@ -5,59 +5,43 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import static org.testng.Assert.*;
-
 public class SolverTask7Test {
-    @Test(dataProvider = "polynomials2")
-    public void testMultiplyPolynomials(List<Integer> first, List<Integer> second,
-                                        List<Integer> result) throws Exception {
+
+    @Test(enabled = false, dataProvider = "polynomials2")
+    public void testMultiplyPolynomials(int[] first, int[] second, int[] result) throws Exception {
 
         SolverTask7 solver = new SolverTask7();
-        Assert.assertEquals(solver.multiplyPolynomials(first, second), result);
+        List<Integer> firstList = convertToList(first);
+        List<Integer> secondList = convertToList(second);
+        List<Integer> resultList = convertToList(result);
+
+        Assert.assertEquals(solver.multiplyPolynomials(firstList, secondList), resultList);
+    }
+
+    public static List<Integer> convertToList(int[] array) {
+        List<Integer> list = new ArrayList<>();
+        for (int number : array) {
+            list.add(number);
+        }
+        return list;
     }
 
     @DataProvider(name = "polynomials2")
-    public Object[][] polynomials() {
+    public Object[][] polynomials2() {
         return new Object[][]{
                 {
-                        new ArrayList<Integer>() {{
-                            add(0, 2);
-                            add(1, 1);
-                        }},
-                        new ArrayList<Integer>() {{
-                            add(0, 2);
-                            add(1, 1);
-                        }},
-                        new ArrayList<Integer>() {{
-                            add(0, 4);
-                            add(1, 4);
-                            add(2, 1);
-                        }}
+                        new int[]{2, 1},
+                        new int[]{2, 1},
+                        new int[]{4, 4, 1}
                 },
                 {
-                        new ArrayList<Integer>() {{
-                            add(0, 2);
-                            add(1, 0);
-                            add(2, 0);
-                            add(3, 3);
-                        }},
-                        new ArrayList<Integer>() {{
-                            add(0, 4);
-                            add(1, 0);
-                            add(2, 1);
-                        }},
-                        new ArrayList<Integer>() {{
-                            add(0, 8);
-                            add(1, 0);
-                            add(2, 2);
-                            add(3, 12);
-                            add(4, 0);
-                            add(5, 3);
-                        }}
+                        new int[]{2, 0, 0, 3},
+                        new int[]{4, 0, 1},
+                        new int[]{8, 0, 2, 12, 0, 3}
                 }
+
         };
     }
 }
