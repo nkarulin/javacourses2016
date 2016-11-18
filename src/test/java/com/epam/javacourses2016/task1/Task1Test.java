@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class Task1Test {
 
-    @Test(enabled = false, dataProvider = "lines")
+    @Test(enabled = true, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
         SolverTask1 solver = new SolverTask1();
@@ -25,7 +25,7 @@ public class Task1Test {
 
         try (FileWriter write = new FileWriter(in)) {
             for (String line : lines) {
-                write.write(line);
+                write.write(line + '\n');
             }
         }
 
