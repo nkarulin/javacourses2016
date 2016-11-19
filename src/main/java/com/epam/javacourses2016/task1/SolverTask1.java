@@ -17,7 +17,7 @@ public class SolverTask1 {
      * @param output Файл с выходными данными.
      * @return Список строк, прочитанных из входного файла в прямом порядке.
      */
-    public static List<String> reverseFile(File input, File output) {
+    public List<String> reverseFile(File input, File output) {
         List<String> strings = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(input));
             BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
