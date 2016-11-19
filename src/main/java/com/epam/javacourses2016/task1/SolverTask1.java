@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Ввести строки из файла, записать в список.
@@ -18,18 +17,19 @@ public class SolverTask1 {
      * @param output Файл с выходными данными.
      * @return Список строк, прочитанных из входного файла в прямом порядке.
      */
-    public List<String> reverseFile(File input, File output) {
-        //TODO: realize solver of a task
+    public static List<String> reverseFile(File input, File output) {
         List<String> strings = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(input);
-            BufferedWriter writer = new BufferedWriter(new PrintWriter(output));
-            while (scanner.hasNext()) {
-                strings.add(scanner.nextLine());
+        try(BufferedReader reader = new BufferedReader(new FileReader(input));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(output))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                strings.add(line);
             }
             Collections.reverse(strings);
             for (String string : strings) {
-                writer.write(string);
+                writer.write(string + "\n");
+                writer.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
