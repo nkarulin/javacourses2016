@@ -19,25 +19,26 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     Set<Point2D> analyze(Set<Segment> segments) {
-        List<Point2D> crossedSegments = new ArrayList<>();
-        Iterator<Segment> i = segments.iterator();
-        while (i.hasNext()) {
-            for (Iterator<Segment> j = i; j.hasNext();) {
-                Point2D crossDot = crossDot(i.next(), j.next());
+        //List<Point2D> crossedSegments = new ArrayList<>();
+        TreeMap<Integer[], Point2D> crossedSeg = new TreeMap<>();
+        Segment[] segArray = segments.toArray(new Segment[segments.size()]);
+        for (int i = 0; i < segArray.length; i++) {
+            for (int j = i; j < segArray.length; j++) {
+                Point2D crossDot = crossDot(segArray[i], segArray[j]);
                 if (crossDot != null) {
-                    crossedSegments.add(crossDot);
+                    crossedSeg.put(new Integer[]{i+1,j+1}, crossDot);
                 }
             }
         }
         Set<Point2D> minAbs = new HashSet<>();
-        Point2D dotWithMinAbs = crossedSegments.get(0);
-        for (Point2D dot : crossedSegments) {
+        Point2D dotWithMinAbs = crossedSeg.firstEntry().getValue();
+        for (Point2D dot : crossedSeg.values()) {
             if (dot.getX() <= dotWithMinAbs.getX()) {
                 dotWithMinAbs = dot;
             }
         }
         minAbs.add(dotWithMinAbs);
-        for (Point2D dot : crossedSegments) {
+        for (Point2D dot : crossedSeg.values()) {
             if (dot.getX() == dotWithMinAbs.getX()) {
                  minAbs.add(dot);
             }
