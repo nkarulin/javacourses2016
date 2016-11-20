@@ -30,13 +30,13 @@ public class SolverTask12 {
                     integers.set(j, x);
                     integers.set(j + 1, y);
                     */
+
                     integers.set(j, integers.get(j) - integers.get(j + 1));
                     integers.set(j + 1, integers.get(j + 1) + integers.get(j));
                     integers.set(j, integers.get(j + 1) - integers.get(j));
                 }
             }
         }
-
         return integers;
     }
 }
