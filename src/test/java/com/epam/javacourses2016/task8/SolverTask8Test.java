@@ -4,10 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 public class SolverTask8Test {
-    @Test(dataProvider = "myString")
+
+    @Test(enabled = false, dataProvider = "myString")
     public void testIsNormalBrackets(String string, boolean result) throws Exception {
         SolverTask8 solver = new SolverTask8();
         Assert.assertEquals(solver.isNormalBrackets(string), result);
@@ -15,7 +14,7 @@ public class SolverTask8Test {
 
     @DataProvider(name = "myString")
     public Object[][] getMyString() {
-        return new Object[][] {
+        return new Object[][]{
                 {"{Hello[]}()", true},
                 {"[()}", false},
                 {"}{[({)]}Vasya", false},

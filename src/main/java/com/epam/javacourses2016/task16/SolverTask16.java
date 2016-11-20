@@ -3,7 +3,8 @@ package com.epam.javacourses2016.task16;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
-import java.util.*;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * На клетчатой бумаге нарисован круг.

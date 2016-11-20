@@ -2,11 +2,8 @@ package com.epam.javacourses2016.task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import sun.reflect.generics.tree.Tree;
 
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * На плоскости задано N отрезков.

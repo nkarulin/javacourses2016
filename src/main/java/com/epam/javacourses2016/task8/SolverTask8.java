@@ -1,11 +1,6 @@
 package com.epam.javacourses2016.task8;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Задана строка, возможно содержащая символы '(', ')', '[', ']', '{', '}'.
@@ -31,7 +26,7 @@ public class SolverTask8 {
 
         boolean rightSequence = true;
         for (char ch : string.toCharArray()) {
-            for(char openCh : openTypes) {
+            for (char openCh : openTypes) {
                 if (ch == openCh) {
                     characters.push(ch);
                 }

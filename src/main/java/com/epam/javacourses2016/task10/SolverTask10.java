@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,8 +32,12 @@ public class SolverTask10 {
                 Matcher matcher = pattern.matcher(line);
                 while (matcher.find()) {
                     String key = matcher.group();
-                    if (uniqueWords.containsKey(key)) {
-                        uniqueWords.put(key, uniqueWords.get(key) + 1);
+                    if (!uniqueWords.containsKey(key)) {
+                        uniqueWords.put(key, 1);
+                    } else {
+                        int val = uniqueWords.get(key);
+                        val++;
+                        uniqueWords.replace(key, val);
                     }
 
                 }

@@ -2,8 +2,6 @@ package com.epam.javacourses2016.task11;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 public class SolverTask11Test {
     @Test
     public void testEmulate() throws Exception {

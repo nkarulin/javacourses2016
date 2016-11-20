@@ -40,7 +40,7 @@ public class SolverTask19 {
         double time = firstLapTime + otherLapsTime;
 
         double lengthCar2 = time * car2.getSpeed() + car2.getStartPosition();
-        long lapsCar2 = (long)(lengthCar2 / lengthLap);
+        long lapsCar2 = (long) (lengthCar2 / lengthLap);
 
         count = lapsCar2;
         if (car1.getStartPosition() < car2.getStartPosition()) {

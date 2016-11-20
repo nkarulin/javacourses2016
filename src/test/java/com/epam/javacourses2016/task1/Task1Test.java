@@ -5,18 +5,14 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-
 
 public class Task1Test {
 
-    @Test(enabled = true, dataProvider = "lines")
+    @Test(enabled = false, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
         SolverTask1 solver = new SolverTask1();
@@ -43,15 +39,15 @@ public class Task1Test {
 
     @DataProvider(name = "lines")
     private Object[][] lines() {
-        return new Object[][] {
-                { new String[] {
+        return new Object[][]{
+                {new String[]{
                         "Join the Stack Overflow Community",
                         "Stack Overflow is a community of 6.3 million programmers, just like you, helping each other.",
                         "Join them; it only takes a minute:",
                         "Sign up"
                 }
                 },
-                { new String[] {
+                {new String[]{
                         "Hello",
                         "There",
                         "",
@@ -60,5 +56,4 @@ public class Task1Test {
                 }
         };
     }
-
 }

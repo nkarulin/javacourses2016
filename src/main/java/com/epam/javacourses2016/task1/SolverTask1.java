@@ -1,7 +1,9 @@
 package com.epam.javacourses2016.task1;
 
-import java.io.*;
-import java.nio.Buffer;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

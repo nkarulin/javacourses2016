@@ -4,18 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static org.testng.Assert.*;
 
 public class SolverTask9Test {
-    @Test(dataProvider = "text")
+
+    @Test(enabled = false, dataProvider = "text")
     public void testGetUniqueWords(String fileName, String fileResult) throws Exception {
         SolverTask9 solver = new SolverTask9();
         ClassLoader classLoader = getClass().getClassLoader();
@@ -38,7 +34,7 @@ public class SolverTask9Test {
 
     @DataProvider(name = "text")
     public Object[][] text() {
-        return new Object[][] {
+        return new Object[][]{
                 {"com/epam/javacourses2016/task9/text1.txt", "com/epam/javacourses2016/task9/text1_unique.txt"},
                 {"com/epam/javacourses2016/task9/text2.txt", "com/epam/javacourses2016/task9/text2_unique.txt"},
                 {"com/epam/javacourses2016/task9/text3.txt", "com/epam/javacourses2016/task9/text3_unique.txt"},

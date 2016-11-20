@@ -20,14 +20,18 @@ public class SolverTask18 {
      */
     interface RectangularIntegerMatrix {
 
-        /** @return Ширина матрицы. */
+        /**
+         * @return Ширина матрицы.
+         */
         int getWidth();
 
-        /** @return Высота матрицы. */
+        /**
+         * @return Высота матрицы.
+         */
         int getHeight();
 
         /**
-         * @param indexWidth Индекс по ширине.
+         * @param indexWidth  Индекс по ширине.
          * @param indexHeight Индекс по высоте.
          * @return Значение, располагающееся в указанной ячейке.
          */
