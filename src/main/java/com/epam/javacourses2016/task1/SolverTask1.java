@@ -22,16 +22,16 @@ public class SolverTask1 {
      */
     public List<String> reverseFile(File input, File output) {
         List<String> list = new ArrayList<>();
-        List<String> reversedList = list;
         try (BufferedReader br = new BufferedReader(new FileReader(input)))
         {
             String sCurrentLine;
             while ((sCurrentLine = br.readLine()) != null) {
-                System.out.println(sCurrentLine);
+                list.add(sCurrentLine);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        List<String> reversedList = new ArrayList<>(list);
         Collections.reverse(reversedList);
         try {
             if (!output.exists()) {
@@ -41,6 +41,7 @@ public class SolverTask1 {
             BufferedWriter bw = new BufferedWriter(fw);
             for (String s : reversedList) {
                 bw.write(s);
+                bw.write("\n");
             }
             bw.close();
         } catch (IOException e) {
@@ -48,4 +49,13 @@ public class SolverTask1 {
         }
         return list;
     }
+
+    /*public static void main(String[] args) {
+        File file = new File("./1.txt");
+        File file1 = new File("./2.txt");
+        List<String> list = reverseFile(file, file1);
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }*/
 }
