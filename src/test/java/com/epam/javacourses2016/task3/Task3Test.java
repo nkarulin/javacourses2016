@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task3;
 
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,15 +18,15 @@ public class Task3Test {
     @DataProvider(name = "poems")
     private Object[][] poems() {
         return new Object[][] {
-                {"poem1_sorted.txt", "Пушкин", "poem1.txt", "poem2.txt"},
-                {"poem2_sorted.txt", "Крылов", "poem3.txt", "poem2.txt"},
-                {"poem3_sorted.txt", "Бродский", "poem1.txt", "poem3.txt"},
+                {"poem1_sorted.txt", "Пушкин", new String[]{"poem1.txt", "poem2.txt"}},
+                {"poem2_sorted.txt", "Крылов", new String[]{"poem3.txt", "poem2.txt"}},
+                {"poem3_sorted.txt", "Бродский", new String[]{"poem1.txt", "poem3.txt"}},
 
         };
     }
 
-    @Test(enabled = false, dataProvider = "poems")
-    public void testTask3(String poemOut, String author, String ... poems) throws IOException {
+    @Test(enabled = true, dataProvider = "poems")
+    public void testTask3(String poemOut, String author, String[] poems) throws IOException {
         SolverTask3 solver = new SolverTask3();
 
         Set<Poem> poemsSet = new HashSet<>();
@@ -34,14 +35,20 @@ public class Task3Test {
         }
 
         List<String> sortedPoem = new ArrayList<>();
+        poemOut = this.getClass().getResource(poemOut).getPath();
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(poemOut)))) {
-            sortedPoem.add(reader.readLine());
+            String str;
+            while ((str = reader.readLine())!=null){
+                sortedPoem.add(str);
+            }
+
         }
 
         Assert.assertEquals(solver.sortPoems(poemsSet, author), sortedPoem);
     }
 
-    static Poem loadPoem(String filePath) throws IOException {
+    Poem loadPoem(String filePath) throws IOException {
+        filePath = this.getClass().getResource(filePath).getPath();
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
             String author = reader.readLine();
             List<String> lines = new ArrayList<>();

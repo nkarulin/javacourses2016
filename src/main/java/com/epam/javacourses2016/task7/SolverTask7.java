@@ -12,11 +12,13 @@ public class SolverTask7 {
 
     /**
      * Осуществляет перемножение двух многочленов.
-     * @param first Первый многочлен.
+     *
+     * @param first  Первый многочлен.
      * @param second Второй многочлен.
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
+
         return null;
     }
 }
