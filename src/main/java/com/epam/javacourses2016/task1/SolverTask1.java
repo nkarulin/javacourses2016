@@ -49,13 +49,4 @@ public class SolverTask1 {
         }
         return list;
     }
-
-    /*public static void main(String[] args) {
-        File file = new File("./1.txt");
-        File file1 = new File("./2.txt");
-        List<String> list = reverseFile(file, file1);
-        for (String s : list) {
-            System.out.println(s);
-        }
-    }*/
 }
