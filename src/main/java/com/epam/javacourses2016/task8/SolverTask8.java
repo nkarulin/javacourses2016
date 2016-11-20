@@ -24,9 +24,9 @@ public class SolverTask8 {
         for (char ch : string.toCharArray()) {
             if (isClosingBracket(ch) && stack.isEmpty()) {
                 return false;
-            }else if (isOpeningBracket(ch)) {
+            } else if (isOpeningBracket(ch)) {
                 stack.push(ch);
-            }else if (isClosingBracket(ch)) {
+            } else if (isClosingBracket(ch)) {
                 if (isPair(stack.peek(), ch)) stack.pop();
                 else return false;
             }
@@ -43,7 +43,7 @@ public class SolverTask8 {
     }
 
     private boolean isPair(char open, char close) {
-        return open == '(' && close == ')'|| open == '{' && close == '}' || open == '[' && close == ']' ;
+        return open == '(' && close == ')' || open == '{' && close == '}' || open == '[' && close == ']';
     }
 
 }
