@@ -14,35 +14,23 @@ public class SolverTask12Test {
         SolverTask12 solver = new SolverTask12();
 
         List<Integer> list = SolverTask7Test.convertToList(array);
-
         list = solver.transform(list, value);
-        int elementIndex = list.indexOf(value);
 
-        boolean elementsBeforeSmaller = true;
-        for (int i = 0; i < elementIndex; i++) {
-            if (list.get(i) > value) {
-                elementsBeforeSmaller = false;
+        boolean wrongSort = false;
+        boolean previousGreater = false;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) >= value) {
+                previousGreater = true;
+            }
+            if (list.get(i) < value && previousGreater) {
+                wrongSort = true;
                 break;
             }
         }
 
-        boolean elementsAfterGreater = true;
-        for (int i = elementIndex; i < list.size(); i++) {
-            if (list.get(i) < value) {
-                elementsAfterGreater = false;
-                break;
-            }
-        }
-
-        if (!elementsAfterGreater || !elementsBeforeSmaller) {
-            String error = "";
-            if (!elementsAfterGreater) {
-                error += "\nElements after value smaller!";
-            }
-            if (!elementsBeforeSmaller) {
-                error += "\nElements before value greater!";
-            }
-            Assert.fail(error);
+        if (wrongSort) {
+            Assert.fail("Wrong sort!");
         }
     }
 
