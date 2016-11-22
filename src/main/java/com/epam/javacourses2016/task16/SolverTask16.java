@@ -22,7 +22,7 @@ public class SolverTask16 {
      * @return Файл с результатами анализа.
      */
 
-    static IFileWithPoints analyze(Point2D center, int radius) {
+    public IFileWithPoints analyze(Point2D center, int radius, File output) {
         SortedMap<Integer, Cell> cells = new TreeMap<>();
         int cellCount = 0;
 
@@ -48,7 +48,16 @@ public class SolverTask16 {
         return null;
     }
 
-    static class Cell {
+    private boolean insideCircle(Point2D point, int radius, Point2D center) {
+        boolean inside = true;
+        double value = Math.pow(point.getX() - center.getX(), 2) + Math.pow(point.getY() - center.getY(), 2);
+        if (value > Math.pow(radius, 2)) {
+            inside = false;
+        }
+        return inside;
+    }
+
+    class Cell {
         Point2D a;
         Point2D b;
         Point2D c;
@@ -83,18 +92,16 @@ public class SolverTask16 {
         }
     }
 
-    public static void main(String[] args) {
-        Point2D point = new Point2D(0, 0);
-        analyze(point, 1);
-    }
-
-    private static boolean insideCircle(Point2D point, int radius, Point2D center) {
-        boolean inside = true;
-        double value = Math.pow(point.getX() - center.getX(), 2) + Math.pow(point.getY() - center.getY(), 2);
-        if (value > Math.pow(radius, 2)) {
-            inside = false;
+    class FileWithPointsImpl implements IFileWithPoints {
+        @Override
+        public File getFile() {
+            return null;
         }
-        return inside;
+
+        @Override
+        public SortedMap<Point2D, Double> getPoints() {
+            return null;
+        }
     }
 
     /**

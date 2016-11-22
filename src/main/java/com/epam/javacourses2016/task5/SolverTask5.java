@@ -32,11 +32,12 @@ public class SolverTask5 {
         }
 
         double measureCount = measurements.size();
-
+        /*
         double a;
         double b;
         a = ((measureCount * xySum) - (xSum * ySum)) / (measureCount * xSqrSum - xSum * xSum);
         b = (ySum - a * xSum) / measureCount;
+        */
 
         BigDecimal aBig;
         BigDecimal bBig;
@@ -44,16 +45,17 @@ public class SolverTask5 {
         bBig = BigDecimal.valueOf(ySum).subtract(aBig.multiply(BigDecimal.valueOf(xSum)))
                 .divide(BigDecimal.valueOf(measureCount), RoundingMode.CEILING);
 
-        double e = 0;
+        //double e = 0;
         BigDecimal eBig = BigDecimal.ZERO;
         for (Measurement measure : measurements) {
+            /*
+            double func = measure.getVoltage() - (a * measure.getCurrent() + b);
+            e += Math.pow(func, 2);
+            */
 
             BigDecimal funcBig = BigDecimal.valueOf(measure.getVoltage())
                     .subtract(aBig.multiply(BigDecimal.valueOf(measure.getCurrent())).add(bBig));
             eBig = eBig.add(funcBig.pow(2));
-
-            double func = measure.getVoltage() - (a * measure.getCurrent() + b);
-            e += Math.pow(func, 2);
         }
 
         return eBig.doubleValue();

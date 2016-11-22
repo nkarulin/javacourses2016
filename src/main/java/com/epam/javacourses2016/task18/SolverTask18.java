@@ -1,8 +1,5 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.ArrayList;
-import java.util.Stack;
-
 /**
  * Дана матрица из целых чисел.
  * Найти в ней прямоугольную подматрицу, состоящую из максимального количества одинаковых элементов.
