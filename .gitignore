@@ -1,5 +1,13 @@
+<<<<<<< 028917daade7981e24edaf02f219a27240254ebc
 
 *.iml
 /.idea
 /build
 /.gradle
+=======
+# Created by .ignore support plugin (hsz.mobi)
+/.idea
+/build
+/.gradle
+*.iml
+>>>>>>> gitignore
