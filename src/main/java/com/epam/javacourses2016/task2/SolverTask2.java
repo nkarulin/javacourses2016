@@ -15,7 +15,7 @@ public class SolverTask2 {
      * @param directory Корневой каталог.
      * @return Множество элементов корневого каталога и подкаталогов.
      */
-    public static Set<File> getFiles(File directory) {
+    public Set<File> getFiles(File directory) {
 
         Set<File> files = new HashSet<>();
 
@@ -27,10 +27,5 @@ public class SolverTask2 {
         }
 
         return files;
-    }
-
-    public static void main(String[] args) {
-        File file = new File("src/main/java/com/epam/javacourses2016");
-        Set<File> result = getFiles(file);
     }
 }
