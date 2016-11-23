@@ -26,6 +26,7 @@ public class Task1Test {
         try (FileWriter write = new FileWriter(in)) {
             for (String line : lines) {
                 write.write(line);
+                write.write("\r\n");
             }
         }
 
