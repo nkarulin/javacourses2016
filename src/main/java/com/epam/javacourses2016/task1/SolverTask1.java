@@ -1,6 +1,5 @@
 package com.epam.javacourses2016.task1;
 
-import com.epam.javacourses2016.task3.Poem;
 
 import java.io.*;
 import java.util.ArrayList;

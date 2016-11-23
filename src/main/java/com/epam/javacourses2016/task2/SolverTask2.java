@@ -1,6 +1,5 @@
 package com.epam.javacourses2016.task2;
 
-import com.sun.istack.internal.NotNull;
 
 import java.io.File;
 import java.util.HashSet;
