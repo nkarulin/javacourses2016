@@ -20,4 +20,6 @@ public class Segment {
     public Point2D getB() {
         return b;
     }
+
+
 }

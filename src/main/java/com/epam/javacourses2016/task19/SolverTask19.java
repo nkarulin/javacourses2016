@@ -19,16 +19,36 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        // first sort by current position
-        return 0;
-    }
-
-    class CompareCar implements Comparator<Car> {
-
-        @Override
-        public int compare(Car o1, Car o2) {
-            return Integer.compare(o1.getStartPosition(), o2.getStartPosition());
+        int count = 0;
+        for (Car firstCar : cars) {
+            for (Car secondCar : cars) {
+                count += getOvertake(firstCar, secondCar, lengthLap, numberLaps);
+            }
         }
+        return count;
     }
+
+    private int getOvertake(Car firstCar, Car secondCar, long lengthLap, int numberLaps) {
+        int count = 0;
+        if (firstCar.getSpeed() <= secondCar.getSpeed()) {
+            return count;
+        }
+
+        double lengthFirstCar = lengthLap * numberLaps - firstCar.getStartPosition();
+        double timeFirstCar = lengthFirstCar / firstCar.getSpeed();
+        double lapsFirstCar = lengthFirstCar / lengthLap;
+        double lengthSecondCar = timeFirstCar * secondCar.getSpeed() + secondCar.getStartPosition();
+        double lapsSecondCar = lengthSecondCar / lengthLap;
+
+        count = (int) (lapsSecondCar / (lapsFirstCar / lapsSecondCar));
+        if (firstCar.getStartPosition() < secondCar.getStartPosition()) {
+            double timeBeforeOvertake = (secondCar.getStartPosition()-firstCar.getStartPosition()) / (firstCar.getSpeed() - secondCar.getSpeed());
+            if (timeBeforeOvertake <= timeFirstCar) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 
 }

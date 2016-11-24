@@ -1,5 +1,9 @@
 package com.epam.javacourses2016.task13;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * Реализовать класс Graph, представляющий собой неориентированный граф.
  * В конструкторе класса передается количество вершин в графе.
@@ -10,7 +14,7 @@ public abstract class AbstractGraphCreator {
      * @param numberNodes Количество вершин в графе.
      * @return Граф указанной конфигурации.
      */
-    abstract AbstractGraph createGraph(int numberNodes);
+     abstract AbstractGraph createGraph(int numberNodes);
 
     /**
      * Абстрактный граф.
@@ -18,7 +22,7 @@ public abstract class AbstractGraphCreator {
      * Нумерация вершин начинается с 0.
      * Допустимы операции добавления, удаления и проверки существования ребер.
      */
-    abstract class AbstractGraph {
+    abstract static class AbstractGraph {
 
         /** Количество вершин */
         protected final int NUMBER_NODES;
