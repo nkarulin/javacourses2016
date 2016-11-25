@@ -1,6 +1,8 @@
 package com.epam.javacourses2016.task14;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Stream;
 
 /**
  * На базе коллекций реализовать структуру хранения чисел с поддержкой следующих операций:

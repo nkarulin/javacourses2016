@@ -2,7 +2,7 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.File;
+import java.io.*;
 import java.util.Set;
 
 /**
@@ -25,6 +25,34 @@ public class SolverTask15 {
     /**
      * Представляет файл, содержащий информацию о найденных линиях.
      */
+    class LinesWriter implements IFileWithLines {
+        @Override
+        public File getFile() {
+            return null;
+        }
+
+        @Override
+        public Set<ILine> getLines() {
+            return null;
+        }
+    }
+    private void writeLines(File file, Set<ILine> lines) {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for(ILine line : lines) {
+                writeLine(writer, line);
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void writeLine(BufferedWriter writer, ILine line) throws IOException {
+        for(Point2D point : line.getPoints()) {
+            writer.write("Point: {" + point.getX() +"," + point.getY()+"}; ");
+        }
+        writer.newLine();
+    }
     interface IFileWithLines {
 
         /**
@@ -44,7 +72,6 @@ public class SolverTask15 {
      * Прямая, заданная точками, входящими в исходное множество.
      */
     interface ILine {
-
         /**
          * @return Точки, через которые проходит прямая
          */

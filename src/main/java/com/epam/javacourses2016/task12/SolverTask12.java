@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task12;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,26 +18,30 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
+        int indexStart = integers.size() - 1;
 
         for (int i = 0; i < integers.size(); i++) {
-            for (int j = 0; j < integers.size() - i - 1; j++) {
-                if (integers.get(j) > integers.get(j + 1)) {
-                    /*
-                    int x = integers.get(j);
-                    int y = integers.get(j + 1);
-                    x = x - y;
-                    y = y + x;
-                    x = y - x;
-                    integers.set(j, x);
-                    integers.set(j + 1, y);
-                    */
-
-                    integers.set(j, integers.get(j) - integers.get(j + 1));
-                    integers.set(j + 1, integers.get(j + 1) + integers.get(j));
-                    integers.set(j, integers.get(j + 1) - integers.get(j));
+            if (integers.get(i) > value) {
+                for (int j = indexStart; j >= i; j--) {
+                    if (integers.get(j) <= value) {
+                        indexStart--;
+                        Collections.swap(integers, i, j);
+                        break;
+                    }
                 }
             }
         }
+
+        //Bubble Sort could solve this problem, so here we go!
+        /*
+        for (int i = 0; i < integers.size(); i++) {
+            for (int j = 0; j < integers.size() - i - 1; j++) {
+                if (integers.get(j) > integers.get(j + 1)) {
+                    Collections.swap(integers, j+1,j);
+                }
+            }
+        }*/
+
         return integers;
     }
 }

@@ -29,24 +29,35 @@ public class SolverTask19 {
     }
 
     private long getOvertake(Car car1, Car car2, long lengthLap, long numberOfLap) {
-        long count = 0;
 
         if (car1.getSpeed() <= car2.getSpeed()) {
-            return count;
+            return 0;
         }
 
         double firstLapTime = (double) (lengthLap - car1.getStartPosition()) / car1.getSpeed();
-        double otherLapsTime = (double) (lengthLap * (numberOfLap - 1) / car1.getSpeed());
-        double time = firstLapTime + otherLapsTime;
+        double otherLapsTime = (double) (lengthLap * (numberOfLap - 1)) / car1.getSpeed();
+        double globalTime = firstLapTime + otherLapsTime;
 
-        double lengthCar2 = time * car2.getSpeed() + car2.getStartPosition();
-        long lapsCar2 = (long) (lengthCar2 / lengthLap);
+        //It's car position after globalTime.
+        //First car will be at the end of route(because it's hit finish line) - lapLength*laps.
+        //Second car will be at the time*speed + startPosition.
 
-        count = lapsCar2;
-        if (car1.getStartPosition() < car2.getStartPosition()) {
-            count++;
+        double car2Position = globalTime * car2.getSpeed() + car2.getStartPosition();
+        double distanceLeft =  lengthLap * numberOfLap - car2Position;
+
+        double lapsOvertake = distanceLeft / lengthLap;
+
+        //This could happen if first car start far behind
+        //And second car have speed enough to end round before first one can do overtake
+        if (lapsOvertake <= 0) {
+            lapsOvertake = 0;
+        } else {
+            if (car1.getStartPosition() < car2.getStartPosition()) {
+                lapsOvertake++;
+            }
         }
 
-        return count;
+        //Round laps
+        return (int)lapsOvertake;
     }
 }
