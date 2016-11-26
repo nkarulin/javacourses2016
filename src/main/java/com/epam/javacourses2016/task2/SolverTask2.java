@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Сформировать множество элементов, входящих в каталог и его подкаталоги.
@@ -33,17 +34,17 @@ public class SolverTask2 {
         Set<File> elements = new HashSet<>();
         if (directory != null) {
             File[] files = directory.listFiles();
+
             for(int i = 0; i < files.length; i++) {
 
                 if (!equals(directory, files[i])) {
-                    if (files[i].isDirectory())
+                    if (files[i].isDirectory()) {
                         elements.addAll(getFiles(files[i]));
-                    else
-                        elements.add(files[i]);
+                    }
+                     elements.add(files[i]);
                 }
             }
         }
-
-        return elements;
+        return  elements;
     }
 }
