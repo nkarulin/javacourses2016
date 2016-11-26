@@ -2,12 +2,9 @@ package com.epam.javacourses2016.task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -28,7 +25,7 @@ public class SolverTask17Test {
     @Test(enabled=false, dataProvider = "segmentsWithResults")
     public void testAnalyze(Segment[] segments, Set<Point2D> expected) throws Exception {
         SolverTask17 solver = new SolverTask17();
-        Set<Point2D> result = solver.analyze(new HashSet<Segment>(Arrays.asList(segments)));
+        Set<Point2D> result = solver.analyze(new HashSet<>(Arrays.asList(segments)));
 
          final DecimalFormat format = new DecimalFormat("#.###");
         format.setRoundingMode(RoundingMode.CEILING);
