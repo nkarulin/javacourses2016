@@ -13,7 +13,7 @@ import java.util.HashSet;
  */
 public class SolverTask9 {
 
-    private boolean isEnglish(String word) {
+    public static boolean isEnglish(String word) {
         word = word.toLowerCase();
         for(int i = 0; i < word.length(); i++) {
             char let = word.charAt(i);
