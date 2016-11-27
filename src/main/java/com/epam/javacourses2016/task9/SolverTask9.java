@@ -1,6 +1,8 @@
 package com.epam.javacourses2016.task9;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.HashSet;
 
 /**
@@ -11,12 +13,38 @@ import java.util.HashSet;
  */
 public class SolverTask9 {
 
+    private boolean isEnglish(String word) {
+        word = word.toLowerCase();
+        for(int i = 0; i < word.length(); i++) {
+            char let = word.charAt(i);
+            if((let <  'а' || let > 'z') && let >= 'а' && let <= 'я')
+                return false;
+        }
+        return true;
+    }
     /**
      * Формирует множество уникальных слов, извлекая их из файла.
      * @param input Анализируемый файл.
      * @return Множество полученных слов.
      */
     public HashSet<String> getUniqueWords(File input) {
-        return null;
+
+        HashSet<String> englishWords = new HashSet<>();
+        try (FileReader fr = new FileReader(input); BufferedReader br = new BufferedReader(fr)) {
+
+            String s = null;
+            while((s = br.readLine()) != null) {
+                String[] words = s.split(" ");
+                for(int i = 0; i < words.length; i++) {
+                    words[i] = words[i].toLowerCase();
+                    if (isEnglish(words[i]))
+                        englishWords.add(words[i]);
+                }
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return englishWords;
     }
 }
