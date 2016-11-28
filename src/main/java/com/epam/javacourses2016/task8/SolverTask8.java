@@ -16,6 +16,7 @@ public class SolverTask8 {
      * @return true - скобки расставлены верно, иначе - false.
      */
     public boolean isNormalBrackets(String string) {
+        //TODO
         return false;
     }
 }

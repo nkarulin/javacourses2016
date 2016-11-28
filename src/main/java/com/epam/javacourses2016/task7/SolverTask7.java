@@ -17,6 +17,7 @@ public class SolverTask7 {
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
+        //TODO
         return null;
     }
 }

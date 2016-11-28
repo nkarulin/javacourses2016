@@ -17,6 +17,7 @@ public class SolverTask10 {
      * @return Множество пар <слово, количество вхождений в файле>.
      */
     public HashMap<String, Integer> countNumberWords(File input) {
+        //TODO
         return null;
     }
 }
