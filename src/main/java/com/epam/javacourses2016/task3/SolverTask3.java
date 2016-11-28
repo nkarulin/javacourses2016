@@ -18,7 +18,6 @@ public class SolverTask3 {
      * @return Список, упорядоченных по длине строк, составляющих стихотворения автора.
      */
     public List<String> sortPoems(Set<Poem> poems, String author) {
-        //TODO: realize solver of a task
         List<Poem> poemsOfAuthor = poems.stream()
                 .filter(poem -> poem.getAuthor().equalsIgnoreCase(author))
                 .collect(Collectors.toList());
