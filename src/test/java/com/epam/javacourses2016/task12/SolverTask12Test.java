@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SolverTask12Test {
 
-    @Test(dataProvider = "numbers")
+    @Test(enabled = true, dataProvider = "numbers")
     public void testTransform(int[] array, int value) throws Exception {
         SolverTask12 solver = new SolverTask12();
 

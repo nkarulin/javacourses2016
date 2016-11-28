@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Task2Test {
 
-    @Test(dataProvider = "directory")
+    @Test(enabled = true, dataProvider = "directory")
     public void testTask2(String directory) {
         SolverTask2 solver = new SolverTask2();
         File file = new File(directory);

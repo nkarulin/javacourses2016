@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class SolverTask6Test {
 
-    @Test(dataProvider = "polynomials")
+    @Test(enabled = true, dataProvider = "polynomials")
     public void testAddPolynomials(Integer[][] first, Integer[][] second, Integer[][] result) throws Exception {
 
         SolverTask6 solver = new SolverTask6();
