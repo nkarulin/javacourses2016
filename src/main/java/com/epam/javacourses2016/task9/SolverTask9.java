@@ -23,9 +23,7 @@ public class SolverTask9 {
     public HashSet<String> getUniqueWords(File input) {
         HashSet<String> result = new HashSet<>();
         ArrayList<String> allWords = new ArrayList<>();
-        try {
-            FileReader fileInputStream = new FileReader(input);
-            BufferedReader reader = new BufferedReader(fileInputStream);
+        try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String word;
             while ((word = reader.readLine()) != null) {
                 allWords.add(word);
