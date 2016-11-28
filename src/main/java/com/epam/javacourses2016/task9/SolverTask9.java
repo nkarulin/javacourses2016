@@ -1,9 +1,11 @@
 package com.epam.javacourses2016.task9;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -29,10 +31,15 @@ public class SolverTask9 {
                 allWords.add(word);
             }
             for (String oneWord : allWords) {
-                result.addAll(result.stream()
-                        .filter(s -> !oneWord.equalsIgnoreCase(s))
-                        .map(s -> oneWord)
-                        .collect(Collectors.toList()));
+                int count = 0;
+                for (String resultWord : result) {
+                    if (oneWord.equalsIgnoreCase(resultWord)) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    result.add(oneWord);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
