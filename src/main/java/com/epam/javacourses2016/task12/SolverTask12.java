@@ -18,6 +18,7 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
+
         int indexStart = integers.size() - 1;
 
         for (int i = 0; i < integers.size(); i++) {
@@ -32,16 +33,8 @@ public class SolverTask12 {
             }
         }
 
-        //Bubble Sort could solve this problem, so here we go!
-        /*
-        for (int i = 0; i < integers.size(); i++) {
-            for (int j = 0; j < integers.size() - i - 1; j++) {
-                if (integers.get(j) > integers.get(j + 1)) {
-                    Collections.swap(integers, j+1,j);
-                }
-            }
-        }*/
-
+        //Collection sort could solve this problem, so here we go!
+        //Collections.sort(integers);
         return integers;
     }
 }

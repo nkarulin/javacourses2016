@@ -2,7 +2,9 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,41 +20,41 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
-        return null;
+
+        Set<MyLine> lines = new HashSet<>();
+        ArrayList<Point2D> arrayOfPoints = new ArrayList<>(points);
+
+        for (int i = 0; i < points.size(); i++) {
+            for (int j = i; j < points.size() - 1; j++) {
+                MyLine line = new MyLine(arrayOfPoints.get(j), arrayOfPoints.get(j + 1));
+
+                for(Point2D point : points) {
+                    if (line.intersect(point)) {
+                        line.points.add(point);
+                    }
+                }
+
+                boolean canAdd = true;
+                for (MyLine testLine : lines) {
+                    if (testLine.getPoints().containsAll(line.points)) {
+                        canAdd = false;
+                    }
+                }
+
+                if (canAdd && line.getPoints().size() > 2) {
+                    lines.add(line);
+                }
+            }
+        }
+
+        MyFileWithLines fileWithLines = new MyFileWithLines();
+        fileWithLines.writeLines(output, lines);
+        return fileWithLines;
     }
 
     /**
      * Представляет файл, содержащий информацию о найденных линиях.
      */
-    class LinesWriter implements IFileWithLines {
-        @Override
-        public File getFile() {
-            return null;
-        }
-
-        @Override
-        public Set<ILine> getLines() {
-            return null;
-        }
-    }
-    private void writeLines(File file, Set<ILine> lines) {
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for(ILine line : lines) {
-                writeLine(writer, line);
-            }
-        } catch (Exception e) {
-
-        }
-    }
-
-    private void writeLine(BufferedWriter writer, ILine line) throws IOException {
-        for(Point2D point : line.getPoints()) {
-            writer.write("Point: {" + point.getX() +"," + point.getY()+"}; ");
-        }
-        writer.newLine();
-    }
     interface IFileWithLines {
 
         /**

@@ -40,7 +40,6 @@ public class SolverTask11 {
      */
     public String emulate(LinkedList<String> peoples) {
         int index = 0;
-        int size = 0;
 
         while (peoples.size() > 1) {
             Iterator iterator = peoples.iterator();

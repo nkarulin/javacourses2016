@@ -19,6 +19,7 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     Set<Point2D> analyze(Set<Segment> segments) {
+
         for (int i = 0; i < segments.size(); i++) {
             for (int j = 0; j < segments.size(); j++) {
 
@@ -29,6 +30,7 @@ public class SolverTask17 {
     }
 
     private Point2D getIntersectionPoint(Point2D a, Point2D b, Point2D c, Point2D d) {
+
         double x;
         double y;
         double x1 = a.getX();

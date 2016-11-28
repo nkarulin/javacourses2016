@@ -2,9 +2,11 @@ package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -23,7 +25,7 @@ public class SolverTask16 {
      */
 
     public IFileWithPoints analyze(Point2D center, int radius, File output) {
-        SortedMap<Integer, Cell> cells = new TreeMap<>();
+        Map<Cell, Integer> cells = new HashMap<>();
         int cellCount = 0;
 
         for (int indexX = -radius; indexX < radius; indexX++) {
@@ -39,11 +41,14 @@ public class SolverTask16 {
 
                     Cell newCell = new Cell(point1, point2, point3, point4);
                     newCell.countDistance(center);
-                    cells.put(cellCount, newCell);
+                    cells.put(newCell, cellCount);
                     cellCount++;
                 }
             }
         }
+
+        FileWithPointsImpl myFile = new FileWithPointsImpl();
+        myFile.writeFile(cells, output);
 
         return null;
     }
@@ -90,20 +95,11 @@ public class SolverTask16 {
 
             return value;
         }
-    }
 
-    class FileWithPointsImpl implements IFileWithPoints {
-        @Override
-        public File getFile() {
-            return null;
-        }
-
-        @Override
-        public SortedMap<Point2D, Double> getPoints() {
-            return null;
+        public double getDistanceToCenter() {
+            return distanceToCenter;
         }
     }
-
     /**
      * Представляет файл, содержащий информацию о найденных точках.
      */

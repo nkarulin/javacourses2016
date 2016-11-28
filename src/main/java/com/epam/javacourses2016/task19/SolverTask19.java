@@ -43,7 +43,7 @@ public class SolverTask19 {
         //Second car will be at the time*speed + startPosition.
 
         double car2Position = globalTime * car2.getSpeed() + car2.getStartPosition();
-        double distanceLeft =  lengthLap * numberOfLap - car2Position;
+        double distanceLeft = lengthLap * numberOfLap - car2Position;
 
         double lapsOvertake = distanceLeft / lengthLap;
 
@@ -58,6 +58,6 @@ public class SolverTask19 {
         }
 
         //Round laps
-        return (int)lapsOvertake;
+        return (int) lapsOvertake;
     }
 }
