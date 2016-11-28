@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.epam.javacourses2016.task16.SolverTask16Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-11-28T17:29:38" hostname="DESKTOP-9HQQJ1D" time="0.0">
+  <properties/>
+  <testcase name="testAnalyze" classname="com.epam.javacourses2016.task16.SolverTask16Test" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

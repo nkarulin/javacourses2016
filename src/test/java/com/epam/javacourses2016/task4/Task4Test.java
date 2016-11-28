@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Task4Test {
 
-    @Test(enabled = false, dataProvider = "params")
+    @Test(dataProvider = "params")
     public void testIntersection(Integer[] first, Integer[] second) throws Exception {
         SolverTask4 solver = new SolverTask4();
 
