@@ -21,7 +21,7 @@ public class NumberCollectionTest {
     }
 
     @DataProvider(name = "numbers")
-    public Object[][] matrix() {
+    public Object[][] collection() {
         return new Object[][]{
                 {new Number[]{1, 2, 6, 1, 4}, 5, 6},
                 {new Number[]{1, 1, 1, 1, 3}, 2, 1},

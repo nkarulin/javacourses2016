@@ -1,56 +1,44 @@
 package com.epam.javacourses2016.task9;
 
-import com.epam.javacourses2016.task1.SolverTask1;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.util.*;
-
-import static org.testng.Assert.*;
+import java.io.File;
+import java.io.FileReader;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class SolverTask9Test {
-    @Test(enabled = true, dataProvider = "lines")
-    public void testGetUniqueWords(String[] linesArray, String[] result) throws IOException {
-        List<String> lines = Arrays.asList(linesArray);
-        SolverTask9 task9 = new SolverTask9();
 
-        File input = Files.createTempFile("task9", "input").toFile();
+    @Test(enabled = true, dataProvider = "text")
+    public void testGetUniqueWords(String fileName, String fileResult) throws Exception {
+        SolverTask9 solver = new SolverTask9();
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        File resultFile = new File(classLoader.getResource(fileResult).getFile());
 
-        try (FileWriter write = new FileWriter(input)) {
-            for (String line : lines) {
-                write.write(line + '\n');
+        HashSet<String> uniqueWords = new HashSet<>();
 
+        try (Scanner scanner = new Scanner(new FileReader(resultFile))) {
+            while (scanner.hasNextLine()) {
+                Scanner scanner2 = new Scanner(scanner.nextLine());
+                while (scanner2.hasNext()) {
+                    uniqueWords.add(scanner2.next().toLowerCase());
+                }
             }
         }
 
-        Assert.assertEquals(task9.getUniqueWords(input), convertToSet(result));
+        Assert.assertEquals(solver.getUniqueWords(file), uniqueWords);
     }
 
-    public HashSet<String> convertToSet(String[] arr) {
-        HashSet<String> set = new HashSet<>();
-        for(int i=0;i<arr.length;i++){
-            set.add(arr[i]);
-        }
-        return set;
-    }
-
-    @DataProvider(name = "lines")
-    private Object[][] lines() {
+    @DataProvider(name = "text")
+    public Object[][] text() {
         return new Object[][]{
-            {
-                        new String[]{
-                                "Stack Overflow is a community of 6.3 million programmers",
-                                "Stack Overflow is the best community for developers"
-                        },
-                        new String[]{
-                                "a", "stack", "developers", "for", "is", "best", "community", "the", "overflow", "million", "of", "programmers", "6.3"
-                        }
-
-            },
-                {new String[]{"Hello", "There", "", "My old friend"}, new String[]{"old", "there", "friend", "hello", "my"}}
+                {"com/epam/javacourses2016/task9/text1.txt", "com/epam/javacourses2016/task9/text1_unique.txt"},
+                {"com/epam/javacourses2016/task9/text2.txt", "com/epam/javacourses2016/task9/text2_unique.txt"},
+                {"com/epam/javacourses2016/task9/text3.txt", "com/epam/javacourses2016/task9/text3_unique.txt"},
         };
     }
+
 }

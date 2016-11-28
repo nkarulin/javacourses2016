@@ -4,27 +4,44 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SolverTask7Test {
-    @Test(enabled = true, dataProvider = "polynom")
-    public void testMultiplyPolynomials(Integer[] first, Integer[] second, Integer[] result) throws Exception {
-        SolverTask7 task7 = new SolverTask7();
-        List<Integer> firstList= convertToList(first);
-        List<Integer> secondList= convertToList(second);
-        List<Integer> resultList= convertToList(result);
-        Assert.assertEquals(task7.multiplyPolynomials(firstList,secondList),resultList);
+
+    @Test(enabled = true, dataProvider = "polynomials2")
+    public void testMultiplyPolynomials(int[] first, int[] second, int[] result) throws Exception {
+
+        SolverTask7 solver = new SolverTask7();
+        List<Integer> firstList = convertToList(first);
+        List<Integer> secondList = convertToList(second);
+        List<Integer> resultList = convertToList(result);
+
+        Assert.assertEquals(solver.multiplyPolynomials(firstList, secondList), resultList);
     }
 
-    public List<Integer> convertToList(Integer[] array) {
-        return Arrays.asList(array);
+    public static List<Integer> convertToList(int[] array) {
+        List<Integer> list = new ArrayList<>();
+        for (int number : array) {
+            list.add(number);
+        }
+        return list;
     }
-    @DataProvider(name = "polynom")
-    private Object[][] polynom() {
+
+    @DataProvider(name = "polynomials2")
+    public Object[][] polynomials2() {
         return new Object[][]{
-                {new Integer[]{1, 5, 10},new Integer[]{1, 2, 4}, new Integer[]{1, 7, 24,40,40}},
-                {new Integer[]{1, 2, 3},new Integer[]{0, 4, 1},new Integer[]{0, 4, 9, 14,3}}
+                {
+                        new int[]{2, 1},
+                        new int[]{2, 1},
+                        new int[]{4, 4, 1}
+                },
+                {
+                        new int[]{2, 0, 0, 3},
+                        new int[]{4, 0, 1},
+                        new int[]{8, 0, 2, 12, 0, 3}
+                }
+
         };
     }
 }

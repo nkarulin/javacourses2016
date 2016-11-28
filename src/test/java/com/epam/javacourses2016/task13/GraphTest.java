@@ -12,41 +12,37 @@ import static org.testng.Assert.*;
 
 public class GraphTest {
     @Test(enabled = true, dataProvider = "add-edges")
-    public void testAddEdge(int numberNodes, Integer[][] edges, Integer[][] result) throws Exception {
-        Graph graph = new Graph(numberNodes);
+    public void testAddEdge(int numberNodes, Integer[][] edges,Integer[][]result) throws Exception {
+        AbstractGraphCreator graphCreator = new GraphCreator();
+        AbstractGraphCreator.AbstractGraph graph = graphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
             graph.addEdge(edges[i][0], edges[i][1]);
         }
-        List<Edge> resultEdges = convertToEdgesList(result);
-        Assert.assertEquals(graph.getEdges(), resultEdges);
-    }
-
-    private List<Edge> convertToEdgesList(Integer[][] edges) {
-        List<Edge> edgesList = new ArrayList<>();
-        if (edges.length != 0) {
-            for (int i = 0; i < edges.length; i++) {
-                edgesList.add(new Edge(edges[i][0], edges[i][1]));
-            }
+        for (int i = 0; i < result.length; i++) {
+            Assert.assertTrue(graph.isExistEdge(result[i][0], result[i][1]));
         }
-        return edgesList;
+
     }
 
     @Test(enabled = true, dataProvider = "remove-edges")
-    public void testRemoveEdge(int numberNodes, Integer[][] edges, Integer[][] edgesForDel, Integer[][] result) throws Exception {
-        Graph graph = new Graph(numberNodes);
+    public void testRemoveEdge(int numberNodes, Integer[][] edges, Integer[][] edgesForDel) throws Exception {
+        AbstractGraphCreator graphCreator = new GraphCreator();
+        AbstractGraphCreator.AbstractGraph graph = graphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
             graph.addEdge(edges[i][0], edges[i][1]);
         }
         for (int i = 0; i < edgesForDel.length; i++) {
             graph.removeEdge(edgesForDel[i][0], edgesForDel[i][1]);
         }
-        List<Edge> resultEdges = convertToEdgesList(result);
-        Assert.assertEquals(graph.getEdges(), resultEdges);
+        for (int i = 0; i < edgesForDel.length; i++) {
+            Assert.assertFalse(graph.isExistEdge(edgesForDel[i][0], edgesForDel[i][1]));
+        }
     }
 
     @Test(enabled = true, dataProvider = "exist-edges")
     public void testIsExistEdge(int numberNodes, Integer[][] edges, Integer[][] exist, Boolean[] result) throws Exception {
-        Graph graph = new Graph(numberNodes);
+        AbstractGraphCreator graphCreator = new GraphCreator();
+        AbstractGraphCreator.AbstractGraph graph = graphCreator.createGraph(numberNodes);
         List<Boolean> isExistList = new ArrayList<>();
         for (int i = 0; i < edges.length; i++) {
             graph.addEdge(edges[i][0], edges[i][1]);
@@ -60,7 +56,7 @@ public class GraphTest {
     @DataProvider(name = "add-edges")
     public Object[][] addEdges() {
         return new Object[][]{
-                {4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}},
+                {4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}},
                 {3, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{3, 2}, {2, 2}}},
                 {4, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}, new Integer[][]{{4, 2}, {3, 2}}}
         };
@@ -69,9 +65,9 @@ public class GraphTest {
     @DataProvider(name = "remove-edges")
     public Object[][] removeEdges() {
         return new Object[][]{
-                {4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{3, 2}}, new Integer[][]{{4, 2}, {2, 2}}},
-                {3, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{}},
-                {4, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}, new Integer[][]{{3, 2}}, new Integer[][]{{4, 2}}}
+                {4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{3, 2}}},
+                {3, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}},
+                {4, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}, new Integer[][]{{3, 2}}}
         };
     }
 

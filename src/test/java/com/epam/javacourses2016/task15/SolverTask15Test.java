@@ -52,7 +52,7 @@ public class SolverTask15Test {
     }
 
     @DataProvider(name = "points")
-    private Object[][] cars() {
+    private Object[][] points() {
         return new Object[][]{
                 {new Double[]{1.0, 0.5, 0.0, 1.0, 0.0, 1.0, 2.0, 3.0, -2.0, -1.0, -10.0, 0.0, 10.0, 1.0}}
         };

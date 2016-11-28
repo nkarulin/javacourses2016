@@ -8,11 +8,6 @@ import org.testng.annotations.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.testng.Assert.*;
-
-/**
- * Created by kodoo on 13.11.16.
- */
 public class SolverTask19Test {
 
     @Test(enabled = true, dataProvider = "cars")
@@ -34,15 +29,12 @@ public class SolverTask19Test {
 
     @DataProvider(name = "cars")
     private Object[][] cars() {
-
+        //lap length, number of laps, overtakeCount(result), array of cars(position, speed)
         return new Object[][]{
-                {100, 1, 0, new int[][]{{1, 25}, {2, 25}}},
-                {100, 1, 0, new int[][]{{1, 25}, {2, 35}}},
-                {100, 1, 1, new int[][]{{2, 25}, {1, 35}}},
-                {100, 10, 0, new int[][]{{1, 25}, {2, 25}}},
-                {100, 10, 5, new int[][]{{1, 25}, {2, 35}}},
-                {100, 10, 6, new int[][]{{2, 25}, {1, 35}}},
+                {100, 1, 2, new int[][]{{1, 50}, {2, 25}, {3, 25}}},
+                {100, 5, 6, new int[][]{{1, 50}, {2, 25}, {3, 25}}},
+                {100, 1, 0, new int[][]{{1, 25}, {2, 25}, {3, 50}}},
+                {100, 5, 4, new int[][]{{1, 25}, {2, 25}, {3, 50}}},
         };
     }
 }
-

@@ -21,7 +21,11 @@ public class SolverTask6 {
     public HashMap<Integer, Integer> addPolynomials(HashMap<Integer, Integer> first, HashMap<Integer, Integer> second) {
         HashMap<Integer, Integer> result = new HashMap<>();
         for (int firstKey : first.keySet()) {
-            result.put(firstKey, first.get(firstKey) + second.get(firstKey));
+            Integer valueOfSecond = 0;
+            if(second.containsKey(firstKey)){
+                valueOfSecond=(second.get(firstKey));
+            }
+            result.put(firstKey, first.get(firstKey) + valueOfSecond);
         }
         for (int secondKey : second.keySet()) {
             if (!first.containsKey(secondKey)) result.put(secondKey, second.get(secondKey));

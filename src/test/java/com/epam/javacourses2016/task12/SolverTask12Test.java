@@ -1,47 +1,46 @@
 package com.epam.javacourses2016.task12;
 
+import com.epam.javacourses2016.task7.SolverTask7Test;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class SolverTask12Test {
-    @Test(enabled = true, dataProvider = "integers")
-    public void testTransform(Integer[] integers, int value) throws Exception {
-        SolverTask12 task12 = new SolverTask12();
-        List<Integer> resultList = task12.transform(convertToList(integers), value);
-        Assert.assertFalse(!isSorted(resultList, value));
-    }
 
-    public List<Integer> convertToList(Integer[] array) {
-        return Arrays.asList(array);
-    }
+    @Test(enabled = true, dataProvider = "numbers")
+    public void testTransform(int[] array, int value) throws Exception {
+        SolverTask12 solver = new SolverTask12();
 
-    public boolean isSorted(List<Integer> integers, int value) {
-        boolean isCorrect = true;
-        for (int i = 0; i < integers.size() - 1; i++) {
-            if (integers.get(i) >= value) {
-                if (integers.get(i + 1) >= value) {
-                    isCorrect = true;
-                } else {
-                    isCorrect = false;
-                    break;
-                }
+        List<Integer> list = SolverTask7Test.convertToList(array);
+        list = solver.transform(list, value);
+
+        boolean wrongSort = false;
+        boolean previousGreater = false;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) >= value) {
+                previousGreater = true;
+            }
+            if (list.get(i) < value && previousGreater) {
+                wrongSort = true;
+                break;
             }
         }
-        return isCorrect;
+
+        if (wrongSort) {
+            Assert.fail("Wrong sort!");
+        }
     }
 
-    @DataProvider(name = "integers")
-    public Object[][] integers() {
+    @DataProvider(name = "numbers")
+    public Object[][] numbers() {
         return new Object[][]{
-                {new Integer[]{6, 4, 3, 2, 1}, 5},
-                {new Integer[]{1, 2, 3, 4, 5}, 7},
-                {new Integer[]{6, 4, 5, 8, 1}, 5},
-                {new Integer[]{5}, 5}
+                {new int[]{5, 4, 3, 2, 1}, 5},
+                {new int[]{1, 2, 3, 4, 5}, 5},
+                {new int[]{6, 4, 5, 8, 1}, 5},
+                {new int[]{5}, 5}
         };
     }
-
 }
