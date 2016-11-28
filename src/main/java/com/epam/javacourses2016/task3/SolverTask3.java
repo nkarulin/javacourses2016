@@ -26,13 +26,7 @@ public class SolverTask3 {
             List<String> poemsLines = poem.getLines();
             allLines.addAll(poemsLines);
         }
-        allLines.stream().sorted((string1, string2) -> {
-            if (string1.length() > string2.length()) {
-                return 1;
-            } else if (string1.length() < string2.length()) {
-                return -1;
-            } else return 0;
-        }).close();
+        allLines.stream().sorted((string1, string2) -> string2.length() - string1.length()).close();
         return allLines;
     }
 }
