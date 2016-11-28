@@ -20,10 +20,10 @@ public class SolverTask12Test {
         boolean previousGreater = false;
 
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) >= value) {
+            if (list.get(i) > value) {
                 previousGreater = true;
             }
-            if (list.get(i) < value && previousGreater) {
+            if (list.get(i) <= value && previousGreater) {
                 wrongSort = true;
                 break;
             }
