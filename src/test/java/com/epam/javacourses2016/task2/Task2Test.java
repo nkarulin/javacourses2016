@@ -19,7 +19,7 @@ public class Task2Test {
 
     @Test(enabled = true, dataProvider = "directories")
     public void testTask2(String[] filesArray) throws IOException {
-        String tempDirectory = "resources\\tempdirector\\";
+        String tempDirectory = "tempdirector\\";
         File tempDir = new File(tempDirectory);
         tempDir.mkdirs();
         List<String> files = Arrays.asList(filesArray);
