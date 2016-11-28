@@ -1,8 +1,7 @@
 package com.epam.javacourses2016.task3;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 /**
  * Занести строки, составляющие стихотворения указанного автора, в список.

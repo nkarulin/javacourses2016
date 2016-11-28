@@ -1,11 +1,15 @@
 package com.epam.javacourses2016.task10;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -21,10 +25,15 @@ public class SolverTask10 {
      * @return Множество пар <слово, количество вхождений в файле>.
      */
     public HashMap<String, Integer> countNumberWords(File input) {
-        List<String> lines = null;
-        try {
-            lines = Files.readAllLines(input.toPath(), StandardCharsets.UTF_8);
-        } catch (IOException e) {
+        ArrayList<String> lines = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new FileReader(input))) {
+            while (scanner.hasNextLine()) {
+                Scanner scanner2 = new Scanner(scanner.nextLine());
+                while (scanner2.hasNext()) {
+                    lines.add(scanner2.next());
+                }
+            }
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         HashMap<String, Integer> words = new HashMap<>();

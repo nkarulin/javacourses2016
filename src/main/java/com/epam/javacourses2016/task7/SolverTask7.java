@@ -18,17 +18,14 @@ public class SolverTask7 {
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
-        int maxPow = (first.size() - 1) + (second.size() - 1);
+        int maxPow = (first.size() + second.size()) - 1;
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i < maxPow; i++) {
             result.add(i, 0);
         }
         for (int i = first.size() - 1; i >= 0; i--) {
             for (int j = second.size() - 1; j >= 0; j--) {
-                int pow = (i + j) - 1;
-                if ((i+j) == 0) {
-                    pow = 0;
-                }
+                int pow = i + j;
                 if (result.get(pow) == 0) {
                     result.remove(pow);
                     result.add(pow, first.get(i) * second.get(j));

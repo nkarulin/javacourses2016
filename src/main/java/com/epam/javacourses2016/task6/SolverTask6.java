@@ -18,14 +18,16 @@ public class SolverTask6 {
     public HashMap<Integer, Integer> addPolynomials(HashMap<Integer, Integer> first, HashMap<Integer, Integer> second) {
         HashMap<Integer, Integer> result = new HashMap<>();
         for (Integer powFirst : first.keySet()) {
-            for (Integer powSecond : second.keySet()) {
-                if (powFirst.equals(powSecond)) {
-                    result.put(powFirst, first.get(powFirst)+second.get(powSecond));
-                    break;
-                }
-                else {
-                    result.put(powFirst, first.get(powFirst));
-                }
+            if (second.containsKey(powFirst)) {
+                result.put(powFirst, first.get(powFirst) + second.get(powFirst));
+            }
+            else {
+                result.put(powFirst, first.get(powFirst));
+            }
+        }
+        for (Integer powSecond : second.keySet()) {
+            if (!result.containsKey(powSecond)) {
+                result.put(powSecond, second.get(powSecond));
             }
         }
         return result;
