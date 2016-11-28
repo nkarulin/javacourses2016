@@ -1,6 +1,9 @@
 package com.epam.javacourses2016.task10;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -18,6 +21,16 @@ public class SolverTask10 {
      */
     public HashMap<String, Integer> countNumberWords(File input) {
         //TODO
+        HashMap<String, Integer> result = new HashMap<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
+            String word;
+            while ((word = reader.readLine()) != null) {
+
+            }
+        } catch (IOException e) {
+            System.out.println("I/O ex");
+            e.printStackTrace();
+        }
         return null;
     }
 }

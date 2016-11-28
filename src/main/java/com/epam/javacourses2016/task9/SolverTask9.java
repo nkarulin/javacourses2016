@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -22,22 +21,10 @@ public class SolverTask9 {
      */
     public HashSet<String> getUniqueWords(File input) {
         HashSet<String> result = new HashSet<>();
-        ArrayList<String> allWords = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String word;
             while ((word = reader.readLine()) != null) {
-                allWords.add(word);
-            }
-            for (String oneWord : allWords) {
-                int count = 0;
-                for (String resultWord : result) {
-                    if (oneWord.equalsIgnoreCase(resultWord)) {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    result.add(oneWord);
-                }
+                result.add(word.toLowerCase());
             }
         } catch (IOException e) {
             e.printStackTrace();
