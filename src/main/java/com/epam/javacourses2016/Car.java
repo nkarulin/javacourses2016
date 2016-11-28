@@ -8,7 +8,7 @@ public class Car {
     private int startPosition;
     private int speed;
 
-    Car(int startPosition, int speed) {
+    public Car(int startPosition, int speed) {
         this.startPosition = startPosition;
         this.speed = speed;
     }
