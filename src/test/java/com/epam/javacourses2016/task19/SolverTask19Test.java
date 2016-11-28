@@ -34,7 +34,7 @@ public class SolverTask19Test {
 
     @DataProvider(name = "cars")
     private Object[][] cars() {
-        //lap length, number of laps, overtakeCount(result), array of cars(position, speed)
+
         return new Object[][]{
                 {100, 1, 0, new int[][]{{1, 25}, {2, 25}}},
                 {100, 1, 0, new int[][]{{1, 25}, {2, 35}}},

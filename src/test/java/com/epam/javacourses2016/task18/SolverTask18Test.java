@@ -24,7 +24,7 @@ public class SolverTask18Test {
 
 
     public SolverTask18.RectangularIntegerMatrix convertToMatrix(int[][] arr) {
-        return new SolverTask18.Matrix(arr);
+        return new Matrix(arr);
     }
     @DataProvider(name = "matrix")
     public Object[][] matrix() {
