@@ -25,12 +25,17 @@ public class SolverTask10 {
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String word;
             while ((word = reader.readLine()) != null) {
-
+                if(result.containsKey(word)) {
+                    result.put(word, result.get(word) + 1);
+                }
+                else {
+                    result.put(word, 1);
+                }
             }
         } catch (IOException e) {
             System.out.println("I/O ex");
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 }
