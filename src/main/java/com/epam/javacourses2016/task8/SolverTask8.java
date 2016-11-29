@@ -1,5 +1,7 @@
 package com.epam.javacourses2016.task8;
 
+import java.util.Stack;
+
 /**
  * Задана строка, возможно содержащая символы '(', ')', '[', ']', '{', '}'.
  * Проверить правильность расстановки скобок.
@@ -16,6 +18,22 @@ public class SolverTask8 {
      * @return true - скобки расставлены верно, иначе - false.
      */
     public boolean isNormalBrackets(String string) {
-        return false;
+        Stack<Character> characters = new Stack<>();
+        char[] symbols = string.toCharArray();
+        for(char c : symbols) {
+            if(c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
+                characters.add(c);
+        }
+        for (int i = 0; i < characters.size()-1; i++)
+        {
+            if ((characters.get(i) == '(' && characters.get(i+1) == ')') || (characters.get(i) == '[' && characters.get(i+1) == ']') || (characters.get(i) == '{' && characters.get(i+1) == '}'))
+            {
+                characters.remove(i);
+                characters.remove(i);
+                i = -1;
+            }
+        }
+        return characters.size() == 0;
     }
+
 }
