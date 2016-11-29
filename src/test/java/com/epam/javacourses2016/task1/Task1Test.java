@@ -43,7 +43,7 @@ public class Task1Test {
         return in;
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testEmptyLinesList() throws IOException {
         List<String> lines = new ArrayList<>();
         SolverTask1 solver = new SolverTask1();
@@ -62,7 +62,7 @@ public class Task1Test {
         }
     }
 
-    @Test(enabled = false, dataProvider = "lines")
+    @Test(enabled = true, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
         SolverTask1 solver = new SolverTask1();
