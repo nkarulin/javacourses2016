@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Task1Test {
 
-    @Test(enabled = false, dataProvider = "lines")
+    @Test(enabled = true, dataProvider = "lines")
     public void testTask1(String[] linesArray) throws IOException {
         List<String> lines = Arrays.asList(linesArray);
         SolverTask1 solver = new SolverTask1();
