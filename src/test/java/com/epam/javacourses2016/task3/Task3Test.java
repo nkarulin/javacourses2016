@@ -18,9 +18,9 @@ public class Task3Test {
     @DataProvider(name = "poems")
     private Object[][] poems() {
         return new Object[][]{
-                {"poem1_sorted.txt", "Пушкин", new String[]{"poem1.txt", "poem2.txt"}},
-                {"poem2_sorted.txt", "Крылов", new String[]{"poem3.txt", "poem2.txt"}},
-                {"poem3_sorted.txt", "Бродский", new String[]{"poem1.txt", "poem3.txt"}},
+                {"poem1_sorted.txt", "РџСѓС€РєРёРЅ", new String[]{"poem1.txt", "poem2.txt"}},
+                {"poem2_sorted.txt", "РљСЂС‹Р»РѕРІ", new String[]{"poem3.txt", "poem2.txt"}},
+                {"poem3_sorted.txt", "Р‘СЂРѕРґСЃРєРёР№", new String[]{"poem1.txt", "poem3.txt"}},
         };
     }
 
