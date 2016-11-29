@@ -71,7 +71,7 @@ public class Task2Test {
 
     @Test(enabled = true, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
-        String tempDirectory = "tempdirector\\";
+        String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);
         tempDir.mkdirs();
         List<String> files = Arrays.asList(filesArray);
