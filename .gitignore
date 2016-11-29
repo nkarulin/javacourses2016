@@ -3,3 +3,4 @@
 .build
 outbuild
 .gradle
+.gitignore
