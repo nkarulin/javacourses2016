@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class Task2Test {
 
-    @Test(enabled = true, dataProvider = "directories")
+    @Test(enabled = false, dataProvider = "directories")
     public void testTask2(String[] filesArray) throws IOException {
         String tempDirectory = "resources\\tempdirector\\";
         File tempDir = new File(tempDirectory);

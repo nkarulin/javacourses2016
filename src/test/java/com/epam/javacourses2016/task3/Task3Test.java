@@ -17,14 +17,14 @@ public class Task3Test {
     @DataProvider(name = "poems")
     private Object[][] poems() {
         return new Object[][] {
-                {"poem1_sorted.txt", "Пушкин", "poem1.txt", "poem2.txt"},
+                {"poem1_sorted.txt", "Пушкин", new String[] {"poem1.txt", "poem2.txt"}},
                 {"poem2_sorted.txt", "Крылов", "poem3.txt", "poem2.txt"},
                 {"poem3_sorted.txt", "Бродский", "poem1.txt", "poem3.txt"},
 
         };
     }
 
-    @Test(enabled = false, dataProvider = "poems")
+    @Test(enabled = true, dataProvider = "poems")
     public void testTask3(String poemOut, String author, String ... poems) throws IOException {
         SolverTask3 solver = new SolverTask3();
 
