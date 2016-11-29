@@ -1,26 +1,24 @@
 package com.epam.javacourses2016.task8;
 
-import com.epam.javacourses2016.task4.SolverTask4;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.HashSet;
-
-import static org.testng.Assert.*;
-
 public class SolverTask8Test {
-    @Test(enabled = true, dataProvider = "brackets")
+
+    @Test(enabled = true, dataProvider = "myString")
     public void testIsNormalBrackets(String string, boolean result) throws Exception {
-        SolverTask8 task8 = new SolverTask8();
-        Assert.assertEquals(task8.isNormalBrackets(string), result);
+        SolverTask8 solver = new SolverTask8();
+        Assert.assertEquals(solver.isNormalBrackets(string), result);
     }
-    @DataProvider(name = "brackets")
-    private Object[][] brackets() {
+
+    @DataProvider(name = "myString")
+    public Object[][] getMyString() {
         return new Object[][]{
-                {"[][{}{",false},
-                {")(x+y)",false},
-                {"(x*2){[x-y]+2}",true}
+                {"{Hello[]}()", true},
+                {"[()}", false},
+                {"}{[({)]}Vasya", false},
+                {"Vasya{}", true}
         };
     }
 }

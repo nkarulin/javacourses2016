@@ -1,11 +1,12 @@
 package com.epam.javacourses2016.task14;
 
-import java.util.Collection;
+import java.util.*;
+
 
 /**
  * На базе коллекций реализовать структуру хранения чисел с поддержкой следующих операций:
- *       1) Добавление/удаление числа.
- *       2) Поиск числа, наиболее близкого к заданному (т.е. модуль разницы минимален).
+ * 1) Добавление/удаление числа.
+ * 2) Поиск числа, наиболее близкого к заданному (т.е. модуль разницы минимален).
  */
 public abstract class AbstractCollectionCreator {
 
@@ -27,3 +28,4 @@ public abstract class AbstractCollectionCreator {
         T nearest(T value);
     }
 }
+

@@ -3,39 +3,48 @@ package com.epam.javacourses2016.task6;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.testng.Assert.*;
 
 public class SolverTask6Test {
-    @Test(enabled = true, dataProvider = "polynom")
-    public void testAddPolynomials(Integer[][] first, Integer[][] second,Integer[][] result) throws Exception {
-        SolverTask6 task6 = new SolverTask6();
-        HashMap<Integer, Integer> firstSet = convertToMap(first);
-        HashMap<Integer, Integer> secondSet = convertToMap(second);
-        HashMap<Integer, Integer> resultSet = convertToMap(result);
-        Assert.assertEquals(task6.addPolynomials(firstSet,secondSet),resultSet);
+
+    @Test(enabled = true, dataProvider = "polynomials")
+    public void testAddPolynomials(Integer[][] first, Integer[][] second, Integer[][] result) throws Exception {
+
+        SolverTask6 solver = new SolverTask6();
+        HashMap<Integer, Integer> firstMap = convertToMap(first);
+        HashMap<Integer, Integer> secondMap = convertToMap(second);
+        HashMap<Integer, Integer> resultMap = convertToMap(result);
+
+        Assert.assertEquals(solver.addPolynomials(firstMap, secondMap), resultMap);
     }
 
-    public HashMap<Integer,Integer> convertToMap(Integer[][] array) {
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i=0;i<array.length;i++){
-            map.put(array[0][i],array[1][i]);
+    public static HashMap<Integer, Integer> convertToMap(Integer[][] array) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (Integer[] row : array) {
+            map.put(row[0], row[1]);
         }
         return map;
     }
 
-    @DataProvider(name = "polynom")
-    private Object[][] polynom() {
+    @DataProvider(name = "polynomials")
+    public Object[][] polynomials() {
         return new Object[][]{
-                {new Integer[][]{{1, 5, 10},{2, 4, 5}},new Integer[][]{{1, 5, 10},{1, 2, 4}}, new Integer[][]{{1, 5, 10},{3, 6, 14}}},
-                {new Integer[][]{{1, 2, 3},{4, 4, 4}},new Integer[][]{{1, 2, 4},{0, 4, 1}},new Integer[][]{{1, 2, 3, 4},{4, 8, 4, 1}}}
+                {
+                        new Integer[][]{{1, 2}, {2, 3}, {3, 3}, {4, 5}},
+                        new Integer[][]{{1, 4}, {2, 5}, {3, 6}, {4, 1}},
+                        new Integer[][]{{1, 6}, {2, 8}, {3, 9}, {4, 6}}
+                },
+                {
+                        new Integer[][]{{1, 2}, {2, 3}, {3, 3}, {4, 5}},
+                        new Integer[][]{{5, 4}, {6, 5}, {7, 6}, {8, 1}},
+                        new Integer[][]{{1, 2}, {2, 3}, {3, 3}, {4, 5}, {5, 4}, {6, 5}, {7, 6}, {8, 1}}
+                },
+                {
+                        new Integer[][]{{1, 4}, {2, 5}, {3, 6}, {4, 1}, {5, 5}},
+                        new Integer[][]{{2, 3}, {3, 3}, {4, 5}},
+                        new Integer[][]{{1, 4}, {2, 8}, {3, 9}, {4, 6}, {5, 5}}
+                }
         };
     }
-
 }

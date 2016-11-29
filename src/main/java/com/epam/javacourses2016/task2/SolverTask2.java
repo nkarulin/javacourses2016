@@ -16,12 +16,13 @@ public class SolverTask2 {
      * @return Множество элементов корневого каталога и подкаталогов.
      */
     public Set<File> getFiles(File directory) {
-        Set<File> folders = new HashSet<>();
+        Set<File> files = new HashSet<>();
         for (File file : directory.listFiles()) {
+            files.add(file);
             if (file.isDirectory()) {
-                folders.addAll(getFiles(file));
+                files.addAll(getFiles(file));
             }
         }
-        return folders;
+        return files;
     }
 }
