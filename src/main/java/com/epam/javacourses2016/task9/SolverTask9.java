@@ -1,10 +1,8 @@
 package com.epam.javacourses2016.task9;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.HashSet;
-import java.util.regex.Matcher;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
@@ -23,17 +21,15 @@ public class SolverTask9 {
      */
     public HashSet<String> getUniqueWords(File input) {
         HashSet<String> uniqueWords = new HashSet<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
-            String line;
+
+        try (Scanner scanner = new Scanner(input)) {
             Pattern pattern = Pattern.compile("[(A-Za-z)('\\-)(A-Za-z)]+");
-            while ((line = reader.readLine()) != null) {
-                Matcher matcher = pattern.matcher(line);
-                while (matcher.find()) {
-                    uniqueWords.add(matcher.group().toLowerCase());
-                }
+
+            while (scanner.hasNext(pattern)) {
+                uniqueWords.add(scanner.next(pattern).toLowerCase());
             }
         } catch (Exception e) {
-
+            e.getStackTrace();
         }
 
         return uniqueWords;

@@ -15,7 +15,7 @@ public class SolverTask2 {
      * @param directory Корневой каталог.
      * @return Множество элементов корневого каталога и подкаталогов.
      */
-    public static Set<File> getFiles(File directory) {
+    public Set<File> getFiles(File directory) {
 
         Set<File> files = new HashSet<>();
 

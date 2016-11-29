@@ -31,10 +31,12 @@ public class SolverTask19Test {
     private Object[][] cars() {
         //lap length, number of laps, overtakeCount(result), array of cars(position, speed)
         return new Object[][]{
-                {100, 1, 2, new int[][]{{1, 50}, {2, 25}, {3, 25}}},
-                {100, 5, 6, new int[][]{{1, 50}, {2, 25}, {3, 25}}},
-                {100, 1, 0, new int[][]{{1, 25}, {2, 25}, {3, 50}}},
-                {100, 5, 4, new int[][]{{1, 25}, {2, 25}, {3, 50}}},
+                {100, 1, 1, new int[][]{{1, 50}, {2, 25}}},
+                {100, 1, 0, new int[][]{{1, 25}, {2, 25}}},
+                {100, 1, 0, new int[][]{{1, 25}, {2, 50}}},
+                {100, 1, 0, new int[][]{{1, 35}, {90, 25}}},
+                {100, 10, 3, new int[][]{{1, 50}, {2, 35}}},
+                {100, 10, 3, new int[][]{{1, 35}, {2, 50}}},
         };
     }
 }
