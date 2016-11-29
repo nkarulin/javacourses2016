@@ -17,7 +17,23 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
-        return null;
+
+        int[] visited = new int[peoples.size()];
+        String last = null;
+        int i = 0;
+        int iterationNumbers = 2;
+        while(iterationNumbers > 0) {
+            if (i >= peoples.size()) {
+                i = 1;
+                iterationNumbers--;
+            }
+            if (visited[i] != 1) {
+                last = peoples.get(i);
+                visited[i] = 1;
+            }
+            i+=2;
+        }
+        return last;
     }
 
     /**
@@ -26,6 +42,12 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        return null;
+        String last = null;
+        while(peoples.iterator().hasNext()) {
+            peoples.iterator().next();
+            last = peoples.iterator().next();
+            peoples.iterator().remove();
+        }
+        return last;
     }
 }
