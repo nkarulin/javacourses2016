@@ -1,7 +1,6 @@
 package com.epam.javacourses2016.task19;
 
 import com.epam.javacourses2016.Car;
-import com.sun.rowset.CachedRowSetImpl;
 
 import java.util.*;
 
@@ -42,13 +41,11 @@ public class SolverTask19 {
 
         count = (int) (lapsSecondCar / (lapsFirstCar / lapsSecondCar));
         if (firstCar.getStartPosition() < secondCar.getStartPosition()) {
-            double timeBeforeOvertake = (secondCar.getStartPosition()-firstCar.getStartPosition()) / (firstCar.getSpeed() - secondCar.getSpeed());
+            double timeBeforeOvertake = (secondCar.getStartPosition() - firstCar.getStartPosition()) / (firstCar.getSpeed() - secondCar.getSpeed());
             if (timeBeforeOvertake <= timeFirstCar) {
                 count++;
             }
         }
         return count;
     }
-
-
 }

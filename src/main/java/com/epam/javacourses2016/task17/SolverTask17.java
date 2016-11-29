@@ -64,20 +64,20 @@ public class SolverTask17 {
 
     }
 
+
     public Point2D findInterstionPoint(Segment firstSegment, Segment secondSegment) {
+        double y1 = firstSegment.getA().getY() - firstSegment.getB().getY();
+        double y2 = secondSegment.getA().getY() - secondSegment.getB().getY();
+        double x1 = firstSegment.getA().getX() - firstSegment.getB().getX();
+        double x2 = secondSegment.getA().getX() - secondSegment.getB().getX();
 
-        double a1 = firstSegment.getA().getY() - firstSegment.getB().getY();
-        double a2 = secondSegment.getA().getY() - secondSegment.getB().getY();
-        double b1 = firstSegment.getA().getX() - firstSegment.getB().getX();
-        double b2 = secondSegment.getA().getX() - secondSegment.getB().getX();
-
-        double d = a1 * b2 - a2 * b1;
+        double d = y1 * x2 - y2 * x1;
 
         double c1 = firstSegment.getB().getY() * firstSegment.getA().getY() - firstSegment.getB().getX() * firstSegment.getA().getY();
         double c2 = secondSegment.getB().getY() * secondSegment.getA().getY() - secondSegment.getB().getX() * secondSegment.getA().getY();
 
-        double xi = (b1 * c2 - b2 * c1) / d;
-        double yi = (a2 * c1 - a1 * c2) / d;
+        double xi = (x1 * c2 - x2 * c1) / d;
+        double yi = (y2 * c1 - y1 * c2) / d;
 
         return new Point2D(xi, yi);
     }

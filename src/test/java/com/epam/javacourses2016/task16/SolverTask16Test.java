@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 public class SolverTask16Test {
     @Test
     public void testAnalyze() throws Exception {
-        //TODO: test
+        //Test
     }
 
 }
