@@ -1,5 +1,7 @@
 package com.epam.javacourses2016.task3;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +18,13 @@ public class SolverTask3 {
      * @return Список, упорядоченных по длине строк, составляющих стихотворения автора.
      */
     public List<String> sortPoems(Set<Poem> poems, String author) {
-        //TODO: realize solver of a task
-        return null;
+        List<String> list = new ArrayList<>();
+        for (Poem poem : poems) {
+            if (poem.getAuthor().equals(author)){
+                list.addAll(poem.getLines());
+            }
+        }
+        Collections.sort(list, (o1, o2)->o1.length()-o2.length());
+        return list;
     }
 }
