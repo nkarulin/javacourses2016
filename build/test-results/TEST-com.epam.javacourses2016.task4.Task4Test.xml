@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.epam.javacourses2016.task4.Task4Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.009">
-  <properties/>
-  <testcase name="testIntersection[0]([Ljava.lang.Integer;@36911510, [Ljava.lang.Integer;@528a8cd7)" classname="com.epam.javacourses2016.task4.Task4Test" time="0.008"/>
-  <testcase name="testIntersection[1]([Ljava.lang.Integer;@26e73a69, [Ljava.lang.Integer;@733dd605)" classname="com.epam.javacourses2016.task4.Task4Test" time="0.0"/>
-  <testcase name="testIntersection[2]([Ljava.lang.Integer;@3bf7f769, [Ljava.lang.Integer;@24dca60c)" classname="com.epam.javacourses2016.task4.Task4Test" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

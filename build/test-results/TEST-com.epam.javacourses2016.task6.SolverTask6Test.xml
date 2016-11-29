@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.epam.javacourses2016.task6.SolverTask6Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.028">
-  <properties/>
-  <testcase name="testAddPolynomials[0]([[Ljava.lang.Integer;@4cbd25ba, [[Ljava.lang.Integer;@3e40d3ee, [[Ljava.lang.Integer;@3c02c7db)" classname="com.epam.javacourses2016.task6.SolverTask6Test" time="0.026"/>
-  <testcase name="testAddPolynomials[1]([[Ljava.lang.Integer;@99d6fed, [[Ljava.lang.Integer;@69fc1f5a, [[Ljava.lang.Integer;@6055c1a3)" classname="com.epam.javacourses2016.task6.SolverTask6Test" time="0.0"/>
-  <testcase name="testAddPolynomials[2]([[Ljava.lang.Integer;@662be1b9, [[Ljava.lang.Integer;@283d6c06, [[Ljava.lang.Integer;@3be30e6)" classname="com.epam.javacourses2016.task6.SolverTask6Test" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.epam.javacourses2016.task13.GraphTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.001">
-  <properties/>
-  <testcase name="testAddEdge" classname="com.epam.javacourses2016.task13.GraphTest" time="0.0"/>
-  <testcase name="testIsExistEdge" classname="com.epam.javacourses2016.task13.GraphTest" time="0.001"/>
-  <testcase name="testRemoveEdge" classname="com.epam.javacourses2016.task13.GraphTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
