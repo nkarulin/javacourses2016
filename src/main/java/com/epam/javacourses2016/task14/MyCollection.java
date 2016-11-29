@@ -15,10 +15,6 @@ public class MyCollection<T extends Number> implements AbstractCollectionCreator
         elementData = new ArrayList<T>();
     }
 
-    public MyCollection(int initialCapacity) {
-        elementData = new ArrayList<T>(initialCapacity);
-    }
-
     @Override
     public T nearest(T value) {
         int index = 0;

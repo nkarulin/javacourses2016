@@ -2,18 +2,57 @@ package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.io.*;
+import java.util.*;
 
-class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
+public class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
 
     File myFile;
+
+    @Override
+    public File getFile() {
+        return myFile;
+    }
+
+    @Override
+    public SortedMap<Point2D, Double> getPoints() {
+        SortedMap<Point2D, Double> points = new TreeMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
+            String cellString;
+            while ((cellString = reader.readLine()) != null) {
+                points.putAll(readPoints(cellString));
+            }
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        return points;
+    }
+
+    private Map<Point2D, Double> readPoints(String points) throws IOException {
+        Scanner scanner = new Scanner(points);
+        Map<Point2D, Double> cellsPoints = new HashMap<>();
+        Double distanceToCenter = scanner.nextDouble();
+
+        double xCoord = 0;
+        double yCoord = 0;
+        int index = 0;
+
+        while (scanner.hasNextDouble()) {
+            if (index == 0) {
+                xCoord = scanner.nextDouble();
+                index++;
+            } else {
+                yCoord = scanner.nextDouble();
+                cellsPoints.put(new Point2D(xCoord, yCoord), distanceToCenter);
+                index = 0;
+            }
+        }
+
+        return cellsPoints;
+    }
 
     public void writeFile(Map<SolverTask16.Cell, Integer> cells, File file) {
         myFile = file;
@@ -32,47 +71,18 @@ class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
 
     }
 
-    @Override
-    public File getFile() {
-        return myFile;
+    private void writeOneCell(SolverTask16.Cell cell, Writer writer) throws IOException {
+        String distanceToCell = Double.toString(cell.distanceToCenter);
+
+        writer.write(distanceToCell + " ");
+        writeOnePoint(cell.a, writer);
+        writeOnePoint(cell.b, writer);
+        writeOnePoint(cell.c, writer);
+        writeOnePoint(cell.d, writer);
     }
 
-    @Override
-    public SortedMap<Point2D, Double> getPoints() {
-        SortedMap<Point2D, Double> points;
-/*
-        try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
-            String cellString;
-            while ((cellString = reader.readLine()) != null) {
-                getPoints(cellString);
-                points.putAll(getPoints(cellString));
-            }
-
-        } catch (Exception e) {
-
-        }
-*/
-        return null;
-    }
-/*
-    private SolverTask15.ILine getLine(String string) {
-        Scanner scanner = new Scanner(string);
-        ArrayList<Double> pointsCoords = new ArrayList<>();
-        MyLine myLine = new MyLine();
-        while (scanner.hasNextDouble()) {
-            pointsCoords.add(scanner.nextDouble());
-        }
-
-        for (int i = 0; i < pointsCoords.size(); i += 2) {
-            Point2D point = new Point2D(pointsCoords.get(i), pointsCoords.get(i + 1));
-            myLine.getPoints().add(point);
-        }
-        return myLine;
-    }*/
-
-    private void writeOneCell(SolverTask16.Cell cell, BufferedWriter writer) throws IOException {
-
-        String str = String.format("%f %f %f %f %f", cell.distanceToCenter, cell.a, cell.b, cell.c, cell.d);
+    private void writeOnePoint(Point2D point, Writer writer) throws IOException {
+        String str = String.format("%f %f", point.getX(), point.getY());
         writer.write(str);
     }
 

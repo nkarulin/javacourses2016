@@ -9,37 +9,12 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class MyFileWithLines implements SolverTask15.IFileWithLines {
+
     File myFile;
-
-    private void writeOneLine(MyLine line, BufferedWriter writer) throws IOException {
-
-        String str = "";
-        int pointCounter = 3;
-
-        for (Point2D point : line.getPoints()) {
-            str += String.format("%f %f ", point.getX(), point.getY());
-        }
-
-        writer.write(str);
-    }
-
-    public void writeLines(File file, Set<MyLine> lines) {
-        myFile = file;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            int iterator = 1;
-            for (MyLine line : lines) {
-                writeOneLine(line, writer);
-                writer.write('\n');
-                iterator++;
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-    }
 
     @Override
     public File getFile() {
-        return null;
+        return myFile;
     }
 
     @Override
@@ -49,27 +24,50 @@ public class MyFileWithLines implements SolverTask15.IFileWithLines {
         try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
             String lineString;
             while ((lineString = reader.readLine()) != null) {
-                SolverTask15.ILine line = getLine(lineString);
+                SolverTask15.ILine line = readOneLine(lineString);
                 lines.add(line);
             }
 
         } catch (Exception e) {
-
+            e.getStackTrace();
         }
 
         return lines;
     }
 
-    private SolverTask15.ILine getLine(String string) {
-        Scanner scanner = new Scanner(string);
-        ArrayList<Double> pointsCoords = new ArrayList<>();
-        MyLine myLine = new MyLine();
-        while (scanner.hasNextDouble()) {
-            pointsCoords.add(scanner.nextDouble());
+    public void writeLines(File file, Set<MyLine> lines) {
+        myFile = file;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (MyLine line : lines) {
+                writeOneLine(line, writer);
+                writer.write('\n');
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
+
+    private void writeOneLine(MyLine line, BufferedWriter writer) throws IOException {
+
+        String str = "";
+
+        for (Point2D point : line.getPoints()) {
+            str += String.format("%f %f ", point.getX(), point.getY());
         }
 
-        for (int i = 0; i < pointsCoords.size(); i += 2) {
-            Point2D point = new Point2D(pointsCoords.get(i), pointsCoords.get(i + 1));
+        writer.write(str);
+    }
+
+    private SolverTask15.ILine readOneLine(String string) {
+        Scanner scanner = new Scanner(string);
+        ArrayList<Double> pointsCoordinates = new ArrayList<>();
+        MyLine myLine = new MyLine();
+        while (scanner.hasNextDouble()) {
+            pointsCoordinates.add(scanner.nextDouble());
+        }
+
+        for (int i = 0; i < pointsCoordinates.size(); i += 2) {
+            Point2D point = new Point2D(pointsCoordinates.get(i), pointsCoordinates.get(i + 1));
             myLine.getPoints().add(point);
         }
         return myLine;

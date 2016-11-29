@@ -52,4 +52,20 @@ public class MyLine implements SolverTask15.ILine {
     public Set<Point2D> getPoints() {
         return points;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyLine)) return false;
+
+        MyLine myLine = (MyLine) o;
+
+        return getPoints() != null ? getPoints().equals(myLine.getPoints()) : myLine.getPoints() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getPoints() != null ? getPoints().hashCode() : 0;
+    }
 }

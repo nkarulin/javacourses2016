@@ -28,22 +28,14 @@ public class SolverTask15 {
             for (int j = i; j < points.size() - 1; j++) {
                 MyLine line = new MyLine(arrayOfPoints.get(j), arrayOfPoints.get(j + 1));
 
+                //Points intersection
                 for (Point2D point : points) {
                     if (line.intersect(point)) {
                         line.points.add(point);
                     }
                 }
 
-                boolean canAdd = true;
-                for (MyLine testLine : lines) {
-                    if (testLine.getPoints().containsAll(line.points)) {
-                        canAdd = false;
-                    }
-                }
-
-                if (canAdd && line.getPoints().size() > 2) {
-                    lines.add(line);
-                }
+                lines.add(line);
             }
         }
 

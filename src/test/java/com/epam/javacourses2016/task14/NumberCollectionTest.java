@@ -13,14 +13,14 @@ import java.util.List;
 public class NumberCollectionTest {
 
     @Test(enabled = true, dataProvider = "numbersForTest")
-    public void testNearest(double[] array, double nubmer, double result) throws Exception {
+    public void testNearest(double[] array, double number, double result) throws Exception {
         AbstractCollectionCreator collectionCreator = new MyCollectionCreator();
         AbstractCollectionCreator.NumberCollection<Double> collection = collectionCreator.createCollection(Double.class);
 
         List<Double> data = doubleToCollection(array);
         collection.addAll(data);
 
-        Assert.assertEquals(collection.nearest(nubmer), result);
+        Assert.assertEquals(collection.nearest(number), result);
     }
 
     private List<Double> doubleToCollection(double[] array) {

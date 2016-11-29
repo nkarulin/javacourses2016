@@ -54,17 +54,6 @@ public class SolverTask17 {
         return resultSet;
     }
 
-    private double findMinX(Segment segment) {
-        double firstPointX = segment.getA().getX();
-        double secondPointX = segment.getB().getX();
-
-        if (firstPointX < secondPointX) {
-            return firstPointX;
-        } else {
-            return secondPointX;
-        }
-    }
-
     private Point2D getIntersectionPoint(Segment first, Segment second) {
 
         double x;
@@ -78,6 +67,7 @@ public class SolverTask17 {
         double y2 = first.getB().getY();
         double y3 = second.getA().getY();
         double y4 = second.getB().getY();
+
         double k1 = (x1 - x2) / (y3 - y4);
         double k2 = (y1 - y2) / (x3 - x4);
 
@@ -93,6 +83,7 @@ public class SolverTask17 {
         if (!(onLine(x1, x2, x3, x4, x) || onLine(y1, y2, y3, y4, y))) {
             return null;
         }
+
         return new Point2D(x, y);
     }
 
