@@ -1,11 +1,9 @@
 package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import javax.sound.sampled.Line;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -44,20 +42,20 @@ public class SolverTask15Test {
     public Object[][] points() {
         return new Object[][]{
                 {new double[][]{{1, 1}, {2, 2}},
-                        new ArrayList<double[][]>(){{
+                        new ArrayList<double[][]>() {{
                         }}},
                 {new double[][]{{1, 1}, {2, 2}, {3, 3}},
-                        new ArrayList<double[][]>(){{
-                            add(new double[][]{{1,1},{2,2},{3,3}});
+                        new ArrayList<double[][]>() {{
+                            add(new double[][]{{1, 1}, {2, 2}, {3, 3}});
                         }}},
-                {new double[][]{{1, 1}, {2, 2}, {3, 3},{3,1}},
-                        new ArrayList<double[][]>(){{
-                            add(new double[][]{{1,1},{2,2,},{3,3}});
+                {new double[][]{{1, 1}, {2, 2}, {3, 3}, {3, 1}},
+                        new ArrayList<double[][]>() {{
+                            add(new double[][]{{1, 1}, {2, 2,}, {3, 3}});
                         }}},
-                {new double[][]{{1, 1}, {2, 2}, {3, 3},{3,1},{1,3}},
-                        new ArrayList<double[][]>(){{
-                            add(new double[][]{{1,1},{2,2,},{3,3}});
-                            add(new double[][]{{1,3},{2,2,},{3,1}});
+                {new double[][]{{1, 1}, {2, 2}, {3, 3}, {3, 1}, {1, 3}},
+                        new ArrayList<double[][]>() {{
+                            add(new double[][]{{1, 1}, {2, 2,}, {3, 3}});
+                            add(new double[][]{{1, 3}, {2, 2,}, {3, 1}});
                         }}},
         };
     }

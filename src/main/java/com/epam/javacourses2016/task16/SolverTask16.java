@@ -2,11 +2,10 @@ package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -100,6 +99,7 @@ public class SolverTask16 {
             return distanceToCenter;
         }
     }
+
     /**
      * Представляет файл, содержащий информацию о найденных точках.
      */

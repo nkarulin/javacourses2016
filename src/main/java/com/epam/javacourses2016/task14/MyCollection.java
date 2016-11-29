@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Elarion on 25.11.2016.
  */
-class MyCollection<T extends Number> implements AbstractCollectionCreator.NumberCollection<T> {
+public class MyCollection<T extends Number> implements AbstractCollectionCreator.NumberCollection<T> {
     List<T> elementData;
 
     public MyCollection() {
@@ -34,7 +34,7 @@ class MyCollection<T extends Number> implements AbstractCollectionCreator.Number
             }
         }
 
-        return (T)elementData.get(index);
+        return (T) elementData.get(index);
     }
 
     @Override
@@ -64,7 +64,7 @@ class MyCollection<T extends Number> implements AbstractCollectionCreator.Number
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return (T1[])elementData.toArray();
+        return (T1[]) elementData.toArray();
     }
 
     @Override

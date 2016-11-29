@@ -23,7 +23,7 @@ public class Task2Test {
 
     @DataProvider(name = "directory")
     public Object[][] directory() {
-        return new Object[][] {
+        return new Object[][]{
                 {"src/main/java/com/epam/javacourses2016/task1"},
                 {"src/main/java/com/epam/javacourses2016"},
         };

@@ -4,9 +4,10 @@ import com.epam.javacourses2016.Point2D;
 
 import java.awt.geom.Line2D;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
-class MyLine implements SolverTask15.ILine {
+public class MyLine implements SolverTask15.ILine {
 
     Point2D a;
     Point2D b;
@@ -15,6 +16,7 @@ class MyLine implements SolverTask15.ILine {
     public MyLine() {
 
     }
+
     public MyLine(Point2D a, Point2D b) {
         this.a = a;
         this.b = b;

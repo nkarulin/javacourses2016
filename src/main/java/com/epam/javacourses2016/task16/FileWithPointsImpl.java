@@ -1,10 +1,15 @@
 package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
-import com.epam.javacourses2016.task15.SolverTask15;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
 
@@ -35,7 +40,7 @@ class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
     @Override
     public SortedMap<Point2D, Double> getPoints() {
         SortedMap<Point2D, Double> points;
-
+/*
         try (BufferedReader reader = new BufferedReader(new FileReader(myFile))) {
             String cellString;
             while ((cellString = reader.readLine()) != null) {
@@ -46,12 +51,10 @@ class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
         } catch (Exception e) {
 
         }
-
+*/
         return null;
     }
-
-    private Map<Point2D, Double>
-
+/*
     private SolverTask15.ILine getLine(String string) {
         Scanner scanner = new Scanner(string);
         ArrayList<Double> pointsCoords = new ArrayList<>();
@@ -65,7 +68,7 @@ class FileWithPointsImpl implements SolverTask16.IFileWithPoints {
             myLine.getPoints().add(point);
         }
         return myLine;
-    }
+    }*/
 
     private void writeOneCell(SolverTask16.Cell cell, BufferedWriter writer) throws IOException {
 

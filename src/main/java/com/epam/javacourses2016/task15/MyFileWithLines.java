@@ -2,19 +2,22 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.awt.geom.Line2D;
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
-class MyFileWithLines implements SolverTask15.IFileWithLines {
+public class MyFileWithLines implements SolverTask15.IFileWithLines {
     File myFile;
+
     private void writeOneLine(MyLine line, BufferedWriter writer) throws IOException {
 
         String str = "";
         int pointCounter = 3;
 
         for (Point2D point : line.getPoints()) {
-            str += String.format("%f %f ",point.getX(), point.getY() );
+            str += String.format("%f %f ", point.getX(), point.getY());
         }
 
         writer.write(str);
@@ -56,7 +59,8 @@ class MyFileWithLines implements SolverTask15.IFileWithLines {
 
         return lines;
     }
-    private SolverTask15.ILine getLine(String string)  {
+
+    private SolverTask15.ILine getLine(String string) {
         Scanner scanner = new Scanner(string);
         ArrayList<Double> pointsCoords = new ArrayList<>();
         MyLine myLine = new MyLine();
@@ -64,8 +68,8 @@ class MyFileWithLines implements SolverTask15.IFileWithLines {
             pointsCoords.add(scanner.nextDouble());
         }
 
-        for (int i = 0; i < pointsCoords.size() ; i+=2) {
-            Point2D point = new Point2D(pointsCoords.get(i),pointsCoords.get(i+1));
+        for (int i = 0; i < pointsCoords.size(); i += 2) {
+            Point2D point = new Point2D(pointsCoords.get(i), pointsCoords.get(i + 1));
             myLine.getPoints().add(point);
         }
         return myLine;

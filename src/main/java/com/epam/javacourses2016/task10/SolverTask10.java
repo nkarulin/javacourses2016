@@ -1,11 +1,8 @@
 package com.epam.javacourses2016.task10;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -25,26 +22,22 @@ public class SolverTask10 {
     public HashMap<String, Integer> countNumberWords(File input) {
         HashMap<String, Integer> uniqueWords = new HashMap<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
-            String line;
-            int y;
+        try (Scanner scanner = new Scanner(input)) {
             Pattern pattern = Pattern.compile("[(A-Za-z)('\\-)(A-Za-z)]+");
-            while ((line = reader.readLine()) != null) {
-                Matcher matcher = pattern.matcher(line);
-                while (matcher.find()) {
-                    String key = matcher.group();
-                    if (!uniqueWords.containsKey(key)) {
-                        uniqueWords.put(key, 1);
-                    } else {
-                        int val = uniqueWords.get(key);
-                        val++;
-                        uniqueWords.replace(key, val);
-                    }
+            String key;
 
+            while (scanner.hasNext(pattern)) {
+                key = scanner.next();
+                if (!uniqueWords.containsKey(key)) {
+                    uniqueWords.put(key, 1);
+                } else {
+                    int val = uniqueWords.get(key);
+                    val++;
+                    uniqueWords.replace(key, val);
                 }
             }
         } catch (Exception e) {
-
+            e.getStackTrace();
         }
 
         return uniqueWords;

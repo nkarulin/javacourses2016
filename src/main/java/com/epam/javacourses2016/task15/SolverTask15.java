@@ -28,7 +28,7 @@ public class SolverTask15 {
             for (int j = i; j < points.size() - 1; j++) {
                 MyLine line = new MyLine(arrayOfPoints.get(j), arrayOfPoints.get(j + 1));
 
-                for(Point2D point : points) {
+                for (Point2D point : points) {
                     if (line.intersect(point)) {
                         line.points.add(point);
                     }
