@@ -1,5 +1,7 @@
 package com.epam.javacourses2016.task11;
 
+import com.epam.javacourses2016.task1.SolverTask1;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,14 +12,18 @@ import java.util.LinkedList;
 import static org.testng.Assert.*;
 
 public class SolverTask11Test {
-    @Test()
-    public void testEmulate() throws Exception {
-        //TODO: with mocked list
+    @Test(enabled = true, dataProvider = "arraylists")
+    public void testEmulate(ArrayList<String> list, String result) throws Exception {
+        SolverTask11 solver = new SolverTask11();
+        String name = solver.emulate(list);
+        Assert.assertEquals(name, result);
     }
 
-    @Test
-    public void testEmulate1() throws Exception {
-        //TODO: with mocked list
+    @Test(enabled = true, dataProvider = "linkedlists")
+    public void testEmulate1(LinkedList<String> list, String result) throws Exception {
+       SolverTask11 solver = new SolverTask11();
+       String name = solver.emulate(list);
+        Assert.assertEquals(name, result);
     }
 
     @DataProvider(name = "arraylists")
