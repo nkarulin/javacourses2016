@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class SolverTask6Test {
 
-    @Test(enabled = false, dataProvider = "polynomials")
+    @Test(enabled = true, dataProvider = "polynomials")
     public void testAddPolynomials(Integer[][] first, Integer[][] second, Integer[][] result) throws Exception {
 
         SolverTask6 solver = new SolverTask6();

@@ -24,7 +24,21 @@ public class SolverTask3 {
                 stringList.addAll(p.getLines());
             }
         }
-        Collections.sort(stringList);
+        for(String s : stringList) {
+            System.out.println(s);
+        }
+        Collections.sort(stringList,new MyComparator());
+        for(String s : stringList) {
+            System.out.println(s);
+        }
         return stringList;
+    }
+
+    class MyComparator implements java.util.Comparator<String> {
+
+        @Override
+        public int compare(String s1, String s2) {
+            return s1.length() - s2.length();
+        }
     }
 }

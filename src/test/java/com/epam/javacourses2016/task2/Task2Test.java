@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class Task2Test {
 
-    @Test(enabled = false, dataProvider = "directory")
+    @Test(enabled = true, dataProvider = "directory")
     public void testTask2(String directory) {
         SolverTask2 solver = new SolverTask2();
         File file = new File(directory);
@@ -25,6 +25,7 @@ public class Task2Test {
         Set<File> solverSet = solver.getFiles(file);
         Set<File> testSet = getFiles(file);
 
+        System.out.println(testSet);
         Assert.assertEquals(solverSet, testSet);
     }
 

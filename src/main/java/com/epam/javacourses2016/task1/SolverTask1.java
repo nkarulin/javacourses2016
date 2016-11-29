@@ -22,8 +22,9 @@ public class SolverTask1 {
         String s;
         try {
             BufferedReader in = new BufferedReader(new FileReader(input));
-            while((s = in.readLine()) != null)
+            while((s = in.readLine()) != null) {
                 stringList.add(s);
+            }
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
