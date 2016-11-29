@@ -11,19 +11,17 @@ public class SolverTask2 {
 
     /**
      * Формирует множество всех элементов, входящих в текущий каталог и во все вложенные.
+     *
      * @param directory Корневой каталог.
      * @return Множество элементов корневого каталога и подкаталогов.
      */
     public Set<File> getFiles(File directory) {
         Set<File> result = new HashSet<>();
-        File[] currentFolder = directory.listFiles();
-        if (currentFolder != null) {
-            for (File fileEntry : currentFolder) {
-                if (fileEntry.isDirectory()) {
-                    result.addAll(getFiles(fileEntry));
-                } else {
-                    result.add(fileEntry);
-                }
+        for (File fileEntry : directory.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                result.addAll(getFiles(fileEntry));
+            } else {
+                result.add(fileEntry);
             }
         }
         return result;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.epam.javacourses2016.task11.SolverTask11Test" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-11-28T17:29:38" hostname="DESKTOP-9HQQJ1D" time="0.0">
+<testsuite name="com.epam.javacourses2016.task11.SolverTask11Test" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.0">
   <properties/>
   <testcase name="testEmulate" classname="com.epam.javacourses2016.task11.SolverTask11Test" time="0.0"/>
   <testcase name="testEmulate1" classname="com.epam.javacourses2016.task11.SolverTask11Test" time="0.0"/>

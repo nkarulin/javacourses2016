@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.epam.javacourses2016.task8.SolverTask8Test" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.003">
+  <properties/>
+  <testcase name="testIsNormalBrackets[0]({Hello[]}(), true)" classname="com.epam.javacourses2016.task8.SolverTask8Test" time="0.002"/>
+  <testcase name="testIsNormalBrackets[1]([()}, false)" classname="com.epam.javacourses2016.task8.SolverTask8Test" time="0.0"/>
+  <testcase name="testIsNormalBrackets[2](}{[({)]}Vasya, false)" classname="com.epam.javacourses2016.task8.SolverTask8Test" time="0.001"/>
+  <testcase name="testIsNormalBrackets[3](Vasya{}, true)" classname="com.epam.javacourses2016.task8.SolverTask8Test" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.epam.javacourses2016.task3.Task3Test" tests="3" skipped="0" failures="3" errors="0" timestamp="2016-11-28T17:29:38" hostname="DESKTOP-9HQQJ1D" time="0.006">
+<testsuite name="com.epam.javacourses2016.task3.Task3Test" tests="3" skipped="0" failures="3" errors="0" timestamp="2016-11-29T12:00:16" hostname="DESKTOP-9HQQJ1D" time="0.018">
   <properties/>
-  <testcase name="testTask3[0](poem1_sorted.txt, РџСѓС€РєРёРЅ, [Ljava.lang.String;@5c037f80)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.002">
+  <testcase name="testTask3[0](poem1_sorted.txt, РџСѓС€РєРёРЅ, [Ljava.lang.String;@5839b8c3)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.003">
     <failure message="java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem1.txt (Системе не удается найти указанный путь)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem1.txt (Системе не удается найти указанный путь)
 	at java.io.FileInputStream.open0(Native Method)
 	at java.io.FileInputStream.open(FileInputStream.java:195)
@@ -57,7 +57,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="testTask3[1](poem2_sorted.txt, РљСЂС‹Р»РѕРІ, [Ljava.lang.String;@71ef817e)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.002">
+  <testcase name="testTask3[1](poem2_sorted.txt, РљСЂС‹Р»РѕРІ, [Ljava.lang.String;@d0fe450)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.007">
     <failure message="java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem3.txt (Системе не удается найти указанный путь)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem3.txt (Системе не удается найти указанный путь)
 	at java.io.FileInputStream.open0(Native Method)
 	at java.io.FileInputStream.open(FileInputStream.java:195)
@@ -113,7 +113,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="testTask3[2](poem3_sorted.txt, Р‘СЂРѕРґСЃРєРёР№, [Ljava.lang.String;@1974bb53)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.001">
+  <testcase name="testTask3[2](poem3_sorted.txt, Р‘СЂРѕРґСЃРєРёР№, [Ljava.lang.String;@17d69741)" classname="com.epam.javacourses2016.task3.Task3Test" time="0.006">
     <failure message="java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem1.txt (Системе не удается найти указанный путь)" type="java.io.FileNotFoundException">java.io.FileNotFoundException: D:\Java%20Lessons\epam\javacourses2016\build\resources\test\com\epam\javacourses2016\task3\poem1.txt (Системе не удается найти указанный путь)
 	at java.io.FileInputStream.open0(Native Method)
 	at java.io.FileInputStream.open(FileInputStream.java:195)
