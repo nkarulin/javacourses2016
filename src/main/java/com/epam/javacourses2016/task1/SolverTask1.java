@@ -50,9 +50,8 @@ public class SolverTask1 {
             try (FileWriter fw = new FileWriter(output)) {
 
                 for(int i = 0; i < lines.size(); i++) {
-                    fw.write(lines.get(i));
                     String current = lines.get(i);
-                    fw.write(current != null ? current : empty);
+                    fw.write((current != null ? current : empty));
                     fw.write("\r\n");
                 }
             }
