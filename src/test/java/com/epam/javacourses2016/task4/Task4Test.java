@@ -12,15 +12,25 @@ import static org.testng.Assert.*;
 
 
 public class Task4Test {
+
+    @Test
+    public void testIntersection() throws Exception {
+    }
+
+    @Test
+    public void testUnion() throws Exception {
+
+    }
+
     @Test(enabled = true, dataProvider = "numbers")
-    public void testIntersection(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
+    public void testIntersection_fromKA(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
         SolverTask4 solverTask4 = new SolverTask4();
         Set<Integer> result = solverTask4.intersection(set1,set2);
         Assert.assertEquals(result,res2);
     }
 
     @Test(enabled = true, dataProvider = "numbers")
-    public void testUnion(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
+    public void testUnion_fromKA(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
         SolverTask4 solverTask4 = new SolverTask4();
         Set<Integer> result = solverTask4.union(set1,set2);
         Assert.assertEquals(result,res1);
@@ -38,7 +48,7 @@ public class Task4Test {
         Set<Integer> res2_2 = new HashSet<>();
         return new Object[][] {
                 {set1_1,set2_1,res1_1,res2_1},
-             //   {set2_1,set2_2,res2_1,res2_2}
+                {set1_2,set2_2,res1_2,res2_2}
         };
     }
 

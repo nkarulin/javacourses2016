@@ -17,9 +17,9 @@ import java.util.Set;
 
 public class Task2Test {
 
-    @Test(enabled = false, dataProvider = "directories")
-    public void testTask2(String[] filesArray) throws IOException {
-        String tempDirectory = "resources\\tempdirector\\";
+    @Test(enabled = true, dataProvider = "dirs")
+    public void testTask2_fromKA(String[] filesArray) throws IOException {
+        String tempDirectory = "tempdirector\\";
         File tempDir = new File(tempDirectory);
         tempDir.mkdirs();
         List<String> files = Arrays.asList(filesArray);
@@ -55,8 +55,8 @@ public class Task2Test {
     }
 
 
-    @DataProvider(name = "directories")
-    private Object[][] directories() {
+    @DataProvider(name = "dirs")
+    private Object[][] dirs() {
         return new Object[][] {
                 { new String[] {
                         "dir1",
