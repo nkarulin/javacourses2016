@@ -24,13 +24,7 @@ public class SolverTask3 {
                 stringList.addAll(p.getLines());
             }
         }
-        for(String s : stringList) {
-            System.out.println(s);
-        }
         Collections.sort(stringList,new MyComparator());
-        for(String s : stringList) {
-            System.out.println(s);
-        }
         return stringList;
     }
 
