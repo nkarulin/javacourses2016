@@ -17,12 +17,14 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public static String emulate(ArrayList<String> peoples) {
-        while (peoples.size() != 1) {
-            for (int i = 0; i < peoples.size(); i++) {
+
+        for (int i = 0; i < peoples.size(); i++) {
                 peoples.remove(i);
-            }
         }
-        return peoples.get(peoples.size()-1);
+        for (int i = 0; i < peoples.size(); i++) {
+            peoples.remove(i);
+        }
+        return peoples.get(0);
     }
 
     /**
@@ -36,6 +38,6 @@ public class SolverTask11 {
                 peoples.remove(i);
             }
         }
-        return peoples.get(peoples.size()-1);
+        return peoples.get(0);
     }
 }

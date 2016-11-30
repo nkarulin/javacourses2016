@@ -32,17 +32,11 @@ public class SolverTask1 {
         }
         List<String> reversedList = new ArrayList<>(list);
         Collections.reverse(reversedList);
-        try {
-            if (!output.exists()) {
-                output.createNewFile();
-            }
-            FileWriter fw = new FileWriter(output.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(output))){
             for (String s : reversedList) {
                 bw.write(s);
-                bw.write("\n");
+                bw.write('\n');
             }
-            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
