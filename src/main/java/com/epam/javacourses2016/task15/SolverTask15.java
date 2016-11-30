@@ -3,6 +3,10 @@ package com.epam.javacourses2016.task15;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,10 +21,35 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
-        return null;
+        Set<Line> lines = new HashSet<>();
+        for (Point2D a : points) {
+            for (Point2D b : points) {
+                if (a.getX() != b.getX() && a.getY() != b.getY()) {
+                    Line line = new Line(a, b);
+                    lines.add(line);
+                }
+            }
+        }
+        Set<ILine> result = new HashSet<>();
+        for (Line line : lines) {
+         for (Point2D point : points) {
+             line.containsDot(point);
+             if (line.getPoints().size() > 2) {
+                 result.add(line);
+             }
+         }
+        }
+        return new IFile(writeFile(output, result));
     }
 
+    private File writeFile(File file, Set<ILine> lines) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            objectOutputStream.writeObject(lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
     /**
      * Представляет файл, содержащий информацию о найденных линиях.
      */
