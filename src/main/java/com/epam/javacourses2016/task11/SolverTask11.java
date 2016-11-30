@@ -1,7 +1,6 @@
 package com.epam.javacourses2016.task11;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * В кругу стоят N человек.
@@ -11,6 +10,17 @@ import java.util.LinkedList;
  */
 public class SolverTask11 {
 
+    private int mod(int index, int N) {
+        return index > N ? index % N : index;
+    }
+    private int indexEven(int prevIndex, int N) {
+        int ind =  prevIndex * 2;
+        return mod(ind, N);
+    }
+    private int indexNonEven(int prevIndex, int N) {
+        int ind = prevIndex * 2 + 2;
+        return mod(ind, N);
+    }
     /**
      * Выполняет эмуляцию поставленной задачи.
      * @param peoples Список с именами участников.
@@ -18,36 +28,49 @@ public class SolverTask11 {
      */
     public String emulate(ArrayList<String> peoples) {
 
-        int[] visited = new int[peoples.size()];
-        String last = null;
-        int i = 0;
-        int iterationNumbers = 2;
-        while(iterationNumbers > 0) {
-            if (i >= peoples.size()) {
-                i = 1;
-                iterationNumbers--;
-            }
-            if (visited[i] != 1) {
-                last = peoples.get(i);
-                visited[i] = 1;
-            }
-            i+=2;
-        }
-        return last;
-    }
+        int N = peoples.size();
+        int index = 1;
+        int step = 1;
+        int i = 1;
+        boolean prevEven = peoples.size() % 2 == 0;
 
+        while(N > 2) {
+
+            prevEven = N % 2 == 0;
+            index += prevEven || N == 3 ?
+                    step : 3 * step;// indexEven(index, peoples.size()) : indexNonEven(index, peoples.size());
+
+            N /= 2;
+            step *= 2;
+        }
+        if (N == 2 && !prevEven) {
+            index -= step;
+        }
+        return peoples.get(index - 1);
+    }
     /**
      * Выполняет эмуляцию поставленной задачи.
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
+
     public String emulate(LinkedList<String> peoples) {
-        String last = null;
-        while(peoples.iterator().hasNext()) {
-            peoples.iterator().next();
-            last = peoples.iterator().next();
-            peoples.iterator().remove();
+        String result = null;
+        boolean even = true;
+        while (peoples.size() > 2) {
+            LinkedList<String> temp = new LinkedList<>();
+            Iterator<String> iterator = even ?
+                    peoples.listIterator(0) : peoples.listIterator(1);
+            while(iterator.hasNext()) {
+                iterator.next();
+                if(iterator.hasNext())
+                    temp.add(iterator.next());
+            }
+            if (!even)
+                temp.add(peoples.iterator().next());
+            even = peoples.size() % 2 == 0;
+            peoples = temp;
         }
-        return last;
+        return peoples.iterator().next();
     }
 }
