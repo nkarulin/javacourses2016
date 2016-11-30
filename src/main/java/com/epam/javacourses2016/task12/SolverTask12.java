@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task12;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,7 +17,10 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
-        //TODO
-        return null;
+        final int val = value;
+        integers.stream().sorted((item1, item2) -> item1  < val && item2 < val ? 0 :
+                                                    item1 < val && item2 > val ? -1:
+                                                        1);
+        return integers;
     }
 }
