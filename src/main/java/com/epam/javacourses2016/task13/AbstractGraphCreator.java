@@ -18,7 +18,7 @@ public abstract class AbstractGraphCreator {
      * Нумерация вершин начинается с 0.
      * Допустимы операции добавления, удаления и проверки существования ребер.
      */
-    abstract class AbstractGraph {
+    abstract static class AbstractGraph {
 
         /** Количество вершин */
         protected final int NUMBER_NODES;
