@@ -3,7 +3,11 @@ package com.epam.javacourses2016.task16;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -21,8 +25,26 @@ public class SolverTask16 {
      * @return Файл с результатами анализа.
      */
     IFileWithPoints analyze(Point2D center, int radius, File output) {
-        //TODO
-        return null;
+        SortedMap<Point2D, Double> points = new TreeMap<>();
+        for (int x = (int)(center.getX() - radius); x < (int)(center.getX() + radius) ; x++) {
+            for (int y = (int)(center.getY() - radius); y < (int)(center.getY() + radius) ; y++) {
+                Point2D curCell = new Point2D(x,y);
+                Cell cell = new Cell(curCell);
+                if (cell.isInCircle(center, radius)) {
+                    points.put(cell.getCenter(), cell.getDistanceToCenter(center));
+                }
+            }
+        }
+        return new IFile(writeFile(output, points));
+    }
+
+    public File writeFile(File file, SortedMap<Point2D, Double> points) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))){
+            objectOutputStream.writeObject(points);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     /**
