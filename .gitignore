@@ -1,6 +1,0 @@
-*.iml
-.idea
-.build
-outbuild
-.gradle
-.gitignore
