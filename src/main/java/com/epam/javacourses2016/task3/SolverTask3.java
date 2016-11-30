@@ -3,7 +3,6 @@ package com.epam.javacourses2016.task3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Занести строки, составляющие стихотворения указанного автора, в список.
@@ -18,15 +17,16 @@ public class SolverTask3 {
      * @return Список, упорядоченных по длине строк, составляющих стихотворения автора.
      */
     public List<String> sortPoems(Set<Poem> poems, String author) {
-        List<Poem> poemsOfAuthor = poems.stream()
-                .filter(poem -> poem.getAuthor().equalsIgnoreCase(author))
-                .collect(Collectors.toList());
         List<String> allLines = new ArrayList<>();
-        for (Poem poem : poemsOfAuthor) {
-            List<String> poemsLines = poem.getLines();
-            allLines.addAll(poemsLines);
+        for (Poem poem : poems) {
+            if (poem.getAuthor().equalsIgnoreCase(author)) {
+                allLines = poem.getLines();
+                break;
+            }
         }
-        allLines.stream().sorted((string1, string2) -> string2.length() - string1.length()).close();
+        allLines.stream()
+                .sorted((string1, string2) -> string2.length() - string1.length())
+                .close();
         return allLines;
     }
 }
