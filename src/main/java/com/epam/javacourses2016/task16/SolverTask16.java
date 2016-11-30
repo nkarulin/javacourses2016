@@ -39,11 +39,6 @@ public class SolverTask16 {
     }
 
     public File writeFile(File file, SortedMap<Point2D, Double> points) {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))){
-            objectOutputStream.writeObject(points);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return file;
     }
 

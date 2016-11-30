@@ -43,11 +43,6 @@ public class SolverTask15 {
     }
 
     private File writeFile(File file, Set<ILine> lines) {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
-            objectOutputStream.writeObject(lines);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return file;
     }
     /**

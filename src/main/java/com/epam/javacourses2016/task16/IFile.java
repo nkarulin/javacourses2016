@@ -18,15 +18,6 @@ public class IFile implements SolverTask16.IFileWithPoints {
     public IFile(File file) {
         this.file = file;
         points = new TreeMap<>();
-        if (file.length() != 0) {
-            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-                points = (SortedMap<Point2D, Double>) objectInputStream.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override

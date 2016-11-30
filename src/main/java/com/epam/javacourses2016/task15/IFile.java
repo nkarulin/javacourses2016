@@ -23,13 +23,7 @@ public class IFile implements SolverTask15.IFileWithLines {
     public IFile(File file) {
         this.file = file;
         lines = new HashSet<>();
-        if (file.length() != 0) {
-            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-                lines = (Set<SolverTask15.ILine>) objectInputStream.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
 
