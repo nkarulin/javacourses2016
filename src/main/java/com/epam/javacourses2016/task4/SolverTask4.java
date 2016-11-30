@@ -1,6 +1,8 @@
 package com.epam.javacourses2016.task4;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Интерфейс для юнит-тестирования задания №4.
@@ -17,8 +19,10 @@ public class SolverTask4 {
      * @return Результат пересечения множеств.
      */
     public Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> interSet = first.stream()
+                                .filter(second::contains)
+                                .collect(Collectors.toSet());
+        return interSet;
     }
 
     /**
@@ -28,7 +32,7 @@ public class SolverTask4 {
      * @return Результат объединения множеств.
      */
     public Set<Integer> union(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> unionSet = Stream.concat(first.stream(), second.stream()).collect(Collectors.toSet());
+        return unionSet;
     }
 }

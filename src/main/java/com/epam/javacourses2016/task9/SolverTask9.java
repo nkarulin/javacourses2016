@@ -1,7 +1,10 @@
 package com.epam.javacourses2016.task9;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -17,6 +20,14 @@ public class SolverTask9 {
      * @return Множество полученных слов.
      */
     public HashSet<String> getUniqueWords(File input) {
-        return null;
+        HashSet<String> result = new HashSet<>();
+        try (Scanner scanner = new Scanner(new FileReader(input))) {
+            while (scanner.hasNext()) {
+                result.add(scanner.next().toLowerCase());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

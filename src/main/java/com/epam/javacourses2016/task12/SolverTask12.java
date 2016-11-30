@@ -16,7 +16,11 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
-        //TODO
-        return null;
+        integers.sort((o1, o2) -> {
+            if (o1 > value) return 1;
+            if (o1 < value) return -1;
+            return 0;
+        });
+        return integers;
     }
 }
