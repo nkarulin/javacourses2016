@@ -1,7 +1,5 @@
 package com.epam.javacourses2016;
 
-import com.epam.javacourses2016.task15.SolverTask15;
-
 import java.io.*;
 
 public class Point2D implements Serializable {
@@ -27,9 +25,10 @@ public class Point2D implements Serializable {
         out.writeObject(this);
         stream.flush();
     }
+
     public Point2D deserialize(InputStream stream) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(stream);
-        return (Point2D)in.readObject();
+        return (Point2D) in.readObject();
 
     }
 }

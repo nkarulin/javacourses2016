@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.*;
+import java.util.Stack;
 
 /**
  * Дана матрица из целых чисел.

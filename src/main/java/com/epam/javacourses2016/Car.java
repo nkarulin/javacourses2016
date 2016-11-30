@@ -47,5 +47,5 @@ public class Car {
     public void setDistanceCovered(long distanceCovered) {
         this.distanceCovered = distanceCovered;
     }
-    
+
 }

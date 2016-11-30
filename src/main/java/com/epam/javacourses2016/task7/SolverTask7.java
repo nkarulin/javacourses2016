@@ -24,7 +24,7 @@ public class SolverTask7 {
         int secondSize = second.size();
 
         for (int i = 0; i < firstSize + secondSize - 1; i++) {
-          result.add(i, 0);
+            result.add(i, 0);
         }
         for (int i = 0; i < firstSize; i++) {
             for (int j = 0; j < secondSize; j++) {

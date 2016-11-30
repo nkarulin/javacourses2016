@@ -4,7 +4,10 @@ import com.epam.javacourses2016.Point2D;
 
 import java.awt.geom.Line2D;
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * На плоскости задано N точек.

@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task14;
 
-import java.util.*;
+import java.util.Collection;
 
 
 /**
@@ -14,7 +14,9 @@ public abstract class AbstractCollectionCreator {
      * @param required Тип, которым типизируется создаваемая коллекция.
      * @return Коллекция для хранения чисел с поддержкой операций добавления/удаления и поиска числа.
      */
-    abstract <T extends Number> NumberCollection<T> createCollection(Class<T> required);
+    public static  <T extends Number> NumberCollection<T> createCollection(Class<T> required){
+        return new ListNumberCollection<T>();
+    }
 
     /**
      * Коллекция для хранения чисел.

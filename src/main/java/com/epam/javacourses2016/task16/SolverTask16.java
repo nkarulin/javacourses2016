@@ -1,10 +1,10 @@
 package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
-import com.epam.javacourses2016.task15.SolverTask15;
 
 import java.io.*;
-import java.util.*;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -12,7 +12,7 @@ import java.util.*;
  * Выводить в порядке возрастания расстояния от клетки до центра круга.
  * Использовать класс SortedMap.
  */
-public class SolverTask16 implements Serializable{
+public class SolverTask16 implements Serializable {
     /**
      * Осуществляет анализ точек, находя среди них попавших внутрь круга.
      *
@@ -35,7 +35,7 @@ public class SolverTask16 implements Serializable{
     }
 
     public File writeFile(File file, SortedMap<Point2D, Double> points) {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))){
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
             objectOutputStream.writeObject(points);
         } catch (IOException e) {
             e.printStackTrace();

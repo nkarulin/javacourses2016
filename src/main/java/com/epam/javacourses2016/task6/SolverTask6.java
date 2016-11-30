@@ -1,8 +1,6 @@
 package com.epam.javacourses2016.task6;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Сложить два многочлена, если коэффициенты многочленов хранятся в объекте HashMap.
@@ -22,8 +20,8 @@ public class SolverTask6 {
         HashMap<Integer, Integer> result = new HashMap<>();
         for (int firstKey : first.keySet()) {
             Integer valueOfSecond = 0;
-            if(second.containsKey(firstKey)){
-                valueOfSecond=(second.get(firstKey));
+            if (second.containsKey(firstKey)) {
+                valueOfSecond = (second.get(firstKey));
             }
             result.put(firstKey, first.get(firstKey) + valueOfSecond);
         }

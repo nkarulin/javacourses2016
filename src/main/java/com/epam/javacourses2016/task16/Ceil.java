@@ -19,7 +19,7 @@ public class Ceil {
     }
 
     public Double getDistanceTo(Double x, Double y) {
-        return Math.pow(x - CENTER.getX(), 2) + Math.pow(y - CENTER.getY(), 2);
+        return Math.sqrt(Math.pow(x - CENTER.getX(), 2) + Math.pow(y - CENTER.getY(), 2));
     }
 
     public boolean isInsideCircle(Point2D center, int radius) {

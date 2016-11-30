@@ -1,7 +1,11 @@
 package com.epam.javacourses2016.task9;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -28,7 +32,7 @@ public class SolverTask9 {
         String words[] = strings.toString().trim().split(" ");
         Set<String> result = new HashSet<>();
         for (String word : words) {
-            if(!word.isEmpty())result.add(word.toLowerCase());
+            if (!word.isEmpty()) result.add(word.toLowerCase());
         }
         return (HashSet<String>) result;
     }

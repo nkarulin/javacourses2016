@@ -27,7 +27,7 @@ public class Graph extends AbstractGraphCreator.AbstractGraph {
     @Override
     public void removeEdge(int first, int second) {
         if (isExistEdge(first, second) && (first <= super.NUMBER_NODES && second <= super.NUMBER_NODES))
-        edges.remove(new Edge(first, second));
+            edges.remove(new Edge(first, second));
     }
 
     @Override

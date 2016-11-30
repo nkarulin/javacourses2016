@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Интерфейс для юнит-тестирования задания №5.
- *
+ * <p>
  * Список содержит результаты измерений тока и напряжения на неизвестном сопротивлении R.
  * Найти приближенное число R методом наименьших квадратов.
  * Для повышения точности вычислений использовать класс {@link java.math.BigDecimal}
@@ -36,7 +36,7 @@ public class SolverTask5 {
             numerator = numerator.add(((BigDecimal.valueOf(measurements.get(i).getCurrent()).subtract(avgCurrent)).multiply(BigDecimal.valueOf(measurements.get(i).getVoltage()).subtract(avgVoltage))));
             denominator = denominator.add((BigDecimal.valueOf(measurements.get(i).getCurrent()).subtract(avgCurrent)).pow(2));
         }
-        double result = (numerator.divide(denominator,3, RoundingMode.HALF_UP)).doubleValue();
-        return  result;
+        double result = (numerator.divide(denominator, 3, RoundingMode.HALF_UP)).doubleValue();
+        return result;
     }
 }

@@ -29,6 +29,7 @@ public class Matrix implements SolverTask18.RectangularIntegerMatrix {
         return matrix[indexWidth][indexHeight];
     }
 
+
     @Override
     public Matrix getSubMatrix(int leftUpIndexRow, int leftUpIndexCol, int rightDownIndexRow, int rightDownIndexCol) throws NegativeArraySizeException {
         int[][] subMatrix = new int[rightDownIndexRow - leftUpIndexRow][rightDownIndexCol - leftUpIndexCol];

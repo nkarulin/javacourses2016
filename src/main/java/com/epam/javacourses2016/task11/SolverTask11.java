@@ -1,6 +1,8 @@
 package com.epam.javacourses2016.task11;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * В кругу стоят N человек.
