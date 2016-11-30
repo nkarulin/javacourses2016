@@ -9,7 +9,7 @@ import java.util.LinkedList;
 
 public class SolverTask11Test {
 
-    @Test(enabled = true, dataProvider = "peoples")
+    @Test(enabled = false, dataProvider = "peoples")
     public void testEmulate(String[] peoples, String survived) throws Exception {
         ArrayList<String> array = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class SolverTask11Test {
         Assert.assertEquals(solver.emulate(array), survived);
     }
 
-    @Test(enabled = true, dataProvider = "peoples")
+    @Test(enabled = false, dataProvider = "peoples")
     public void testEmulate1(String[] peoples, String survived) throws Exception {
         LinkedList<String> array = new LinkedList<>();
 

@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Elarion on 29.11.2016.
- */
 public class SolverTask17Test {
 
     @Test(enabled = true, dataProvider = "segments")

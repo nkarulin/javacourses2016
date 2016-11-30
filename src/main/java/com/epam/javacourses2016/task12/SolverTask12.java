@@ -1,7 +1,8 @@
 package com.epam.javacourses2016.task12;
 
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Задан список целых чисел и число X.
@@ -17,24 +18,24 @@ public class SolverTask12 {
      * @param value    Разделительное значение.
      * @return Преобразованный список.
      */
+
     List<Integer> transform(List<Integer> integers, int value) {
 
-        int indexStart = integers.size() - 1;
+        LinkedList<Integer> sortedList = new LinkedList<>();
 
-        for (int i = 0; i < integers.size(); i++) {
-            if (integers.get(i) > value) {
-                for (int j = indexStart; j >= i; j--) {
-                    if (integers.get(j) <= value) {
-                        indexStart--;
-                        Collections.swap(integers, i, j);
-                        break;
-                    }
-                }
+        ListIterator<Integer> iterator = integers.listIterator();
+        while (iterator.hasNext()) {
+            int listValue = iterator.next();
+
+            if (listValue > value) {
+                sortedList.addLast(listValue);
+            } else {
+                sortedList.addFirst(listValue);
             }
         }
 
         //Collection sort could solve this problem, so here we go!
         //Collections.sort(integers);
-        return integers;
+        return sortedList;
     }
 }
