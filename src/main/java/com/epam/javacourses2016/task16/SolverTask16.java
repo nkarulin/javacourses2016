@@ -3,9 +3,6 @@ package com.epam.javacourses2016.task16;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -35,7 +32,9 @@ public class SolverTask16 {
                 }
             }
         }
-        return new IFile(writeFile(output, points));
+        IFile iFile = new IFile();
+        iFile.writeCells(output, points);
+        return iFile;
     }
 
     public File writeFile(File file, SortedMap<Point2D, Double> points) {

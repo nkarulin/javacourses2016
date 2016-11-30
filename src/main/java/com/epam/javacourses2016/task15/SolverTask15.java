@@ -1,12 +1,8 @@
 package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
-import com.epam.javacourses2016.task16.*;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Set;
 
