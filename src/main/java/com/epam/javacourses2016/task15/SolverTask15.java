@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
+import com.epam.javacourses2016.task16.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,7 +31,7 @@ public class SolverTask15 {
                 }
             }
         }
-        Set<ILine> result = new HashSet<>();
+        Set<Line> result = new HashSet<>();
         for (Line line : lines) {
          for (Point2D point : points) {
              line.containsDot(point);
@@ -39,7 +40,9 @@ public class SolverTask15 {
              }
          }
         }
-        return new IFile(writeFile(output, result));
+        IFile iFile = new IFile();
+        iFile.writeLines(output, result);
+        return iFile;
     }
 
     private File writeFile(File file, Set<ILine> lines) {
