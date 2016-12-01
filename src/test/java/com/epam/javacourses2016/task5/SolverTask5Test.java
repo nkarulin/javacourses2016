@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SolverTask5Test {
 
-    @Test(enabled = true, dataProvider = "measurements")
+    @Test(enabled = false, dataProvider = "measurements")
     public void testCalcResistance(double[][] measurements, double result) throws Exception {
         SolverTask5 solver = new SolverTask5();
         List<Measurement> listMeasures = getMeasurements(measurements);

@@ -30,6 +30,8 @@ public class SolverTask5 {
             sumUI += m.getCurrent() * m.getVoltage();
             sum_sqrtI += Math.pow(m.getCurrent(), 2);
         }
+
+        //BigDecimal eps2=new BigDecimal (Math.pow(eps, 2));
         R = new BigDecimal((measurements.size() * sumUI - sumI * sumU) / (measurements.size() * sum_sqrtI - Math.pow(sumI, 2)));
         return R.setScale(3, BigDecimal.ROUND_DOWN).doubleValue();
     }
