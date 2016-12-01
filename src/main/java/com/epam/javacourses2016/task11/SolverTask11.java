@@ -14,6 +14,7 @@ public class SolverTask11 {
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
@@ -21,9 +22,11 @@ public class SolverTask11 {
         while (peoples.size() != 1) {
             Iterator iterator = peoples.iterator();
             int index = 0;
-            while (iterator.hasNext() && index % 2 == 0) {
-                iterator.remove();
-                index += 2;
+            while (iterator.hasNext()) {
+                if (index % 2 == 0) {
+                    iterator.remove();
+                }
+                index++;
             }
         }
         return peoples.get(0);
@@ -31,6 +34,7 @@ public class SolverTask11 {
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
