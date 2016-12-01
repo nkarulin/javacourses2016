@@ -35,6 +35,7 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
+        //TODO
         return null;
     }
 }
