@@ -19,7 +19,6 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     double calcResistance(List<Measurement> measurements) {
-        //TODO
         BigDecimal numerator = BigDecimal.ZERO;
         BigDecimal denominator = BigDecimal.ZERO;
         for (Measurement measurement : measurements) {
