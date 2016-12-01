@@ -23,18 +23,17 @@ public class SolverTask12 {
         if (integers.contains(value)) {
             integers.sort(Comparator.naturalOrder());
         } else {
-            int count = 0;
-            for (Integer n : integers) {
-                if (n < value) {
-                    count++;
+            int numberOfSmaller = 0;
+            for (Integer integer : integers) {
+                if (integer < value) {
+                    numberOfSmaller++;
                 }
             }
             for (int i = 0; i < integers.size(); i++) {
                 if (integers.get(i) >= value) {
-                    for (int j = count; j < integers.size(); j++) {
+                    for (int j = numberOfSmaller; j < integers.size(); j++) {
                         if (integers.get(j) < value) {
                             Collections.swap(integers, i, j);
-                            break;
                         }
                     }
                 }
