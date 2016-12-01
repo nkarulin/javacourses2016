@@ -28,33 +28,4 @@ public class SolverTask18Test {
     private SolverTask18.RectangularIntegerMatrix convertToMatrix(int[][] arr) {
         return new Matrix(arr);
     }
-
-    private class Matrix implements SolverTask18.RectangularIntegerMatrix {
-
-        private int[][] matrix;
-
-        public Matrix(int[][] data) {
-            this.matrix = data;
-        }
-
-        public int[][] getMatrix() {
-            return matrix;
-        }
-
-        @Override
-        public int getWidth() {
-            return matrix[0].length;
-        }
-
-        @Override
-        public int getHeight() {
-            return matrix.length;
-        }
-
-        @Override
-        public int getValue(int indexWidth, int indexHeight) {
-            return matrix[indexWidth][indexHeight];
-        }
-    }
-
 }
