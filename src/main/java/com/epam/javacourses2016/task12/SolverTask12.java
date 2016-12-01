@@ -34,6 +34,22 @@ public class SolverTask12 {
             }
         }
 
+/*
+        List<Integer> arrayList = new ArrayList<>(integers.size());
+        int beginIndex = 0;
+        int endIndex = integers.size() - 1;
+
+        for (int i = 0; i < integers.size(); i++) {
+            int listValue = integers.get(i);
+            if (listValue > value) {
+                arrayList.add(endIndex, listValue);
+                endIndex--;
+            } else {
+                arrayList.add(beginIndex, listValue);
+                beginIndex++;
+            }
+        }
+*/
         //Collection sort could solve this problem, so here we go!
         //Collections.sort(integers);
         return sortedList;

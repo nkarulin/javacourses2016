@@ -1,14 +1,11 @@
 package com.epam.javacourses2016.task14;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by Elarion on 25.11.2016.
- */
-public class MyCollection<T extends Number> implements AbstractCollectionCreator.NumberCollection<T> {
+public class MyCollection<T extends Number> extends AbstractCollection<T> implements AbstractCollectionCreator.NumberCollection<T> {
     List<T> elementData;
 
     public MyCollection() {
@@ -34,69 +31,12 @@ public class MyCollection<T extends Number> implements AbstractCollectionCreator
     }
 
     @Override
-    public int size() {
-        return elementData.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return elementData.isEmpty();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return elementData.contains(o);
-    }
-
-    @Override
     public Iterator<T> iterator() {
         return elementData.iterator();
     }
 
     @Override
-    public Object[] toArray() {
-        return elementData.toArray();
-    }
-
-    @Override
-    public <T1> T1[] toArray(T1[] a) {
-        return (T1[]) elementData.toArray();
-    }
-
-    @Override
-    public boolean add(T t) {
-        return elementData.add(t);
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return elementData.remove(o);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return elementData.containsAll(c);
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return elementData.addAll(c);
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return elementData.removeAll(c);
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return elementData.retainAll(c);
-    }
-
-    @Override
-    public void clear() {
-        for (T element : elementData) {
-            element = null;
-        }
+    public int size() {
+        return elementData.size();
     }
 }
