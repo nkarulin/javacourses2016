@@ -14,20 +14,27 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     private int myArrayMatrix[][];
-    private int rowCount = 1;
-    private int colCount = 1;
+    private int matrixRowSize;
+    private int matrixColSize;
+    private int rowCount = 0;
+    private int colCount = 0;
     private int startRow = 0;
     private int startCol = 0;
+    private int cellValue = 0;
     List<RectangularIntegerMatrix> listOfMatrix = new ArrayList<>();
 
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
         myArrayMatrix = toArrayMatrix(matrix);
+        matrixRowSize = myArrayMatrix.length;
+        matrixColSize = myArrayMatrix[0].length;
+
         for (int i = 0; i < myArrayMatrix.length; i++) {
             for (int j = 0; j < myArrayMatrix[i].length - 1; j++) {
                 if (myArrayMatrix[i][j] == myArrayMatrix[i][j + 1]) {
-                    rowCount++;
+                    colCount++;
                     startRow = i;
                     startCol = j;
+                    cellValue = myArrayMatrix[i][j];
                     checkCloseCells(i, j, myArrayMatrix[i][j]);
                 }
             }
@@ -40,58 +47,77 @@ public class SolverTask18 {
         boolean haveBotRow = true;
         boolean haveRightCol = true;
 
-        haveBotRow = checkBotRow(row, col, value);
-        haveRightCol = checkRightCol(row, col, value);
+        haveBotRow = checkBotRow();
+        haveRightCol = checkRightCol();
 
-        if (haveBotRow && haveRightCol) {
-            checkCloseCells(row + 1, col + 1, value);
+        if (haveBotRow && haveRightCol && rowCount < matrixRowSize && colCount < matrixColSize) {
+            checkCloseCells(rowCount, colCount, value);
         }
 
         if (!haveBotRow && haveRightCol) {
             while (haveRightCol) {
-                haveRightCol = checkRightCol(row, col, value);
+                haveRightCol = checkRightCol();
             }
         }
 
         if (!haveRightCol && haveBotRow) {
             while (haveBotRow) {
-                haveBotRow = checkBotRow(row, col, value);
+                haveBotRow = checkBotRow();
             }
         }
 
-        MyMatrix myMatrix = new MyMatrix(startRow, startCol, rowCount, colCount, value);
-        listOfMatrix.add(myMatrix);
+        if (colCount != 0 && rowCount != 0) {
+            MyMatrix myMatrix = new MyMatrix(startRow, startCol, rowCount, colCount, cellValue);
+            listOfMatrix.add(myMatrix);
+        }
+
+        startRow = 0;
+        startCol = 0;
+        rowCount = 0;
+        colCount = 0;
+        cellValue = 0;
     }
 
-    private boolean checkBotRow(int row, int col, int value) {
-        if (row + 1 >= myArrayMatrix.length - 1) {
+    private boolean checkBotRow() {
+        if (rowCount > matrixRowSize - 2) {
             return false;
         }
-        
+
         boolean haveBotRow = true;
-        for (int i = 0; i < colCount; i++) {
-            if (myArrayMatrix[row + 1][col + i] != value) {
+        for (int i = startCol; i < colCount; i++) {
+            if (myArrayMatrix[rowCount + 1][i] != cellValue) {
                 haveBotRow = false;
             }
         }
 
-        rowCount++;
+        if (rowCount > matrixRowSize - 1) {
+            haveBotRow = false;
+        } else {
+            rowCount++;
+        }
+
         return haveBotRow;
     }
 
-    private boolean checkRightCol(int row, int col, int value) {
-        if (col + 1 > myArrayMatrix[0].length - 1) {
+    private boolean checkRightCol() {
+        if (colCount > matrixColSize - 2) {
             return false;
         }
 
         boolean haveRightCol = true;
-        for (int i = 0; i < rowCount; i++) {
-            if (myArrayMatrix[row + i][col + 1] != value) {
+        for (int i = startRow; i < rowCount; i++) {
+            if (myArrayMatrix[i][colCount + 1] != cellValue) {
                 haveRightCol = false;
             }
         }
 
-        colCount++;
+
+        if (colCount > matrixColSize - 1) {
+            haveRightCol = false;
+        } else {
+            colCount++;
+        }
+
         return haveRightCol;
     }
 
@@ -108,13 +134,22 @@ public class SolverTask18 {
     }
 
     class MyMatrix implements RectangularIntegerMatrix {
+        int startX;
+        int startY;
+        int rowSize;
+        int colSize;
+        int value;
 
         public MyMatrix() {
 
         }
 
         public MyMatrix(int startX, int startY, int row, int col, int value) {
-
+            this.startX = startX;
+            this.startY = startY;
+            this.rowSize = row;
+            this.colSize = col;
+            this.value = value;
         }
 
         @Override
