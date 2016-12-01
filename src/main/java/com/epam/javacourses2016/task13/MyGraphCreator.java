@@ -26,11 +26,11 @@ public class MyGraphCreator extends AbstractGraphCreator {
         public void addEdge(int first, int second) {
 
             if (!(checkInputValue(first) && checkInputValue(second))) {
-                return;
+                throw new IllegalArgumentException();
             }
 
             if (nodes.size() >= NUMBER_NODES) {
-                return;
+                throw new IllegalArgumentException();
             }
 
             Node firstNode = nodes.get(first);
@@ -53,7 +53,7 @@ public class MyGraphCreator extends AbstractGraphCreator {
         @Override
         public void removeEdge(int first, int second) {
             if (!(checkInputValue(first) && checkInputValue(second))) {
-                return;
+                throw new IllegalArgumentException();
             }
 
             Node firstNode = nodes.get(first);

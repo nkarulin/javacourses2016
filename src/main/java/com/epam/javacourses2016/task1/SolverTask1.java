@@ -22,7 +22,7 @@ public class SolverTask1 {
      * @return Список строк, прочитанных из входного файла в прямом порядке.
      */
     public List<String> reverseFile(File input, File output) {
-        List<String> lines = fileReader(input);
+        List<String> lines = readFile(input);
         Collections.reverse(lines);
         fileWriter(output, lines);
 
@@ -30,7 +30,7 @@ public class SolverTask1 {
         return lines;
     }
 
-    private List<String> fileReader(File file) {
+    private List<String> readFile(File file) {
         List<String> lines = new ArrayList<>();
         String s;
 
