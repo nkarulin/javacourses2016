@@ -1,6 +1,5 @@
 package com.epam.javacourses2016.task12;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -19,7 +18,7 @@ public class SolverTask12 {
      * @param value    Разделительное значение.
      * @return Преобразованный список.
      */
-    static List<Integer> transform(List<Integer> integers, int value) {
+    List<Integer> transform(List<Integer> integers, int value) {
         if (integers.contains(value)) {
             integers.sort(Comparator.naturalOrder());
         } else {
@@ -40,16 +39,5 @@ public class SolverTask12 {
             }
         }
         return integers;
-    }
-
-
-    public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 5; i >= 0; i--) {
-            list.add(i * i);
-        }
-        list.add(16);
-        System.out.println(list);
-        System.out.println(transform(list, 11));
     }
 }
