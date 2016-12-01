@@ -21,13 +21,13 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
-        TreeMap<Integer[], Point2D> crossedSeg = new TreeMap<>();
+        TreeMap<Integer, Point2D> crossedSeg = new TreeMap<>();
         Segment[] segArray = segments.toArray(new Segment[segments.size()]);
         for (int i = 0; i < segArray.length; i++) {
-            for (int j = i; j < segArray.length; j++) {
+            for (int j = i+1; j < segArray.length; j++) {
                 Point2D crossDot = crossDot(segArray[i], segArray[j]);
                 if (crossDot != null) {
-                    crossedSeg.put(new Integer[]{i+1,j+1}, crossDot);
+                    crossedSeg.put(j, crossDot);
                 }
             }
         }
@@ -58,10 +58,21 @@ public class SolverTask17 {
         if ((aS1*bS2)-(bS1*aS2) != 0) {
             x = ((cS1*bS2) - (bS1*cS2))/((aS1*bS2)-(bS1*aS2));
             y = ((aS1*cS2) - (cS1*aS2))/((aS1*bS2)-(bS1*aS2));
+            if (!isDotBelongs(s1,s2, x, y)) {
+                return null;
+            }
         }
         else {
             return null;
         }
         return new Point2D(x,y);
+    }
+
+    boolean isDotBelongs(Segment s1, Segment s2, double x, double y) {
+        if (((s1.getA().getX() <= x) && (s1.getB().getX() >= x) && (s2.getA().getX() <= x) && (s2.getB().getX()>=x)) ||
+                ((s1.getA().getY() <= y) && (s1.getB().getY() >= y) && (s2.getA().getY() <= y) && (s2.getB().getY() >= y))) {
+            return true;
+        }
+        return false;
     }
 }

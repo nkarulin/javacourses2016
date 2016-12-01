@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class SolverTask5 {
 
+    final static int ROUNDING = 6;
     /**
      * Вычисляет сопротивление методом наименьших квадратов.
      *
@@ -22,6 +23,7 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     static double calcResistance(List<Measurement> measurements) {
+
             BigDecimal Syx = new BigDecimal(0);
             for (Measurement measurement : measurements) {
                 Syx = Syx.add(new BigDecimal(measurement.getCurrent()*measurement.getVoltage()));
@@ -30,7 +32,7 @@ public class SolverTask5 {
             for (Measurement measurement : measurements) {
                 Sxx = Sxx.add(new BigDecimal(measurement.getCurrent()*measurement.getCurrent()));
             }
-            BigDecimal R = Syx.divide(Sxx,6);
+            BigDecimal R = Syx.divide(Sxx, ROUNDING);
             return R.doubleValue();
     }
 }
