@@ -20,26 +20,15 @@ public class SolverTask5 {
      */
     double calcResistance(List<Measurement> measurements) {
         //TODO
-        int totalMeas = measurements.size();
-
-        BigDecimal totalCur = BigDecimal.ZERO;
-        BigDecimal averageCur;
-        BigDecimal totalVol = BigDecimal.ZERO;
-        BigDecimal averageVol;
-        for (Measurement measurement : measurements) {
-            totalCur = totalCur.add(BigDecimal.valueOf(measurement.getCurrent()));
-            totalVol = totalVol.add(BigDecimal.valueOf(measurement.getVoltage()));
-        }
-        averageCur = totalCur.divide(BigDecimal.valueOf(totalMeas));
-        averageVol = totalVol.divide(BigDecimal.valueOf(totalMeas));
         BigDecimal numerator = BigDecimal.ZERO;
         BigDecimal denominator = BigDecimal.ZERO;
         for (Measurement measurement : measurements) {
-            BigDecimal tmpVolt = BigDecimal.valueOf(measurement.getVoltage());
-            BigDecimal tmpCur = BigDecimal.valueOf(measurement.getCurrent());
-            numerator = numerator.add(((tmpCur.subtract(averageCur)).multiply(tmpVolt.subtract(averageVol))));
-            denominator = denominator.add((tmpCur.subtract(averageCur)).pow(2));
+            double tmpCur = measurement.getCurrent();
+            double tmpVolt = measurement.getVoltage();
+            numerator = numerator.add(BigDecimal.valueOf(tmpCur * tmpVolt));
+            denominator = denominator.add(BigDecimal.valueOf(tmpCur * tmpCur));
         }
-        return (numerator.divide(denominator, 3, BigDecimal.ROUND_HALF_UP)).doubleValue();
+        BigDecimal result = numerator.divide(denominator, 3, BigDecimal.ROUND_HALF_UP);
+        return result.doubleValue();
     }
 }
