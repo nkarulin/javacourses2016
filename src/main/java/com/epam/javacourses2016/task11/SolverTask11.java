@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task11;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -13,15 +14,34 @@ public class SolverTask11 {
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
-        return null;
+        int counter = 0;
+        Iterator<String> iterator = peoples.iterator();
+        while (peoples.size() != 1) {
+            if (counter % 2 == 0) {
+                iterator.remove();
+            }
+            else
+            {
+                counter++;
+            }
+            if (!iterator.hasNext()){
+                iterator = peoples.iterator();
+            }
+            else{
+                iterator.next();
+            }
+        }
+        return peoples.get(0);
     }
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
