@@ -1,9 +1,6 @@
 package com.epam.javacourses2016.task14;
 
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class MyCollection<T extends Number> extends AbstractCollection<T> implements AbstractCollectionCreator.NumberCollection<T> {
     List<T> elementData;
@@ -38,5 +35,10 @@ public class MyCollection<T extends Number> extends AbstractCollection<T> implem
     @Override
     public int size() {
         return elementData.size();
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return elementData.addAll(c);
     }
 }
