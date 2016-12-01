@@ -3,10 +3,10 @@ package com.epam.javacourses2016.task17;
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * На плоскости задано N отрезков.
@@ -21,6 +21,7 @@ public class SolverTask17 {
      * @param segments Множество отрезков.
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
+
     public Set<Point2D> analyze(Set<Segment> segments) {
         if (segments == null) {
             return null;
@@ -29,14 +30,46 @@ public class SolverTask17 {
             return null;
         }
 
-        List<Segment> listSegments = new ArrayList<>(segments);
+        TreeMap<Segment, Integer> segmentsMap = new TreeMap<>(new MyComparator());
+        //I don't know where i need map value, so here magic number for TreeMap;
+        int magicNumber = 0;
+
+        for (Segment segment : segments) {
+            segmentsMap.put(segment, magicNumber);
+            magicNumber++;
+        }
+
         Set<Point2D> resultSet = new HashSet<>();
         double minX = Double.MAX_VALUE;
 
+        mainLoop:
+        for (Segment segmentOne : segmentsMap.keySet()) {
+            for (Segment segmentTwo : segmentsMap.keySet()) {
+                if (segmentOne.equals(segmentTwo)) {
+                    continue;
+                }
+                //If minX of both segments higher than minX(intersection)
+                // => there won't be lower or same minX because array sorted
+                // => we can stop search
+                if (getMinX(segmentOne) > minX && getMinX(segmentTwo) > minX) {
+                    break mainLoop;
+                }
+
+                Point2D intersectionPoint = getIntersectionPoint(segmentOne, segmentTwo);
+                if (intersectionPoint != null) {
+                    if (intersectionPoint.getX() > minX) {
+                        break;
+                    } else {
+                        resultSet.add(intersectionPoint);
+                    }
+                }
+            }
+        }
+/*
         for (int i = 0; i < segments.size(); i++) {
             for (int j = i + 1; j < segments.size(); j++) {
-                Segment first = listSegments.get(i);
-                Segment second = listSegments.get(j);
+                Segment first = segmentsMap.get(i);
+                Segment second = segmentsMap.get(j);
 
                 Point2D intersectionPoint = getIntersectionPoint(first, second);
                 if (intersectionPoint != null) {
@@ -50,8 +83,52 @@ public class SolverTask17 {
                 }
             }
         }
-
+*/
         return resultSet;
+    }
+
+    private double getMinX(Segment segment) {
+        double x1 = segment.getA().getX();
+        double x2 = segment.getB().getX();
+
+        double minX1;
+        if (x1 < x2) {
+            minX1 = x1;
+        } else {
+            minX1 = x2;
+        }
+
+        return minX1;
+    }
+
+    class MyComparator implements Comparator<Segment> {
+        @Override
+        public int compare(Segment o1, Segment o2) {
+            double x1 = o1.getA().getX();
+            double x2 = o1.getB().getX();
+            double x3 = o2.getA().getX();
+            double x4 = o2.getB().getX();
+
+            double minX1;
+            if (x1 < x2) {
+                minX1 = x1;
+            } else {
+                minX1 = x2;
+            }
+
+            double minX2;
+            if (x3 < x4) {
+                minX2 = x3;
+            } else {
+                minX2 = x4;
+            }
+
+            int compareResult = Double.compare(minX1, minX2);
+            if (compareResult == 0) {
+                compareResult = 1;
+            }
+            return compareResult;
+        }
     }
 
     private Point2D getIntersectionPoint(Segment first, Segment second) {
