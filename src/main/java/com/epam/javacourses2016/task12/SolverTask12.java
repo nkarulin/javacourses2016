@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task12;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,6 +22,23 @@ public class SolverTask12 {
     static List<Integer> transform(List<Integer> integers, int value) {
         if (integers.contains(value)) {
             integers.sort(Comparator.naturalOrder());
+        } else {
+            int count = 0;
+            for (Integer n : integers) {
+                if (n < value) {
+                    count++;
+                }
+            }
+            for (int i = 0; i < integers.size(); i++) {
+                if (integers.get(i) >= value) {
+                    for (int j = count; j < integers.size(); j++) {
+                        if (integers.get(j) < value) {
+                            Collections.swap(integers, i, j);
+                            break;
+                        }
+                    }
+                }
+            }
         }
         return integers;
     }
@@ -29,10 +47,10 @@ public class SolverTask12 {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
         for (int i = 5; i >= 0; i--) {
-            list.add(i*i);
+            list.add(i * i);
         }
         list.add(16);
         System.out.println(list);
-        System.out.println(transform(list, 16));
+        System.out.println(transform(list, 11));
     }
 }
