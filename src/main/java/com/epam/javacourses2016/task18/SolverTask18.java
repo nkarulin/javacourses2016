@@ -13,13 +13,13 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        Stack<Matrix> matrixStack = matrix.getStackSubMatrix();
+        Stack<Matrix> matrixStack = getStackSubMatrix(matrix);
         Matrix maxSubMatrix = null;
         if (!matrixStack.empty()) {
             maxSubMatrix = matrixStack.peek();
-            int maxNumberOfIdenticalValues = maxSubMatrix.numberOfIdenticalValue();
+            int maxNumberOfIdenticalValues = numberOfIdenticalValue(maxSubMatrix);
             for (Matrix subMatrix : matrixStack) {
-                int numberOfIdenticalValues = subMatrix.numberOfIdenticalValue();
+                int numberOfIdenticalValues = numberOfIdenticalValue(subMatrix);
                 if (numberOfIdenticalValues > maxNumberOfIdenticalValues) {
                     maxNumberOfIdenticalValues = numberOfIdenticalValues;
                     maxSubMatrix = subMatrix;
@@ -28,6 +28,61 @@ public class SolverTask18 {
         }
         return maxSubMatrix;
     }
+
+    public Matrix getSubMatrix(RectangularIntegerMatrix matrix, int leftUpIndexRow, int leftUpIndexCol, int rightDownIndexRow, int rightDownIndexCol) throws NegativeArraySizeException {
+        int[][] subMatrix = new int[rightDownIndexRow - leftUpIndexRow][rightDownIndexCol - leftUpIndexCol];
+        for (int i = 0; i < subMatrix.length; i++) {
+            for (int j = 0; j < subMatrix[i].length; j++) {
+                subMatrix[i][j] = matrix.getValue(leftUpIndexRow + i, leftUpIndexCol + j);
+            }
+        }
+        return new Matrix(subMatrix);
+    }
+
+    public Stack<Matrix> getStackSubMatrix(RectangularIntegerMatrix matrix) {
+        Stack<Matrix> matrixStack = new Stack<>();
+        for (int x = 0; x < matrix.getHeight(); x++) {
+            for (int y = 0; y < matrix.getWidth(); y++) {
+                for (int i = 0; i < matrix.getHeight(); i++) {
+                    for (int j = 0; j < matrix.getWidth(); j++) {
+                        Matrix subMatrix = null;
+                        try {
+                            subMatrix = this.getSubMatrix(matrix,x, y, i + 1, j + 1);
+                            if (matrixStack.contains(subMatrix) ||Objects.deepEquals(matrix, subMatrix))
+                                continue;
+                            matrixStack.add(subMatrix);
+                        } catch (NegativeArraySizeException e) {
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+        return matrixStack;
+    }
+
+    public int numberOfIdenticalValue(Matrix matrix) {
+        Map<Integer, Integer> numberOfValuesMap = new HashMap<>();
+        for (int i = 0; i < matrix.getHeight(); i++) {
+            for (int j = 0; j < matrix.getWidth(); j++) {
+                if (numberOfValuesMap.containsKey(matrix.getValue(i, j))) {
+                    numberOfValuesMap.put(matrix.getValue(i, j), numberOfValuesMap.get(matrix.getValue(i, j)) + 1);
+                    continue;
+                }
+                numberOfValuesMap.put(matrix.getValue(i, j), 1);
+            }
+        }
+        Iterator<Integer> iterator = numberOfValuesMap.values().iterator();
+        int maxNumber = 0;
+        while (iterator.hasNext()) {
+            int next = iterator.next();
+            if (next > maxNumber) {
+                maxNumber = next;
+            }
+        }
+        return maxNumber;
+    }
+
 
 
     /**
@@ -52,24 +107,6 @@ public class SolverTask18 {
          */
         int getValue(int indexWidth, int indexHeight);
 
-        /**
-         * @param leftUpIndexRow    Индекс строки левого, верхнего угла подматрицы.
-         * @param leftUpIndexCol    Индекс столбца левого, верхнего угла подматрицы.
-         * @param rightDownIndexRow Индекс строки правого, нижнего угла подматрицы.
-         * @param rightDownIndexCol Индекс столбца правого, нижнего угла подматрицы.
-         * @return Подматрицв в указанном области.
-         */
-        Matrix getSubMatrix(int leftUpIndexRow, int leftUpIndexCol, int rightDownIndexRow, int rightDownIndexCol);
-
-        /**
-         * @return Стэк уникальных подматриц из матрицы.
-         */
-        Stack<Matrix> getStackSubMatrix();
-
-        /**
-         * @return Максимальное количество уникальных значений в матрице.
-         */
-        int numberOfIdenticalValue();
     }
 }
 

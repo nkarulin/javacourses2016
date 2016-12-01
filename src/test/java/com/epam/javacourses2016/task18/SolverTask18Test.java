@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Stack;
-
 /**
  * Created by kodoo on 13.11.16.
  */
@@ -30,5 +28,4 @@ public class SolverTask18Test {
     private SolverTask18.RectangularIntegerMatrix convertToMatrix(int[][] arr) {
         return new Matrix(arr);
     }
-
 }
