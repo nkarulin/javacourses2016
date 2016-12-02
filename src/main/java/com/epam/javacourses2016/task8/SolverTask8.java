@@ -52,31 +52,4 @@ public class SolverTask8 {
         }
     }
 
-    public boolean isNormalBrack(String string) {
-        Deque<Character> characters = new ArrayDeque<>();
-        char[] symbols = string.toCharArray();
-        for(char c : symbols) {
-            if(c == '(' || c ==  ')' || c ==  '[' || c ==  ']' || c ==  '{' || c ==   '}' )
-                characters.addLast(c);
-        }
-        Iterator<Character> it = characters.iterator();
-        while (it.hasNext()) {
-            Character a = it.next();
-            if(it.hasNext()) {
-                Character b = it.next();
-                if (((a == '(' && b == ')')
-                        || (a == '[' && b == ']')
-                        || (a == '{' && b == '}'))) {
-                    characters.remove(a);
-                    characters.remove(b);
-                    it = characters.iterator();
-                } else {
-                    it = characters.iterator();
-                    it.next();
-                }
-            }
-        }
-        return characters.size() == 0;
-    }
-
 }
