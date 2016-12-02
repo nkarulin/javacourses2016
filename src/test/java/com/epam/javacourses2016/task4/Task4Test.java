@@ -24,7 +24,7 @@ public class Task4Test {
         Assert.assertEquals(solver.intersection(firstSet, secondSet), numbers);
     }
 
-    @Test(enabled = true, dataProvider = "params")
+    @Test(enabled = false, dataProvider = "params")
     public void testUnion(Integer[] first, Integer[] second) throws Exception {
         SolverTask4 solver = new SolverTask4();
 
