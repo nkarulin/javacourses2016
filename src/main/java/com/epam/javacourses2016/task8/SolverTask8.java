@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task8;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Задана строка, возможно содержащая символы '(', ')', '[', ']', '{', '}'.
@@ -18,19 +18,62 @@ public class SolverTask8 {
      * @return true - скобки расставлены верно, иначе - false.
      */
     public boolean isNormalBrackets(String string) {
-        Stack<Character> characters = new Stack<>();
+        Deque<Character> characters = new ArrayDeque<>();
         char[] symbols = string.toCharArray();
         for(char c : symbols) {
-            if(c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
-                characters.add(c);
+            if(c == '(' || c ==  ')' || c ==  '[' || c ==  ']' || c ==  '{' || c ==   '}' )
+                characters.addLast(c);
         }
-        for (int i = 0; i < characters.size()-1; i++)
-        {
-            if ((characters.get(i) == '(' && characters.get(i+1) == ')') || (characters.get(i) == '[' && characters.get(i+1) == ']') || (characters.get(i) == '{' && characters.get(i+1) == '}'))
+        int count = 0;
+        int beginSize = characters.size();
+        for(;;) {
+            Character a = characters.removeFirst();
+            Character b = characters.removeFirst();
+            if (! ( ( a == '(' && b == ')')
+                    || (a == '[' && b == ']')
+                    || (a == '{' && b == '}')  ) )
             {
-                characters.remove(i);
-                characters.remove(i);
-                i = -1;
+                characters.addFirst(b);
+                characters.addLast(a);
+            }
+            count++;
+            if(count == beginSize - 1) {
+                if(characters.size() == 0) {
+                    return true;
+                }
+                else if(beginSize > characters.size()) {
+                    beginSize = characters.size();
+                    count = 0;
+                } else if(beginSize == characters.size())
+                    return false;
+            } else if(characters.size() == 0) {
+                return true;
+            }
+        }
+    }
+
+    public boolean isNormalBrack(String string) {
+        Deque<Character> characters = new ArrayDeque<>();
+        char[] symbols = string.toCharArray();
+        for(char c : symbols) {
+            if(c == '(' || c ==  ')' || c ==  '[' || c ==  ']' || c ==  '{' || c ==   '}' )
+                characters.addLast(c);
+        }
+        Iterator<Character> it = characters.iterator();
+        while (it.hasNext()) {
+            Character a = it.next();
+            if(it.hasNext()) {
+                Character b = it.next();
+                if (((a == '(' && b == ')')
+                        || (a == '[' && b == ']')
+                        || (a == '{' && b == '}'))) {
+                    characters.remove(a);
+                    characters.remove(b);
+                    it = characters.iterator();
+                } else {
+                    it = characters.iterator();
+                    it.next();
+                }
             }
         }
         return characters.size() == 0;

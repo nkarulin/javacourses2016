@@ -40,9 +40,18 @@ public class SolverTask5Test {
         list2.add(new Measurement(4,3.8));
         list2.add(new Measurement(5,3.3));
 
+        List<Measurement> list3 = new ArrayList<>();
+        list3.add(new Measurement(0,5.3));
+        list3.add(new Measurement(0,6.3));
+        list3.add(new Measurement(0,4.8));
+        list3.add(new Measurement(0,3.8));
+        list3.add(new Measurement(0,3.3));
+
         return new Object[][] {
                 {list1, 0.165},
-                {list2, -0.65}
+                {list2, -0.65},
+                {new ArrayList<Measurement>(),0.0}, // если массив пуст, то пуская возвращает 0.0
+                {list3,0.0}, // Если измерения проводились вокруг одной точки (либо сильно зашумлены), то пуская вернет 0.0, проверка деления на нуль
         };
     }
     public List<Measurement> getMeasurements(double[][] measurements) {

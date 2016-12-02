@@ -17,27 +17,19 @@ public class SolverTask1 {
      * @param output Файл с выходными данными.
      * @return Список строк, прочитанных из входного файла в прямом порядке.
      */
-    public List<String> reverseFile(File input, File output) {
+    public List<String> reverseFile(File input, File output) throws IOException {
         List<String> stringList = new ArrayList<>();
         String s;
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(input));
+        try(BufferedReader in = new BufferedReader(new FileReader(input))) {
             while((s = in.readLine()) != null) {
                 stringList.add(s);
             }
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(output));
+        try( BufferedWriter out = new BufferedWriter(new FileWriter(output)) ) {
             for(int i = stringList.size()-1; i >= 0; i--) {
                 out.write(stringList.get(i));
                 out.write("\n");
             }
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return stringList;
     }

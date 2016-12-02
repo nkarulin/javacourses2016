@@ -31,18 +31,11 @@ public class SolverTask5 {
             sumUI += m.getCurrent() * m.getVoltage();
             sum_sqrtI += Math.pow(m.getCurrent(),2);
         }
-        R = new BigDecimal( ( measurements.size() * sumUI  - sumI * sumU) / (measurements.size() * sum_sqrtI - Math.pow(sumI,2) ) );
+        double numerator = measurements.size() * sumUI  - sumI * sumU;
+        double denomantor = measurements.size() * sum_sqrtI - Math.pow(sumI,2);
+        if(denomantor != 0)
+            R = new BigDecimal( numerator / denomantor );
+        else R = new BigDecimal(0.0);
         return R.setScale(3,BigDecimal.ROUND_DOWN).doubleValue();
-    }
-
-    public static void main(String[] args) {
-        List<Measurement> list = new ArrayList<>();
-        list.add(new Measurement(0, 2.1));
-        list.add(new Measurement(1, 2.4));
-        list.add(new Measurement(2, 2.6));
-        list.add(new Measurement(4, 2.8));
-        list.add(new Measurement(5, 3.0));
-        SolverTask5 solverTask5 = new SolverTask5();
-        System.out.println(solverTask5.calcResistance(list));
     }
 }

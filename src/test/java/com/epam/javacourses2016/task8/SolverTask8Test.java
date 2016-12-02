@@ -15,11 +15,19 @@ public class SolverTask8Test {
     @DataProvider(name = "myString")
     public Object[][] getMyString() {
         return new Object[][]{
-                {"{Hello[]}()", true},
-                {"[()}", false},
+          //      {"{Hello[]}()", true},
+          //      {"[()}", false},
                 {"}{[({)]}Vasya", false},
                 {"Vasya{}", true},
                 {"}{",false}
         };
     }
+
+
+    @Test(enabled = true, dataProvider = "myString")
+    public void testIsNormalBrack(String string, boolean result) throws Exception {
+        SolverTask8 solver = new SolverTask8();
+        Assert.assertEquals(solver.isNormalBrack(string), result);
+    }
+
 }
