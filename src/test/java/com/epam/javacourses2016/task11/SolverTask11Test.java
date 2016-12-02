@@ -8,79 +8,64 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.*;
 
 public class SolverTask11Test {
+    private List<String> createList(int length) {
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < length; i++) {
+            list.add(String.valueOf(i + 1));
+        }
+        return list;
+    }
     @Test(enabled = true, dataProvider = "arraylists")
-    public void testEmulate(ArrayList<String> list, String result) throws Exception {
+    public void testEmulate(int listLength, int result) throws Exception {
         SolverTask11 solver = new SolverTask11();
-        String name = solver.emulate(list);
-        Assert.assertEquals(name, result);
+        String name = solver.emulate(new ArrayList<String>(createList(listLength)));
+        Assert.assertEquals(name, String.valueOf(result));
     }
 
-    @Test(enabled = true, dataProvider = "linkedlists")
-    public void testEmulate1(LinkedList<String> list, String result) throws Exception {
+    @Test(enabled = false, dataProvider = "arraylists")
+    public void testBoth(int listLength, int result) {
+        SolverTask11 solverTask11 = new SolverTask11();
+        List<String> list = createList(listLength);
+        String first = solverTask11.emulate(new ArrayList<String>(list));
+        String second = solverTask11.emulate(new LinkedList<String>(list));
+        Assert.assertEquals(first, second);
+    }
+    @Test(enabled = false, dataProvider = "arraylists")
+    public void testEmulate1(int listLength, int result) throws Exception {
        SolverTask11 solver = new SolverTask11();
-       String name = solver.emulate(list);
-        Assert.assertEquals(name, result);
+       String name = solver.emulate(new LinkedList<String>(createList(listLength)));
+        Assert.assertEquals(name, String.valueOf(result));
     }
 
     @DataProvider(name = "arraylists")
     public Object[][] arrayLists() {
         return new Object[][]{
                 {
-                    new ArrayList<String>() {{
-                        this.add("First");
-                        this.add("Second");
-                        this.add("Third");
-                        this.add("Fourth");
-                    }},
-                    "Fourth"
+                    50, 36
                 },
                 {
-                        new ArrayList<String>() {{
-                            this.add("First");
-                            this.add("Second");
-                            this.add("Third");
-                        }},
-                        "Third"
+                    20, 8
                 },
                 {
-                        new ArrayList<String>() {{
-                            this.add("First");
-                        }},
-                        "First"
-                },
-
-        };
-    }
-
-    @DataProvider(name = "linkedlists")
-    public Object[][] linkedLists() {
-        return new Object[][]{
-                {
-                        new LinkedList() {{
-                            this.add("First");
-                            this.add("Second");
-                            this.add("Third");
-                            this.add("Fourth");
-                        }},
-                        "Fourth"
+                     13,10
                 },
                 {
-                        new LinkedList() {{
-                            this.add("First");
-                            this.add("Second");
-                            this.add("Third");
-                        }},
-                        "Third"
+                    7, 6
                 },
                 {
-                        new LinkedList() {{
-                            this.add("First");
-                        }},
-                        "First"
+                     4,2
+                },
+                {
+                     3,2
+                },
+                {
+                     1,1
                 },
 
         };
