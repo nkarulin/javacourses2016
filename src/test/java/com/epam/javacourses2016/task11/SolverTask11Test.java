@@ -28,7 +28,7 @@ public class SolverTask11Test {
         Assert.assertEquals(name, String.valueOf(result));
     }
 
-    @Test(enabled = false, dataProvider = "arraylists")
+    @Test(enabled = true, dataProvider = "arraylists")
     public void testBoth(int listLength, int result) {
         SolverTask11 solverTask11 = new SolverTask11();
         List<String> list = createList(listLength);
@@ -36,7 +36,7 @@ public class SolverTask11Test {
         String second = solverTask11.emulate(new LinkedList<String>(list));
         Assert.assertEquals(first, second);
     }
-    @Test(enabled = false, dataProvider = "arraylists")
+    @Test(enabled = true, dataProvider = "arraylists")
     public void testEmulate1(int listLength, int result) throws Exception {
        SolverTask11 solver = new SolverTask11();
        String name = solver.emulate(new LinkedList<String>(createList(listLength)));
