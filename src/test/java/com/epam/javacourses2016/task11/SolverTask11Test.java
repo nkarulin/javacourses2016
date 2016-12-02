@@ -21,7 +21,7 @@ public class SolverTask11Test {
         }
         return list;
     }
-    @Test(enabled = true, dataProvider = "arraylists")
+    @Test(enabled = false, dataProvider = "arraylists")
     public void testEmulate(int listLength, int result) throws Exception {
         SolverTask11 solver = new SolverTask11();
         String name = solver.emulate(new ArrayList<String>(createList(listLength)));
