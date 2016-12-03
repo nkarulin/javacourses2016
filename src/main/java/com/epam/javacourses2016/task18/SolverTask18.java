@@ -1,8 +1,5 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Дана матрица из целых чисел.
  * Найти в ней прямоугольную подматрицу, состоящую из максимального количества одинаковых элементов.
@@ -10,9 +7,106 @@ import java.util.List;
  */
 public class SolverTask18 {
     /**
-     * @param myArrayMatrix Анализируемая матрица.
+     * @param matrix Анализируемая матрица.
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
+
+    RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
+        int[][] myMatrix = new int[][]{
+                {2, 3, 4},
+                {4, 1, 1},
+                {5, 1, 1}
+        };
+
+        int[][] result = getGreatestSubMatrix(myMatrix);
+        return null;
+    }
+
+    private int[][] getGreaterSubMatrices(int[][] parent) {
+        int rowCount = parent.length;
+        int colCount = parent[0].length;
+
+        int[][] top;
+        int[][] bottom;
+        int[][] left;
+        int[][] right;
+
+        int topSize = 0;
+        int bottomSize = 0;
+        int leftSize = 0;
+        int rightSize = 0;
+
+        if (rowCount > 1) {
+            //SubMatrix without top row
+            top = getGreatestSubMatrix(getSubMatrix(1, 0, rowCount, colCount, parent));
+            //SubMatrix without bottom row
+            bottom = getGreatestSubMatrix(getSubMatrix(0, 0, rowCount - 1, colCount, parent));
+
+            topSize = top.length * top[0].length;
+            bottomSize = bottom.length * bottom[0].length;
+        }
+        if (colCount > 1) {
+            //SubMatrix without left col
+            left = getGreatestSubMatrix(getSubMatrix(0, 1, rowCount, colCount, parent));
+            //SubMatrix without right col
+            right = getGreatestSubMatrix(getSubMatrix(0, 0, rowCount, colCount - 1, parent));
+
+            leftSize = left.length * left[0].length;
+            rightSize = right.length * right[0].length;
+        }
+
+        int maxOne = Integer.max(topSize, bottomSize);
+        int maxTwo = Integer.max(leftSize, rightSize);
+        int max = Integer.max(maxOne, maxTwo);
+        int[][] resultMatrix;
+
+
+        return null;
+    }
+
+    private int[][] getGreatestSubMatrix(int[][] greatestSubMatrix) {
+        int uniqueValues = checkMatrixForUniqueValues(greatestSubMatrix);
+        int matrixSize = (greatestSubMatrix.length * greatestSubMatrix[0].length);
+
+        if (uniqueValues == matrixSize) {
+            return greatestSubMatrix;
+        }
+
+        return getGreaterSubMatrices(greatestSubMatrix);
+    }
+
+    private int[][] getSubMatrix(int startRow, int startCol, int endRow, int endCol, int[][] parent) {
+
+        int[][] subMatrix = new int[endRow - startRow][endCol - startCol];
+        int rowIndex = 0;
+
+        for (int i = startRow; i < endRow; i++) {
+            int colIndex = 0;
+            for (int j = startCol; j < endCol; j++) {
+                subMatrix[rowIndex][colIndex] = parent[i][j];
+                colIndex++;
+            }
+            rowIndex++;
+        }
+
+        return subMatrix;
+    }
+
+    private int checkMatrixForUniqueValues(int[][] checkMatrix) {
+        int checkValue = checkMatrix[0][0];
+
+        for (int i = 0; i < checkMatrix.length; i++) {
+            for (int j = 0; j < checkMatrix[i].length; j++) {
+                if (checkMatrix[i][j] != checkValue) {
+                    return 1;
+                }
+            }
+        }
+
+        int uniqueElementsCount = checkMatrix.length * checkMatrix[0].length;
+        return uniqueElementsCount;
+    }
+    /*
     private int myArrayMatrix[][];
     private int matrixRowSize;
     private int matrixColSize;
@@ -167,6 +261,7 @@ public class SolverTask18 {
             return 0;
         }
     }
+    */
 
     /**
      * Прямоугольная матрица целых чисел.
