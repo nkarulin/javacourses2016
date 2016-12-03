@@ -12,7 +12,7 @@ import java.util.TreeMap;
 /**
  * Created by Рамиль on 30.11.2016.
  */
-public class IFile implements SolverTask16.IFileWithPoints {
+public class MyFile implements SolverTask16.IFileWithPoints {
 
     private File file;
 

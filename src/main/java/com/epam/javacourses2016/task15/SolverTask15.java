@@ -36,14 +36,11 @@ public class SolverTask15 {
              }
          }
         }
-        IFile iFile = new IFile();
-        iFile.writeLines(output, result);
-        return iFile;
+        MyFile myFile = new MyFile();
+        myFile.writeLines(output, result);
+        return myFile;
     }
 
-    private File writeFile(File file, Set<ILine> lines) {
-        return file;
-    }
     /**
      * Представляет файл, содержащий информацию о найденных линиях.
      */

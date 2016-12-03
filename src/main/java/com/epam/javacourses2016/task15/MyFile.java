@@ -8,10 +8,14 @@ import java.util.*;
 /**
  * Created by Рамиль on 30.11.2016.
  */
-public class IFile implements SolverTask15.IFileWithLines {
+public class MyFile implements SolverTask15.IFileWithLines {
 
     private File file;
-
+    final static int A_X_LINE_COORDINATE = 0;
+    final static int A_Y_LINE_COORDINATE = 1;
+    final static int B_X_LINE_COORDINATE = 2;
+    final static int B_Y_LINE_COORDINATE = 3;
+    final static int MAX_LINE_COORDINATES = 4;
     @Override
     public File getFile() {
         return file;
@@ -26,12 +30,7 @@ public class IFile implements SolverTask15.IFileWithLines {
                 if (scanner.hasNextDouble()) {
                     lineDots.add(scanner.nextDouble());
                 }
-                final int MAX_LINE_COORDINATES = 4;
                 if (lineDots.size() == MAX_LINE_COORDINATES) {
-                    final int A_X_LINE_COORDINATE = 0;
-                    final int A_Y_LINE_COORDINATE = 1;
-                    final int B_X_LINE_COORDINATE = 2;
-                    final int B_Y_LINE_COORDINATE = 3;
                     Point2D a = new Point2D(lineDots.get(A_X_LINE_COORDINATE), lineDots.get(A_Y_LINE_COORDINATE));
                     Point2D b = new Point2D(lineDots.get(B_X_LINE_COORDINATE), lineDots.get(B_Y_LINE_COORDINATE));
                     Line line = new Line(a,b);

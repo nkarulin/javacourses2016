@@ -32,13 +32,9 @@ public class SolverTask16 {
                 }
             }
         }
-        IFile iFile = new IFile();
-        iFile.writeCells(output, points);
-        return iFile;
-    }
-
-    public File writeFile(File file, SortedMap<Point2D, Double> points) {
-        return file;
+        MyFile myFile = new MyFile();
+        myFile.writeCells(output, points);
+        return myFile;
     }
 
     /**
