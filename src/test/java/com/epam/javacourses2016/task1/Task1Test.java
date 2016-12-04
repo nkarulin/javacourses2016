@@ -39,15 +39,15 @@ public class Task1Test {
 
     @DataProvider(name = "lines")
     private Object[][] lines() {
-        return new Object[][]{
-                {new String[]{
+        return new Object[][] {
+                { new String[] {
                         "Join the Stack Overflow Community",
                         "Stack Overflow is a community of 6.3 million programmers, just like you, helping each other.",
                         "Join them; it only takes a minute:",
                         "Sign up"
                 }
                 },
-                {new String[]{
+                { new String[] {
                         "Hello",
                         "There",
                         "",
@@ -56,4 +56,5 @@ public class Task1Test {
                 }
         };
     }
+
 }
