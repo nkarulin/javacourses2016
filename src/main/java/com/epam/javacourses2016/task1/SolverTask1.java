@@ -1,5 +1,7 @@
 package com.epam.javacourses2016.task1;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 import java.io.*;
 import java.nio.CharBuffer;
 import java.nio.file.Files;
@@ -22,7 +24,12 @@ public class SolverTask1 {
     public List<String> reverseFile(File input, File output) {
         List<String> strings = readLines(input);
         Collections.reverse(strings);
-        writeLines(output, strings);
+        try {
+            writeLines(output, strings);
+        }
+        catch (InvalidArgumentException ex) {
+            ex.printStackTrace();
+        }
         Collections.reverse(strings);
         return strings;
     }
@@ -31,7 +38,7 @@ public class SolverTask1 {
         ArrayList<String> strings = new ArrayList<>();
         String s = null;
         char[] buf = new char[1024];
-        try (FileReader fr = new FileReader(input); BufferedReader br = new BufferedReader(fr)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(input))) {
 
             while((s = br.readLine()) != null) {
                 strings.add(s);
@@ -44,9 +51,9 @@ public class SolverTask1 {
         return strings;
     }
 
-    private void writeLines(File output, List<String> lines) {
+    private void writeLines(File output, List<String> lines) throws InvalidArgumentException {
         String empty = "";
-        if (output != null && lines != null && lines.size() > 0)
+        if (output != null && lines != null && lines.size() > 0) {
             try (FileWriter fw = new FileWriter(output)) {
 
                 for(int i = 0; i < lines.size(); i++) {
@@ -58,5 +65,8 @@ public class SolverTask1 {
             catch (Exception ex) {
                 ex.printStackTrace();
             }
+        } else throw new InvalidArgumentException(new String[] { "Output cannot be null!" ,
+                "Lines cannot be null or empty!" });
+
     }
 }

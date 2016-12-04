@@ -43,8 +43,8 @@ public class SolverTask11 {
             N /= 2;
             step *= 2;
         }
-        if (N == 2 && !prevEven) {
-            index -= step;
+        if (N == 2) {
+            index = !prevEven ? index - step : index + step;
         }
         return peoples.get(index - 1);
     }

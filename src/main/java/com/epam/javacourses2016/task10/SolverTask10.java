@@ -24,7 +24,7 @@ public class SolverTask10 {
     public HashMap<String, Integer> countNumberWords(File input) {
 
         HashMap<String, Integer> englishWords = new HashMap<>();
-        try (FileReader fr = new FileReader(input); BufferedReader br = new BufferedReader(fr)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(input))) {
 
             String s = null;
             while((s = br.readLine()) != null) {

@@ -32,16 +32,17 @@ public class SolverTask2 {
     public Set<File> getFiles(File directory) {
 
         Set<File> elements = new HashSet<>();
+
         if (directory != null) {
             File[] files = directory.listFiles();
-
+            elements.add(directory);
             for(int i = 0; i < files.length; i++) {
 
                 if (!equals(directory, files[i])) {
                     if (files[i].isDirectory()) {
                         elements.addAll(getFiles(files[i]));
                     }
-                     elements.add(files[i]);
+                    else elements.add(files[i]);
                 }
             }
         }
