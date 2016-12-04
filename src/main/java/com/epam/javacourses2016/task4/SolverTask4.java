@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task4;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,23 +13,29 @@ public class SolverTask4 {
 
     /**
      * Операция пересечения целочисленных множеств.
-     * @param first Первое множество.
+     *
+     * @param first  Первое множество.
      * @param second Второе множество.
      * @return Результат пересечения множеств.
      */
     public Set<Integer> intersection(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> numbers = new HashSet<>();
+        numbers.addAll(first);
+        numbers.retainAll(second);
+        return numbers;
     }
 
     /**
      * Операция объединения целочисленных множеств.
-     * @param first Первое множество.
+     *
+     * @param first  Первое множество.
      * @param second Второе множество.
      * @return Результат объединения множеств.
      */
     public Set<Integer> union(Set<Integer> first, Set<Integer> second) {
-        //TODO
-        return null;
+        Set<Integer> numbers = new HashSet<>();
+        numbers.addAll(first);
+        numbers.addAll(second);
+        return numbers;
     }
 }
