@@ -71,6 +71,10 @@ public class SolverTask11 {
             even = peoples.size() % 2 == 0;
             peoples = temp;
         }
-        return peoples.iterator().next();
+        Iterator  i = peoples.iterator();
+        result = (String)i.next();
+        if (even)
+            result = (String)i.next();
+        return result;
     }
 }

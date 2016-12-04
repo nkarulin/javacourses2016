@@ -1,6 +1,5 @@
 package com.epam.javacourses2016.task1;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.*;
 import java.nio.CharBuffer;
@@ -27,7 +26,7 @@ public class SolverTask1 {
         try {
             writeLines(output, strings);
         }
-        catch (InvalidArgumentException ex) {
+        catch (Exception ex) {
             ex.printStackTrace();
         }
         Collections.reverse(strings);
@@ -51,7 +50,7 @@ public class SolverTask1 {
         return strings;
     }
 
-    private void writeLines(File output, List<String> lines) throws InvalidArgumentException {
+    private void writeLines(File output, List<String> lines) throws Exception {
         String empty = "";
         if (output != null && lines != null && lines.size() > 0) {
             try (FileWriter fw = new FileWriter(output)) {
@@ -65,8 +64,7 @@ public class SolverTask1 {
             catch (Exception ex) {
                 ex.printStackTrace();
             }
-        } else throw new InvalidArgumentException(new String[] { "Output cannot be null!" ,
-                "Lines cannot be null or empty!" });
+        } else throw new Exception( "Output  or lines cannot be null or empty!");
 
     }
 }
