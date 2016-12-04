@@ -1,19 +1,27 @@
 package com.epam.javacourses2016.task13;
 
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Map;
+import static org.testng.Assert.*;
 
 public class AbstractGraphCreatorTest {
-    @Test
-    public void testCreateGraph() throws Exception {
-        MyGraphCreator creator = new MyGraphCreator();
-        MyGraphCreator.MyGraph graph = creator.createGraph(10);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 3);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 4);
-
-        graph.isExistEdge(1,2);
+    @Test(enabled = false, dataProvider = "nodes")
+    public void testCreateGraph(int numberNodesResult) throws Exception {
+        AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodesResult);
+        if(numberNodesResult<=0){
+            Assert.assertNull(graph);
+        } else {
+            Assert.assertEquals(graph.NUMBER_NODES,numberNodesResult);
+        }
     }
+
+    @DataProvider(name = "nodes")
+    private Object[][] points() {
+        return new Object[][]{
+                {5},{1},{-1},{0}
+        };
+    }
+
 }
