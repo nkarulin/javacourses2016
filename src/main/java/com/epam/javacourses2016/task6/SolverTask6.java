@@ -16,6 +16,8 @@ public class SolverTask6 {
      * @return Многочлен, полученный в результате сложения.
      */
     public HashMap<Integer, Integer> addPolynomials(HashMap<Integer, Integer> first, HashMap<Integer, Integer> second) {
-        return null;
+        HashMap<Integer,Integer> result = new HashMap<>(first);
+        second.forEach((k, v) -> result.merge(k, v, (o1,o2)->(o1+o2)));
+        return result;
     }
 }
