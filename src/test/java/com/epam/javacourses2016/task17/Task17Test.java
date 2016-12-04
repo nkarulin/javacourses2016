@@ -1,6 +1,5 @@
 package com.epam.javacourses2016.task17;
 
-import com.epam.javacourses2016.task17.SolverTask17;
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
 import org.testng.Assert;
