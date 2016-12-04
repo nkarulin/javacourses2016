@@ -10,7 +10,9 @@ public abstract class AbstractGraphCreator {
      * @param numberNodes Количество вершин в графе.
      * @return Граф указанной конфигурации.
      */
-    abstract AbstractGraph createGraph(int numberNodes);
+    public static AbstractGraph createGraph(int numberNodes){
+        return null;
+    }
 
     /**
      * Абстрактный граф.

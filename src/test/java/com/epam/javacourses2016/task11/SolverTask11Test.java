@@ -1,74 +1,43 @@
 package com.epam.javacourses2016.task11;
 
-import com.epam.javacourses2016.task1.SolverTask1;
+import com.epam.javacourses2016.task8.SolverTask8;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.testng.Assert.*;
 
 public class SolverTask11Test {
-    private List<String> createList(int length) {
-        ArrayList<String> list = new ArrayList<>();
-        for(int i = 0; i < length; i++) {
-            list.add(String.valueOf(i + 1));
-        }
-        return list;
-    }
-    @Test(enabled = false, dataProvider = "arraylists")
-    public void testEmulate(int listLength, int result) throws Exception {
-        SolverTask11 solver = new SolverTask11();
-        String name = solver.emulate(new ArrayList<String>(createList(listLength)));
-        Assert.assertEquals(name, String.valueOf(result));
+    @Test(enabled = false, dataProvider = "people")
+    public void testEmulate(String[] arr, String result) throws Exception {
+        SolverTask11 task11 = new SolverTask11();
+        Assert.assertEquals(task11.emulate(convertToLinkedList(arr)), result);
     }
 
-    @Test(enabled = false, dataProvider = "arraylists")
-    public void testBoth(int listLength, int result) {
-        SolverTask11 solverTask11 = new SolverTask11();
-        List<String> list = createList(listLength);
-        String first = solverTask11.emulate(new ArrayList<String>(list));
-        String second = solverTask11.emulate(new LinkedList<String>(list));
-        Assert.assertEquals(first, second);
-    }
-    @Test(enabled = false, dataProvider = "arraylists")
-    public void testEmulate1(int listLength, int result) throws Exception {
-       SolverTask11 solver = new SolverTask11();
-       String name = solver.emulate(new LinkedList<String>(createList(listLength)));
-        Assert.assertEquals(name, String.valueOf(result));
+    @Test(enabled = false, dataProvider = "people")
+    public void testEmulate1(String[] arr, String result) throws Exception {
+        SolverTask11 task11 = new SolverTask11();
+        Assert.assertEquals(task11.emulate(convertToLinkedList(arr)), result);
     }
 
-    @DataProvider(name = "arraylists")
-    public Object[][] arrayLists() {
+    public ArrayList<String> convertToArrayList(String[] arr) {
+        return new ArrayList(Arrays.asList(arr));
+    }
+
+    public LinkedList<String> convertToLinkedList(String[] arr) {
+        return new LinkedList(Arrays.asList(arr));
+    }
+
+    @DataProvider(name = "people")
+    private Object[][] peoples() {
         return new Object[][]{
-                {
-                    50, 36
-                },
-                {
-                    20, 8
-                },
-                {
-                     13,10
-                },
-                {
-                    7, 6
-                },
-                {
-                     4,2
-                },
-                {
-                     3,2
-                },
-                {
-                     1,1
-                },
-
+                {new String[]{"Vanya", "Nikita", "Pasha", "Alex", "Maxim", "Anton", "Petya", "Dima"}, "Vanya"},
+                {new String[]{"Anton", "Petya", "Dima", "Vanya", "Nikita"}, "Dima"}
         };
     }
-
 }
