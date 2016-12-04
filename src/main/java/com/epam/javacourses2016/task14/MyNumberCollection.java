@@ -17,11 +17,12 @@ public class MyNumberCollection<T extends Number> implements AbstractCollectionC
     }
 
     @Override
-    public Number nearest(Number value) {
-        double minDif = 0;
+    public T nearest(Number value) {
+        double minDif = Double.MAX_VALUE;
         T nearestValue = null;
         for (T curNum : numberList) {
-            if (Math.abs(value.doubleValue() - curNum.doubleValue()) <= minDif) {
+            if (Math.abs(value.doubleValue() - curNum.doubleValue()) < minDif) {
+                minDif = Math.abs(value.doubleValue() - curNum.doubleValue());
                 nearestValue = curNum;
             }
         }

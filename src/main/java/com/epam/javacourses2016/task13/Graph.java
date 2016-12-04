@@ -16,7 +16,7 @@ public class Graph extends AbstractGraphCreator.AbstractGraph {
         super(numberNodes);
         nodes = new HashSet<>();
         for (int i = 0; i < NUMBER_NODES; i++) {
-            Node node = new Node(i);
+            Node node = new Node(i+1);
             nodes.add(node);
         }
     }
