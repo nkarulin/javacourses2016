@@ -18,7 +18,8 @@ public class SolverTask8Test {
                 {"{Hello[]}()", true},
                 {"[()}", false},
                 {"}{[({)]}Vasya", false},
-                {"Vasya{}", true}
+                {"Vasya{}", true},
+                {"}{",false}
         };
     }
 }
