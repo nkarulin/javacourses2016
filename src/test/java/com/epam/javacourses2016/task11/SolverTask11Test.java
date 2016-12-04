@@ -37,7 +37,7 @@ public class SolverTask11Test {
     private Object[][] peoples() {
         return new Object[][]{
                 {new String[]{"Vanya", "Nikita", "Pasha", "Alex", "Maxim", "Anton", "Petya", "Dima"}, "Dima"},
-                {new String[]{"Anton", "Petya", "Dima", "Vanya", "Nikita"}, "Vanya"}
+                {new String[]{"Anton", "Petya", "Dima", "Vanya", "Nikita"}, "Petya"}
         };
     }
 }
