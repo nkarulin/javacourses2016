@@ -4,39 +4,28 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.testng.Assert.*;
 
 /**
  * Created by kodoo on 13.11.16.
  */
 public class NumberCollectionTest {
 
-    @Test(enabled = true, dataProvider = "numbersForTest")
-    public void testNearest(double[] array, double number, double result) throws Exception {
-        AbstractCollectionCreator collectionCreator = new MyCollectionCreator();
-        AbstractCollectionCreator.NumberCollection<Double> collection = collectionCreator.createCollection(Double.class);
-
-        List<Double> data = doubleToCollection(array);
-        collection.addAll(data);
-
-        Assert.assertEquals(collection.nearest(number), result);
+    @Test(enabled = true, dataProvider = "numbers")
+    public void testNearest(Number[] numbers, Number value, Number result) throws Exception {
+        AbstractCollectionCreator.NumberCollection<Number> collection = AbstractCollectionCreator.createCollection(Number.class);
+        for (Number n: numbers) collection.add(n);
+        Number min = collection.nearest(value);
+        Assert.assertEquals(min, result);
     }
 
-    private List<Double> doubleToCollection(double[] array) {
-        ArrayList<Double> arrayList = new ArrayList<>();
-        for (double d : array) {
-            arrayList.add(d);
-        }
-        return arrayList;
-    }
-
-    @DataProvider(name = "numbersForTest")
-    public Object[][] numbersForTest() {
+    @DataProvider(name = "numbers")
+    public Object[][] collection() {
         return new Object[][]{
-                {new double[]{1d, 2d, 3d, 4d, 5d}, 6, 5},
-                {new double[]{-1d, -2d, -3d, -4d, -5d}, -6, -5},
-                {new double[]{-2d, -1d, 0d, 2d, 3d}, 0.4, 0}
+                {new Number[]{1, 2, 6, 1, 4}, 5, 6},
+                {new Number[]{1, 1, 1, 1, 3}, 2, 1},
+                {new Number[]{1.0, 2.7, 6.8, 1.1, 4.4}, 5.0, 4.4},
         };
     }
+
 }
