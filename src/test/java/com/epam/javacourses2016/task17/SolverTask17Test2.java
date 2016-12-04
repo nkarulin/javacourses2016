@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SolverTask17Test {
+public class SolverTask17Test2 {
 
     @Test(enabled = false, dataProvider = "segments")
     public void testSegmentsIntersection(ArrayList<double[][]> segments, double[][] points) {
