@@ -12,9 +12,9 @@ public class SolverTask18 {
      */
 
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        MyMatrix myMatrixForTask = new MyMatrix(matrix);
-        MyMatrix resultMatrix = myMatrixForTask.getMaxMatrixWithUniqueElements();
-        return resultMatrix;
+        Matrix myMatrixForTask = new Matrix(matrix);
+        Matrix result = myMatrixForTask.getMaxMatrixWithUniqueElements();
+        return result;
     }
 
     /**

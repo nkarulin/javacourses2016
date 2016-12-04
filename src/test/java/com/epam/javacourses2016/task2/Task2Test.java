@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class Task2Test {
 
-    @Test(enabled = false, dataProvider = "directory")
+    @Test(enabled = true, dataProvider = "directory")
     public void testTask2(String directory) { //общее навзвание, другие люди свои тесты тодже сюда вписывают,  зза этого будет конфликт на мастере
         SolverTask2 solver = new SolverTask2();
         File file = new File(directory);
@@ -69,7 +69,7 @@ public class Task2Test {
         return files;
     }
 
-    @Test(enabled = false, dataProvider = "dirs")
+    @Test(enabled = true, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
         String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);

@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task11;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -26,11 +27,12 @@ public class SolverTask11 {
 
         int index = 0;
         while (peoples.size() != 1) {
-            index += 1;
+
             if (index >= peoples.size()) {
                 index = index % 2;
             }
             peoples.remove(index);
+            index += 1;
         }
 
         return peoples.get(0);
@@ -45,37 +47,37 @@ public class SolverTask11 {
     public String emulate(LinkedList<String> peoples) {
 
         /*
-        Bad way - this will be n^2, because peoples.get(i) will iterate through all peoples(before i)
-        to find i element, that's why i using iterator here.
         for (int i = 0; i < peoples.size(); i++) {
             peoples.get(i);
         }
+        Bad way - this will be n^2, because peoples.get(i) will iterate through all peoples(before i)
+        to find i element, that's why i using iterator with 'while'.
         */
 
         if (peoples == null || peoples.size() == 0) {
             throw new NullPointerException();
         }
 
-        int index = 0;
+
         ListIterator iterator = peoples.listIterator();
-        iterator.next();
+        int index = 0;
+        while (peoples.size() > 1) {
 
-        while (peoples.size() != 1) {
-            iterator.next();
-            index++;
-
-            //If we out of range - recreate iterator and move it for zero[0] o first[1] element
-            if (index >= peoples.size()) {
-                index = index % 2;
+            if (!iterator.hasNext()) {
                 iterator = peoples.listIterator();
-                iterator.next();
-                if (index == 1) {
-                    iterator.next();
-                }
             }
+            iterator.next();
 
             iterator.remove();
+
+            if (!iterator.hasNext()) {
+                iterator = peoples.listIterator();
+            }
+            iterator.next();
+
         }
+
         return peoples.get(0);
     }
 }
+
