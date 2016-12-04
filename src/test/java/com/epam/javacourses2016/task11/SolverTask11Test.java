@@ -26,18 +26,20 @@ public class SolverTask11Test {
     }
 
     public ArrayList<String> convertToArrayList(String[] arr) {
-        return new ArrayList(Arrays.asList(arr));
+
+        return new ArrayList<String>(Arrays.asList(arr));
     }
 
     public LinkedList<String> convertToLinkedList(String[] arr) {
-        return new LinkedList(Arrays.asList(arr));
+
+        return new LinkedList<String>(Arrays.asList(arr));
     }
 
     @DataProvider(name = "people")
     private Object[][] peoples() {
         return new Object[][]{
-                {new String[]{"Vanya", "Nikita", "Pasha", "Alex", "Maxim", "Anton", "Petya", "Dima"}, "Vanya"},
-                {new String[]{"Anton", "Petya", "Dima", "Vanya", "Nikita"}, "Dima"}
+                {new String[]{"Vanya", "Nikita", "Pasha", "Alex", "Maxim", "Anton", "Petya", "Dima"}, "Dima"},
+                {new String[]{"Anton", "Petya", "Dima", "Vanya", "Nikita"}, "Petya"}
         };
     }
 }
