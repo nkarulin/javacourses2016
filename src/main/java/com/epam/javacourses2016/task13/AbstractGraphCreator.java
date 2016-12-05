@@ -51,5 +51,33 @@ public abstract class AbstractGraphCreator {
         public abstract boolean isExistEdge(int first, int second);
     }
 
+    class Graph extends AbstractGraph {
+
+        private
+
+        class Edge {
+
+        }
+
+        public Graph(int numberNodes) {
+            super(numberNodes);
+        }
+
+        @Override
+        public void addEdge(int first, int second) {
+
+        }
+
+        @Override
+        public void removeEdge(int first, int second) {
+
+        }
+
+        @Override
+        public boolean isExistEdge(int first, int second) {
+            return false;
+        }
+    }
+
 
 }
