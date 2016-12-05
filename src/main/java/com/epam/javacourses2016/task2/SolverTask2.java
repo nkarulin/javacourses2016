@@ -17,6 +17,7 @@ public class SolverTask2 {
      */
     public Set<File> getFiles(File directory) {
         Set<File> result = new HashSet<>();
+        result.add(directory);
         for (File fileEntry : directory.listFiles()) {
             result.add(fileEntry);
             if (fileEntry.isDirectory()) {
