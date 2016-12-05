@@ -58,18 +58,19 @@ public class Task2Test {
 
     private Set<File> getFiles(File directory) {
         Set<File> files = new HashSet<>();
-
+        files.add(directory);
         for (File file : directory.listFiles()) {
-            files.add(file);
+         //   files.add(file);
             if (file.isDirectory()) {
                 files.addAll(getFiles(file));
             }
+            else files.add(file);
         }
 
         return files;
     }
 
-    @Test(enabled = true, dataProvider = "dirs")
+    @Test(enabled = false, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
         String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);
