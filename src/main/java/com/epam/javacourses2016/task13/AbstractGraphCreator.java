@@ -11,6 +11,9 @@ public abstract class AbstractGraphCreator {
      * @return Граф указанной конфигурации.
      */
     public static AbstractGraph createGraph(int numberNodes){
+        if (numberNodes > 0) {
+            return new MyGraph(numberNodes);
+        }
         return null;
     }
 

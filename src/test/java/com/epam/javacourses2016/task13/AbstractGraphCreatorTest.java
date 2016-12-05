@@ -4,10 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 public class AbstractGraphCreatorTest {
-    @Test(enabled = false, dataProvider = "nodes")
+    @Test(enabled = true, dataProvider = "nodes")
     public void testCreateGraph(int numberNodesResult) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodesResult);
         if(numberNodesResult<=0){
