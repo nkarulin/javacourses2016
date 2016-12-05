@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task2;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -69,7 +69,7 @@ public class Task2Test {
         return files;
     }
 
-    @Test(enabled = true, dataProvider = "dirs")
+    @Test(enabled = false, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
         String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);
