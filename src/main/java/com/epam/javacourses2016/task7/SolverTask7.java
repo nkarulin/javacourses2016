@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task7;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Умножить два многочлена заданной степени, если коэффициенты многочленов хранятся в различных списках.

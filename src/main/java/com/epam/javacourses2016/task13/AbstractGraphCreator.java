@@ -50,4 +50,6 @@ public abstract class AbstractGraphCreator {
          */
         public abstract boolean isExistEdge(int first, int second);
     }
+
+
 }

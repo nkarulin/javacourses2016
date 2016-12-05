@@ -17,7 +17,9 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
+        IFileWithLines iFileWithLines = new FilesLines();
+        for(Point2D p : points) {
+        }
         return null;
     }
 
@@ -45,5 +47,26 @@ public class SolverTask15 {
 
         /** @return Точки, через которые проходит прямая */
         Set<Point2D> getPoints();
+    }
+
+    class Line implements ILine {
+
+        @Override
+        public Set<Point2D> getPoints() {
+            return null;
+        }
+    }
+
+    class FilesLines implements IFileWithLines {
+
+        @Override
+        public File getFile() {
+            return null;
+        }
+
+        @Override
+        public Set<ILine> getLines() {
+            return null;
+        }
     }
 }
