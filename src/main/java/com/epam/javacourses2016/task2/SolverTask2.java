@@ -1,10 +1,7 @@
 package com.epam.javacourses2016.task2;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Сформировать множество элементов, входящих в каталог и его подкаталоги.
@@ -18,21 +15,23 @@ public class SolverTask2 {
      */
     public Set<File> getFiles(File directory) {
         Set<File> fileSet = new HashSet<>();
-        getFilesInDirectory(directory, fileSet);
-        System.out.println(fileSet);
+        getFilesInDirectory(directory, fileSet, directory);
         return fileSet;
     }
 
-    private void getFilesInDirectory(File directory, Set<File> fileSet) {
+    private void getFilesInDirectory(File directory, Set<File> fileSet, File absoluteDirectory) {
         if(directory.exists()) {
-            fileSet.add(directory);
-            if(directory.isDirectory() && (directory.list() != null) && (directory.listFiles() != null)) {
+            if(!Objects.equals(directory.getAbsolutePath(), absoluteDirectory.getAbsolutePath())) {
+                fileSet.add(directory);
+            }
+            if (directory.isDirectory() && (directory.list() != null) && (directory.listFiles() != null)) {
                 List<File> files = Arrays.asList(directory.listFiles());
-                for(File file : files) {
+                for (File file : files) {
                     fileSet.add(file);
-                    getFilesInDirectory(file,fileSet);
+                    getFilesInDirectory(file, fileSet, absoluteDirectory);
                 }
             }
+
         }
     }
 }

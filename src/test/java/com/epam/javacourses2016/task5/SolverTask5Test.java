@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static org.testng.Assert.*;
@@ -20,7 +21,8 @@ public class SolverTask5Test {
     @Test(enabled = true, dataProvider = "numbers")
     public void testCalcResistance_fromKA(List<Measurement> list,double res) throws Exception {
         SolverTask5 solverTask5 = new SolverTask5();
-        Assert.assertEquals(solverTask5.calcResistance(list), res);
+        BigDecimal R = new BigDecimal(solverTask5.calcResistance(list));
+        Assert.assertEquals(R.setScale(3,BigDecimal.ROUND_DOWN).doubleValue(), res);
     }
 
 
