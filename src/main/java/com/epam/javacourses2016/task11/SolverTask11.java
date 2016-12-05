@@ -19,11 +19,13 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
+
         while (peoples.size() != 1) {
             Iterator iterator = peoples.iterator();
             int index = 0;
             while (iterator.hasNext()) {
                 if (index % 2 == 0) {
+                    iterator.next();
                     iterator.remove();
                 }
                 index++;
@@ -39,7 +41,17 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        //TODO
-        return null;
+        int second = 1;
+        int numberOfDeletes = 0;
+        while (peoples.size() > 1) {
+            if (numberOfDeletes % 2 == 0) {
+                peoples.removeFirst();
+                numberOfDeletes++;
+            } else {
+                peoples.remove(second);
+                numberOfDeletes++;
+            }
+        }
+        return peoples.getFirst();
     }
 }

@@ -1,17 +1,12 @@
 package com.epam.javacourses2016.task11;
 
-import com.epam.javacourses2016.task1.SolverTask1;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.testng.Assert.*;
 
 public class Task11Test {
     private List<String> createList(int length) {
@@ -21,14 +16,14 @@ public class Task11Test {
         }
         return list;
     }
-    @Test(enabled = false, dataProvider = "arraylists")
+    @Test(enabled = true, dataProvider = "arraylists")
     public void testEmulate(int listLength, int result) throws Exception {
         SolverTask11 solver = new SolverTask11();
         String name = solver.emulate(new ArrayList<String>(createList(listLength)));
         Assert.assertEquals(name, String.valueOf(result));
     }
 
-    @Test(enabled = false, dataProvider = "arraylists")
+    @Test(enabled = true, dataProvider = "arraylists")
     public void testBoth(int listLength, int result) {
         SolverTask11 solverTask11 = new SolverTask11();
         List<String> list = createList(listLength);
@@ -36,7 +31,7 @@ public class Task11Test {
         String second = solverTask11.emulate(new LinkedList<String>(list));
         Assert.assertEquals(first, second);
     }
-    @Test(enabled = false, dataProvider = "arraylists")
+    @Test(enabled = true, dataProvider = "arraylists")
     public void testEmulate1(int listLength, int result) throws Exception {
        SolverTask11 solver = new SolverTask11();
        String name = solver.emulate(new LinkedList<String>(createList(listLength)));
