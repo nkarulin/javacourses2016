@@ -69,7 +69,7 @@ public class Task2Test {
         return files;
     }
 
-    @Test(enabled = false, dataProvider = "dirs")
+    @Test(enabled = true, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
         String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);
