@@ -21,7 +21,6 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
-        //TODO
         TreeSet<Segment> sortedSegments = new TreeSet<>((seg1, seg2) -> {
             double x1 = seg1.getA().getX();
             double x2 = seg1.getB().getX();
