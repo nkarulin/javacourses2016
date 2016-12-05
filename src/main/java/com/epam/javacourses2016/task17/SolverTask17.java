@@ -19,7 +19,7 @@ public class SolverTask17 {
      * @param segments Множество отрезков.
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
-    Set<Point2D> analyze(Set<Segment> segments) {
+   public Set<Point2D> analyze(Set<Segment> segments) {
         List<RangedLine> lines = new ArrayList<>();
         Map<RangedLine, Set<Point2D>> intersections = new TreeMap<RangedLine, Set<Point2D>>();
         segments.forEach(seg -> {
