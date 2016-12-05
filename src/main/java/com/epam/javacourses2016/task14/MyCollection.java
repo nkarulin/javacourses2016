@@ -13,7 +13,10 @@ public class MyCollection<T extends Number> implements AbstractCollectionCreator
     public T nearest(T value) {
         HashMap<Double, T> differences = new HashMap<>();
         for (T number : myCollection) {
-            differences.put(Math.abs(number.doubleValue() - value.doubleValue()), number);
+            double diff = Math.abs(number.doubleValue() - value.doubleValue());
+            if (!differences.containsKey(diff)) {
+                differences.put(Math.abs(number.doubleValue() - value.doubleValue()), number);
+            }
         }
         double min = Collections.min(differences.keySet());
         return differences.get(min);
