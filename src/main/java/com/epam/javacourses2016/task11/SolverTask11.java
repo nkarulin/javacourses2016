@@ -17,11 +17,16 @@ public class SolverTask11 {
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
-    public static String emulate(ArrayList<String> peoples) {
+    public String emulate(ArrayList<String> peoples) {
         int index = 0;
+        int sizeInStart = 0;
         while (peoples.size() != 1) {
             if (index >= peoples.size()) {
-                index = 0;
+                if (sizeInStart % 2 == 0) {
+                    index = 0;
+                } else {
+                    index = 1;
+                }
             }
             peoples.remove(index);
             index++;
@@ -35,16 +40,18 @@ public class SolverTask11 {
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
-    public static String emulate(LinkedList<String> peoples) {
-        int second = 1;
-        int numberOfDeletes = 0;
+    public String emulate(LinkedList<String> peoples) {
+        int index = 0;
+        int sizeInStart = peoples.size();
         while (peoples.size() > 1) {
-            if (numberOfDeletes % 2 == 0) {
-                peoples.removeFirst();
-                numberOfDeletes++;
-            } else {
-                peoples.remove(second);
-                numberOfDeletes++;
+            peoples.remove(index);
+            index++;
+            if (index >= peoples.size()) {
+                if (sizeInStart % 2 == 0) {
+                    index = 0;
+                } else {
+                    index = 1;
+                }
             }
         }
         return peoples.getFirst();
