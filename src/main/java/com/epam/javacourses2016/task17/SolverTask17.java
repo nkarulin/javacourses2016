@@ -60,6 +60,7 @@ public class SolverTask17 {
                     if (intersectionPoint.getX() > minX) {
                         break;
                     } else {
+                        minX = intersectionPoint.getX();
                         resultSet.add(intersectionPoint);
                     }
                 }

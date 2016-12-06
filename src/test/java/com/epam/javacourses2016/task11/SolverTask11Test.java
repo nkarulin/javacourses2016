@@ -26,11 +26,13 @@ public class SolverTask11Test {
     }
 
     public ArrayList<String> convertToArrayList(String[] arr) {
-        return new ArrayList(Arrays.asList(arr));
+
+        return new ArrayList<String>(Arrays.asList(arr));
     }
 
     public LinkedList<String> convertToLinkedList(String[] arr) {
-        return new LinkedList(Arrays.asList(arr));
+
+        return new LinkedList<String>(Arrays.asList(arr));
     }
 
     @DataProvider(name = "people")
