@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task11;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
