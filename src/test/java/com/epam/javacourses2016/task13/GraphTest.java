@@ -21,7 +21,7 @@ public class GraphTest {
 
     }
 
-    @Test(enabled = false, dataProvider = "remove-edges")
+    @Test(enabled = true, dataProvider = "remove-edges")
     public void testRemoveEdge(int numberNodes, Integer[][] edges, Integer[][] edgesForDel) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
