@@ -20,9 +20,9 @@ public class SolverTask19Test {
     public static Set<Car> createCars(int[][] carArray) {
         Set<Car> cars = new HashSet<>();
 
-        for (int[] car : carArray) {
-            cars.add(new Car(car[0], car[1]));
-        }
+//        for (int[] car : carArray) {
+//            cars.add(new Car(car[0], car[1]));
+//        }
 
         return cars;
     }
