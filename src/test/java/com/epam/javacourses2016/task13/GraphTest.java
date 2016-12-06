@@ -71,9 +71,9 @@ public class GraphTest {
     @DataProvider(name = "exist-edges")
     public Object[][] existEdges() {
         return new Object[][]{
-                //{4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}},new Boolean[]{true,true}},
+                {4, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{4, 2}, {3, 2}},new Boolean[]{true,true}},
                 {3, new Integer[][]{{4, 2}, {3, 2}, {2, 2}}, new Integer[][]{{2, 4}, {2, 2},{1,2}},new Boolean[]{true,true,false}},
-                //{4, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}, new Integer[][]{{4, 2}, {3, 2}},new Boolean[]{true,true}}
+                {4, new Integer[][]{{4, 2}, {3, 2}, {3, 2}}, new Integer[][]{{4, 2}, {3, 2}},new Boolean[]{true,true}}
         };
     }
 }

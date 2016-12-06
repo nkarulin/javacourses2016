@@ -69,27 +69,25 @@ public class Task2Test {
         return files;
     }
 
-    @Test(enabled = false, dataProvider = "dirs")
+    @Test(enabled = true, dataProvider = "dirs")
     public void testTask2_fromKA(String[] filesArray) throws IOException {
         String tempDirectory = "src//main//java//com//epam//javacourses2016//tempdirector//";
         File tempDir = new File(tempDirectory);
         tempDir.mkdirs();
         List<String> files = Arrays.asList(filesArray);
         Set<File> set = new HashSet<>();
-        set.add(tempDir.getAbsoluteFile());
         for(String s : files) {
             Path p = Paths.get(tempDirectory + s);
             File f = p.toFile();
             if(s.indexOf(".") != -1) {
-                // f.mkdirs();
                 f.createNewFile();
             }
             else f.mkdirs();
             set.add(f.getAbsoluteFile());
         }
         Set<File> newset = new SolverTask2().getFiles(tempDir.getAbsoluteFile());
-        Assert.assertEquals(set,newset);
         deleteFolder(tempDir);
+        Assert.assertEquals(set,newset);
     }
 
     public static void deleteFolder(File folder) {
@@ -105,5 +103,4 @@ public class Task2Test {
         }
         folder.delete();
     }
-
 }
