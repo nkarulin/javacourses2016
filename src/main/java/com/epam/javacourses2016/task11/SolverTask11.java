@@ -21,9 +21,9 @@ public class SolverTask11 {
         int i = 0;
         while (peoples.size() != 1) {
             peoples.remove(i);
+            i++;
             if(i >= peoples.size()-1)
-                i = 0;
-            else i++;
+                i = i % peoples.size();
         }
         return peoples.get(0);
     }
@@ -41,8 +41,10 @@ public class SolverTask11 {
             iterator.remove();
             i++;
             if (i >= peoples.size()) {
-                i = 0;
+                i = i % peoples.size();
                 iterator = peoples.listIterator();
+                if(i == 1)
+                    iterator.next();
             } else {
                 iterator.next();
             }
