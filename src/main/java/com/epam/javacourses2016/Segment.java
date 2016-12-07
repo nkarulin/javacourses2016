@@ -20,23 +20,4 @@ public class Segment {
     public Point2D getB() {
         return b;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Segment)) return false;
-
-        Segment segment = (Segment) o;
-
-        if (getA() != null ? !getA().equals(segment.getA()) : segment.getA() != null) return false;
-        return getB() != null ? getB().equals(segment.getB()) : segment.getB() == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getA() != null ? getA().hashCode() : 0;
-        result = 31 * result + (getB() != null ? getB().hashCode() : 0);
-        return result;
-    }
 }

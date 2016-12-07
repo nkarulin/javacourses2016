@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task12;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -9,14 +10,14 @@ import java.util.List;
  */
 public class SolverTask12 {
 
-    /**
-     * Преобразует целочисленный список таким образом, чтобы сначала шли числа меньшие value, затем большие.
-     * @param integers Целочисленный список.
-     * @param value Разделительное значение.
-     * @return Преобразованный список.
-     */
-    List<Integer> transform(List<Integer> integers, int value) {
-        //TODO
-        return null;
-    }
+        /**
+         * Преобразует целочисленный список таким образом, чтобы сначала шли числа меньшие value, затем большие.
+         * @param integers Целочисленный список.
+         * @param value Разделительное значение.
+         * @return Преобразованный список.
+         */
+        List<Integer> transform (List <Integer> integers, int value){
+            integers.sort((item1, item2) -> item1 > item2 ? 1 : item1 < item2 ? -1 : 0);
+            return integers;
+        }
 }
