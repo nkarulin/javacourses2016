@@ -20,6 +20,9 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     double calcResistance(List<Measurement> measurements) {
+        if (measurements.isEmpty()){
+            return 0.0;
+        }
         int size = measurements.size();
         BigDecimal sumCurrent = BigDecimal.valueOf(0);
         BigDecimal sumVoltage = BigDecimal.valueOf(0);
@@ -35,6 +38,9 @@ public class SolverTask5 {
         for (int i = 0; i < size; i++) {
             numerator = numerator.add(((BigDecimal.valueOf(measurements.get(i).getCurrent()).subtract(avgCurrent)).multiply(BigDecimal.valueOf(measurements.get(i).getVoltage()).subtract(avgVoltage))));
             denominator = denominator.add((BigDecimal.valueOf(measurements.get(i).getCurrent()).subtract(avgCurrent)).pow(2));
+            if(denominator.compareTo(BigDecimal.ZERO)==0){
+                return 0.0;
+            }
         }
         double result = (numerator.divide(denominator, 3, RoundingMode.HALF_UP)).doubleValue();
         return result;

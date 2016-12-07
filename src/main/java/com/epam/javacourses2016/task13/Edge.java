@@ -37,7 +37,7 @@ public class Edge {
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
-            return false;
+            throw new ClassCastException();
         Edge edge = (Edge) obj;
         if (first != edge.getFirst())
             return false;

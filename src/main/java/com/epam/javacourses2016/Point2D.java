@@ -1,6 +1,8 @@
 package com.epam.javacourses2016;
 
-public class Point2D {
+import java.io.Serializable;
+
+public class Point2D implements Serializable{
 
     private final double x;
     private final double y;

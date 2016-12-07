@@ -1,7 +1,9 @@
 package com.epam.javacourses2016.task7;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Умножить два многочлена заданной степени, если коэффициенты многочленов хранятся в различных списках.
@@ -19,19 +21,19 @@ public class SolverTask7 {
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
-        List<Integer> result = new ArrayList<>();
+        Map<Integer,Integer> result = new HashMap<>();
         int firstSize = first.size();
         int secondSize = second.size();
 
         for (int i = 0; i < firstSize + secondSize - 1; i++) {
-            result.add(i, 0);
+            result.put(i, 0);
         }
         for (int i = 0; i < firstSize; i++) {
             for (int j = 0; j < secondSize; j++) {
-                result.set(i + j, result.get(i + j) + first.get(i) * second.get(j));
+                result.replace(i + j, result.get(i + j) + first.get(i) * second.get(j));
             }
         }
-        return result;
+        return new ArrayList<>(result.values());
     }
 
 }

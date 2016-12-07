@@ -23,10 +23,10 @@ public class Ceil {
     }
 
     public boolean isInsideCircle(Point2D center, int radius) {
-        boolean isUpRigthCorner = Math.pow((CENTER.getX() + WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() + HEIGHT / 2) - center.getY(), 2) < Math.pow(radius, 2);
-        boolean isUpLeftCorner = Math.pow((CENTER.getX() - WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() + HEIGHT / 2) - center.getY(), 2) < Math.pow(radius, 2);
-        boolean isDownRightCorner = Math.pow((CENTER.getX() + WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() - HEIGHT / 2) - center.getY(), 2) < Math.pow(radius, 2);
-        boolean isDownLeftCorner = Math.pow((CENTER.getX() - WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() - HEIGHT / 2) - center.getY(), 2) < Math.pow(radius, 2);
+        boolean isUpRigthCorner =  Math.sqrt(Math.pow((CENTER.getX() + WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() + HEIGHT / 2) - center.getY(), 2)) < Math.pow(radius, 2);
+        boolean isUpLeftCorner =  Math.sqrt(Math.pow((CENTER.getX() - WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() + HEIGHT / 2) - center.getY(), 2)) < Math.pow(radius, 2);
+        boolean isDownRightCorner =  Math.sqrt(Math.pow((CENTER.getX() + WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() - HEIGHT / 2) - center.getY(), 2)) < Math.pow(radius, 2);
+        boolean isDownLeftCorner =  Math.sqrt(Math.pow((CENTER.getX() - WIDTH / 2) - center.getX(), 2) + Math.pow((CENTER.getY() - HEIGHT / 2) - center.getY(), 2)) < Math.pow(radius, 2);
         boolean isInside = isUpRigthCorner && isUpLeftCorner && isDownRightCorner && isDownLeftCorner;
         return isInside;
     }

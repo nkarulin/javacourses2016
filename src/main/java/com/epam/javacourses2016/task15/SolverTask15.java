@@ -37,12 +37,9 @@ public class SolverTask15 implements Serializable {
         Set<ILine> resultSet = new TreeSet<>();
         for (Map.Entry<Line, Integer> lineEntry : linesMap.entrySet()) {
             for (Point2D point : points) {
-                if (!lineEntry.getKey().getA().equals(point) && !lineEntry.getKey().getB().equals(point)) {
-                    if (intersects(lineEntry.getKey(), point)) {
-                        if (!resultSet.contains(lineEntry.getKey())) {
-                            resultSet.add(lineEntry.getKey());
-                        }
-                    }
+                boolean isNotLineEnd = !lineEntry.getKey().getA().equals(point) && !lineEntry.getKey().getB().equals(point);
+                if (isNotLineEnd && intersects(lineEntry.getKey(), point) && !resultSet.contains(lineEntry.getKey())) {
+                    resultSet.add(lineEntry.getKey());
                 }
             }
         }
@@ -60,17 +57,6 @@ public class SolverTask15 implements Serializable {
             e.printStackTrace();
         }
         return file;
-    }
-
-    public void serialize(OutputStream stream) throws IOException {
-        ObjectOutputStream out = new ObjectOutputStream(stream);
-        out.writeObject(this);
-        stream.flush();
-    }
-
-    public Line deserialize(InputStream stream) throws IOException, ClassNotFoundException {
-        ObjectInputStream in = new ObjectInputStream(stream);
-        return (Line) in.readObject();
     }
 
     /**

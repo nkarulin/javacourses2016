@@ -63,35 +63,15 @@ public class SolverTask19 {
             int i = 0;
             int timeDelta = 1;
             for (Car car : sortedCars) {
-                car.setActualPosition(i);
-                i++;
-                int newDistance = timeDelta * car.getSpeed();
-                if (car.getDistanceCovered() + newDistance <= lengthLap) {
-                    car.setDistanceCovered(car.getDistanceCovered() + newDistance);
-                } else {
-                    car.setDistanceCovered(car.getDistanceCovered() + newDistance);
-                    car.setNumberOfFinishedLaps(car.getNumberOfFinishedLaps() + 1);
-                }
+                car.setActualPosition(i++);
+                calculateDistanceAndLapsForCar(car, timeDelta, lengthLap);
             }
-            Set<Car> sortedCarsSecond = new TreeSet<>(new CarCompatator());
-            sortedCarsSecond.addAll(sortedCars);
-            sortedCars.clear();
-            i = 0;
-            for (Car car : sortedCarsSecond) {
-                if (i > car.getActualPosition()) {
-                    numberOfOvertakes = numberOfOvertakes + (i - car.getActualPosition());
-                }
-                i++;
-                if (car.getNumberOfFinishedLaps() < numberLaps) {
-                    if (car.getDistanceCovered() >= lengthLap) {
-                        car.setDistanceCovered(car.getDistanceCovered() - lengthLap);
-                    }
-                    sortedCars.add(car);
-                }
-            }
+            numberOfOvertakes += calculateTheOvertakingOfCar(sortedCars);
+            sortedCars = calculateDistanceIfCarFinishedLap(sortedCars, numberLaps, lengthLap);
         }
         return numberOfOvertakes;
     }
+
 
     private boolean raceComplete(Set<Car> cars, long numberLaps) {
         for (Car car : cars) {
@@ -100,6 +80,43 @@ public class SolverTask19 {
             }
         }
         return true;
+    }
+
+    private void calculateDistanceAndLapsForCar(Car car, int timeDelta, long lengthLap) {
+        int newDistance = timeDelta * car.getSpeed();
+        if (car.getDistanceCovered() + newDistance <= lengthLap) {
+            car.setDistanceCovered(car.getDistanceCovered() + newDistance);
+        } else {
+            car.setDistanceCovered(car.getDistanceCovered() + newDistance);
+            car.setNumberOfFinishedLaps(car.getNumberOfFinishedLaps() + 1);
+        }
+    }
+
+    private Set<Car> calculateDistanceIfCarFinishedLap(Set<Car> cars, int numberLaps, long lengthLap) {
+        Set<Car> sortedCars = new TreeSet<>(new CarCompatator());
+        for (Car car : cars) {
+            if (car.getNumberOfFinishedLaps() < numberLaps) {
+                if (car.getDistanceCovered() >= lengthLap) {
+                    car.setDistanceCovered(car.getDistanceCovered() - lengthLap);
+                }
+                sortedCars.add(car);
+            }
+        }
+        return sortedCars;
+    }
+
+    private int calculateTheOvertakingOfCar(Set<Car> cars) {
+        Set<Car> sortedCars = new TreeSet<>(new CarCompatator());
+        sortedCars.addAll(cars);
+        int i = 0;
+        int numberOfOvertakes = 0;
+        for (Car car : sortedCars) {
+            if (i > car.getActualPosition()) {
+                numberOfOvertakes = numberOfOvertakes + (i - car.getActualPosition());
+            }
+            i++;
+        }
+        return numberOfOvertakes;
     }
 
     private class CarCompatator implements Comparator<Car> {

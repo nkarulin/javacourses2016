@@ -32,7 +32,6 @@ public class Graph extends AbstractGraphCreator.AbstractGraph {
 
     @Override
     public boolean isExistEdge(int first, int second) {
-        Edge edge = new Edge(first, second);
-        return edges.contains(edge);
+        return edges.contains(new Edge(first, second))|edges.contains(new Edge(second, first));
     }
 }

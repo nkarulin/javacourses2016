@@ -18,6 +18,7 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
+       /*
         boolean flag = true;
         while (flag) {
             flag = false;
@@ -29,7 +30,8 @@ public class SolverTask12 {
                     }
                 }
             }
-        }
+        }*/
+        Collections.sort(integers);
         return integers;
     }
 }

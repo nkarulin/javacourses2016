@@ -9,6 +9,7 @@ public class SolverTask16Test {
     @Test
     public void testAnalyze() throws Exception {
         //Test
+        "ddd".equals(new Integer(12));
     }
 
 }

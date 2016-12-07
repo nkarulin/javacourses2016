@@ -33,13 +33,11 @@ public class SolverTask10 {
         String words[] = strings.toString().trim().split(" ");
         Map<String, Integer> map = new HashMap<>();
         for (String word : words) {
-            if (!word.isEmpty()) {
                 if (map.containsKey(word)) {
                     map.put(word, map.get(word) + 1);
                     continue;
                 }
                 map.put(word, 1);
-            }
         }
         return (HashMap<String, Integer>) map;
     }

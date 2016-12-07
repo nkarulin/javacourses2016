@@ -19,35 +19,31 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
-        if (segments.isEmpty() || segments.size() <= 1) {
+       if (segments.isEmpty() || segments.size() <= 1) {
             return null;
         }
-        TreeMap<Segment,Double> sortedSegments = new TreeMap<>(new Comparator<Segment>() {
+        TreeMap<Segment,Double> sortedSegments = new TreeMap<>((o1, o2) -> {
+            double x11 = o1.getA().getX();
+            double x12 = o1.getB().getX();
+            double x21 = o2.getA().getX();
+            double x22 = o2.getB().getX();
 
-            @Override
-            public int compare(Segment o1, Segment o2) {
-                double x11 = o1.getA().getX();
-                double x12 = o1.getB().getX();
-                double x21 = o2.getA().getX();
-                double x22 = o2.getB().getX();
-
-                double minX1;
-                if (x11 < x12) {
-                    minX1 = x11;
-                } else {
-                    minX1 = x12;
-                }
-                double minX2;
-                if (x21 < x22) {
-                    minX2 = x21;
-                } else {
-                    minX2 = x22;
-                }
-                if (minX1 == minX2) {
-                    return 1;
-                }
-                return Double.compare(minX1, minX2);
+            double minX1;
+            if (x11 < x12) {
+                minX1 = x11;
+            } else {
+                minX1 = x12;
             }
+            double minX2;
+            if (x21 < x22) {
+                minX2 = x21;
+            } else {
+                minX2 = x22;
+            }
+            if (minX1 == minX2) {
+                return 1;
+            }
+            return Double.compare(minX1, minX2);
         });
 
         for (Segment segment : segments) {
