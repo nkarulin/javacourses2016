@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task5;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,7 +19,15 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     double calcResistance(List<Measurement> measurements) {
-        //TODO
-        return 0;
+        BigDecimal numerator = BigDecimal.ZERO;
+        BigDecimal denominator = BigDecimal.ZERO;
+        for (Measurement measurement : measurements) {
+            double tmpCur = measurement.getCurrent();
+            double tmpVolt = measurement.getVoltage();
+            numerator = numerator.add(BigDecimal.valueOf(tmpCur * tmpVolt));
+            denominator = denominator.add(BigDecimal.valueOf(tmpCur * tmpCur));
+        }
+        BigDecimal result = numerator.divide(denominator, 3, BigDecimal.ROUND_HALF_UP);
+        return result.doubleValue();
     }
 }

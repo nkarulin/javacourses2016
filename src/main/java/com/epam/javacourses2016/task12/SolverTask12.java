@@ -1,5 +1,8 @@
+
 package com.epam.javacourses2016.task12;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,11 +19,25 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
-        integers.sort((o1, o2) -> {
-            if (o1 > value) return 1;
-            if (o1 < value) return -1;
-            return 0;
-        });
+        if (integers.contains(value)) {
+            integers.sort(Comparator.naturalOrder());
+        } else {
+            int numberOfSmaller = 0;
+            for (Integer integer : integers) {
+                if (integer < value) {
+                    numberOfSmaller++;
+                }
+            }
+            for (int i = 0; i < integers.size(); i++) {
+                if (integers.get(i) >= value) {
+                    for (int j = numberOfSmaller; j < integers.size(); j++) {
+                        if (integers.get(j) < value) {
+                            Collections.swap(integers, i, j);
+                        }
+                    }
+                }
+            }
+        }
         return integers;
     }
 }

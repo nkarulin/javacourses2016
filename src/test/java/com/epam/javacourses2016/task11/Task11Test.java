@@ -1,17 +1,12 @@
 package com.epam.javacourses2016.task11;
 
-import com.epam.javacourses2016.task1.SolverTask1;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.testng.Assert.*;
 
 public class Task11Test {
     private List<String> createList(int length) {

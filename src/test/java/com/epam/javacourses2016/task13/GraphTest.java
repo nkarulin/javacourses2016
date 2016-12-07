@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.testng.Assert.*;
-
 public class GraphTest {
-    @Test(enabled = false, dataProvider = "add-edges")
+    @Test(enabled = true, dataProvider = "add-edges")
     public void testAddEdge(int numberNodes, Integer[][] edges,Integer[][]result) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
@@ -23,7 +21,7 @@ public class GraphTest {
 
     }
 
-    @Test(enabled = false, dataProvider = "remove-edges")
+    @Test(enabled = true, dataProvider = "remove-edges")
     public void testRemoveEdge(int numberNodes, Integer[][] edges, Integer[][] edgesForDel) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
