@@ -10,9 +10,11 @@ public class SolverTask18 {
      * @param matrix Анализируемая матрица.
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
+
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        //TODO
-        return null;
+        Matrix myMatrixForTask = new Matrix(matrix);
+        Matrix result = myMatrixForTask.getMaxMatrixWithUniqueElements();
+        return result;
     }
 
     /**
@@ -20,14 +22,18 @@ public class SolverTask18 {
      */
     interface RectangularIntegerMatrix {
 
-        /** @return Ширина матрицы. */
+        /**
+         * @return Ширина матрицы.
+         */
         int getWidth();
 
-        /** @return Высота матрицы. */
+        /**
+         * @return Высота матрицы.
+         */
         int getHeight();
 
         /**
-         * @param indexWidth Индекс по ширине.
+         * @param indexWidth  Индекс по ширине.
          * @param indexHeight Индекс по высоте.
          * @return Значение, располагающееся в указанной ячейке.
          */

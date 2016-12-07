@@ -17,7 +17,7 @@ public class SolverTask5Test {
         Assert.assertEquals(solver.calcResistance(listMeasures), result);
     }
 
-    @Test(enabled = false, dataProvider = "numbers")
+    @Test(enabled = true, dataProvider = "numbers")
     public void testCalcResistance_fromKA(List<Measurement> list,double res) throws Exception {
         SolverTask5 solverTask5 = new SolverTask5();
         Assert.assertEquals(solverTask5.calcResistance(list), res);

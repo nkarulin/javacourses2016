@@ -4,7 +4,6 @@ import com.epam.javacourses2016.Point2D;
 
 import java.awt.geom.Line2D;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class MyLine implements SolverTask15.ILine {
