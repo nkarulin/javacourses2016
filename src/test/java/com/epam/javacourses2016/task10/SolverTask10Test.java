@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class SolverTask10Test {
 
-    @Test(enabled = false, dataProvider = "text2")
+    @Test(enabled = true, dataProvider = "text2")
     public void testCountNumberWords(String fileName, HashMap<String, Integer> uniqueWords) throws Exception {
         SolverTask10 solver = new SolverTask10();
         ClassLoader classLoader = getClass().getClassLoader();

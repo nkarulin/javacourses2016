@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task7;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,11 +13,24 @@ public class SolverTask7 {
 
     /**
      * Осуществляет перемножение двух многочленов.
-     * @param first Первый многочлен.
+     *
+     * @param first  Первый многочлен.
      * @param second Второй многочлен.
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
-        return null;
+        List<Integer> result = new ArrayList<>(first.size() + second.size() - 1);
+        for (int i = 0; i < first.size(); i++) {
+            for (int j = 0; j < second.size(); j++) {
+                if (result.size() <= i + j) {
+                    result.add(i + j, first.get(i) * second.get(j));
+                } else {
+                    int tmp=result.get(i+j);
+                    result.remove(i+j);
+                    result.add(i + j,( first.get(i) * second.get(j) + tmp));
+                }
+            }
+        }
+        return result;
     }
 }
