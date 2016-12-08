@@ -3,6 +3,7 @@ package com.epam.javacourses2016.task16;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -22,17 +23,18 @@ public class SolverTask16 {
      * @return Файл с результатами анализа.
      */
     IFileWithPoints analyze(Point2D center, int radius, File output) {
-        //TODO
-        SortedMap<Point2D, Double> points = new TreeMap<>();
+        SortedMap<Cell, Double> cells = new TreeMap<>(Comparator.comparingDouble(Cell::getDistanceToCenter));
         for (int x = (int) (center.getX() - radius); x < (int) (center.getX() + radius); x++) {
             for (int y = (int) (center.getY() - radius); y < (int) (center.getY() + radius); y++) {
-                Cell cell = new Cell(new Point2D(x, y));
+                Cell cell = new Cell(new Point2D(x, y), center);
                 if (cell.isInsideCircle(center, radius)) {
-                    points.put(cell.getCenter(), cell.getDistanceToPoint(center.getX(), center.getY()));
+                    cells.put(cell, cell.getDistanceToCenter());
                 }
             }
         }
-        return null;
+        MyFiles file = new MyFiles(output);
+        file.writeIntoFile(cells);
+        return file;
     }
 
     /**
