@@ -22,7 +22,8 @@ public class Edge {
 
     @Override
     public int hashCode() {
-        int result = firstVertex;
+        int result = 1;
+        result = 31 * result + firstVertex;
         result = 31 * result + secondVertex;
         return result;
     }
