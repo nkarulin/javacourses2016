@@ -19,7 +19,6 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
         Set<Line> lines = new HashSet<>();
         ArrayList<Point2D> allPoints = new ArrayList<>(points);
         int checkedPoints = 0;

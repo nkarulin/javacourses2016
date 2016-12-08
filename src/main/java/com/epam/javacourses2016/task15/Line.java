@@ -8,15 +8,19 @@ import java.util.Set;
 public class Line implements SolverTask15.ILine{
     private Point2D first;
     private Point2D second;
-    private double x1 = first.getX();
-    private double x2 = second.getX();
-    private double y1 = first.getY();
-    private double y2 = second.getY();
+    private double x1;
+    private double x2;
+    private double y1;
+    private double y2;
     private Set<Point2D> points = new HashSet<>();
 
     public Line(Point2D first, Point2D second) {
         this.first = first;
         this.second = second;
+        x1 = first.getX();
+        x2 = second.getX();
+        y1 = first.getY();
+        y2 = second.getY();
         points.add(first);
         points.add(second);
     }

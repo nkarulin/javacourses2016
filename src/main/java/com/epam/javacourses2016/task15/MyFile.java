@@ -23,9 +23,9 @@ public class MyFile implements SolverTask15.IFileWithLines {
     @Override
     public Set<SolverTask15.ILine> getLines() {
         Set<SolverTask15.ILine> lines = new HashSet<>();
-        try(Scanner scanner = new Scanner(new FileReader(file))) {
+        try (Scanner scanner = new Scanner(new FileReader(file))) {
             ArrayList<Double> params = new ArrayList<>(4);
-            while (scanner.hasNext()) {
+            while (scanner.hasNextDouble()) {
                 params.add(scanner.nextDouble());
                 if (params.size() == 4) {
                     Point2D firstPoint = new Point2D(params.get(0), params.get(1));
@@ -42,7 +42,7 @@ public class MyFile implements SolverTask15.IFileWithLines {
     }
 
     public void writeIntoFile(Set<Line> result) {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Line line : result) {
                 for (Point2D point : line.getPoints()) {
                     writer.write(point.getX() + " " + point.getY() + " ");
