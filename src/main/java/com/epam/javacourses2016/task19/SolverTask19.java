@@ -18,36 +18,64 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        //TODO
-        long length = numberLaps * lengthLap;
         ArrayList<Car> sortedByPosition = new ArrayList<>(cars);
-        int farAhead = 0;
-        sortedByPosition.sort(Comparator.comparingInt(Car::getCurrentPosition));
-        for (Car car : sortedByPosition) {
-            car.setFarAhead(farAhead);
-            farAhead++;
-        }
-
-        boolean endOfRace = false;
-        while (!endOfRace) {
-            endOfRace = true;
+        sortedByPosition.sort(Comparator.comparingLong(Car::getCurrentPosition));
+        int overtakes = 0;
+        while (!endOfRace(sortedByPosition, numberLaps)) {
+            int farAhead = 0;
             for (Car car : sortedByPosition) {
-                if (car.getCurrentPosition() + car.getSpeed() <= length) {
-                    car.setCurrentPosition(car.getCurrentPosition() + car.getSpeed());
-                    endOfRace = false;
-                } else
-                    car.setCurrentPosition((int)length);
+                car.setFarAhead(farAhead++);
+                currentPositionAndLaps(car, lengthLap);
             }
-            sortedByPosition.sort(Comparator.comparingInt(Car::getCurrentPosition));
+            overtakes += checkOvertakes(sortedByPosition);
+            sortedByPosition = setCurrentPositionOnTheLap(sortedByPosition, lengthLap, numberLaps);
+            sortedByPosition.sort(Comparator.comparingLong(Car::getCurrentPosition));
         }
+        return overtakes;
+    }
+
+    private boolean endOfRace(ArrayList<Car> cars, long numberLaps) {
+        for (Car car : cars) {
+            if (car.getFinishedLaps() <= numberLaps) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void currentPositionAndLaps(Car car, long lengthLap) {
+        if (car.getCurrentPosition() + car.getSpeed() <= lengthLap) {
+            car.setCurrentPosition(car.getCurrentPosition() + car.getSpeed());
+        } else {
+            car.setCurrentPosition(car.getCurrentPosition() + car.getSpeed());
+            car.setFinishedLaps(car.getFinishedLaps() + 1);
+        }
+    }
+
+    private int checkOvertakes(ArrayList<Car> cars) {
+        cars.sort(Comparator.comparingLong(Car::getCurrentPosition));
         int count = 0;
-        farAhead = 0;
-        for (Car car : sortedByPosition) {
+        int farAhead = 0;
+        for (Car car : cars) {
             if (farAhead > car.getFarAhead()) {
                 count = count + (farAhead - car.getFarAhead());
             }
             farAhead++;
         }
         return count;
+    }
+
+    private ArrayList<Car> setCurrentPositionOnTheLap(ArrayList<Car> cars, long lengthLap, int numberLaps) {
+        ArrayList<Car> sortedCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getFinishedLaps() < numberLaps) {
+                if (car.getCurrentPosition() >= lengthLap) {
+                    car.setCurrentPosition(car.getCurrentPosition() - lengthLap);
+                }
+                sortedCars.add(car);
+            }
+        }
+        sortedCars.sort(Comparator.comparingLong(Car ::getCurrentPosition));
+        return sortedCars;
     }
 }
