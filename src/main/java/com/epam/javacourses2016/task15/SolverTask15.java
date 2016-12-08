@@ -3,6 +3,8 @@ package com.epam.javacourses2016.task15;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,7 +20,29 @@ public class SolverTask15 {
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
         //TODO
+        Set<Line> lines = new HashSet<>();
+        ArrayList<Point2D> allPoints = new ArrayList<>(points);
+        int checkedPoints = 0;
+        for (Point2D point : points) {
+            checkedPoints++;
+            for (int i = checkedPoints; i < points.size(); i++) {
+                Line newLine = new Line(point, allPoints.get(i));
+                if (checkPoints(newLine, points)) {
+                    lines.add(newLine);
+                }
+            }
+        }
         return null;
+    }
+
+    boolean checkPoints(Line line, Set<Point2D> points) {
+        for (Point2D point : points) {
+            if (line.isMorePoints(point)) {
+                line.addPoint(point);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
