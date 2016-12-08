@@ -25,7 +25,7 @@ public class MyFiles implements SolverTask16.IFileWithPoints {
         SortedMap<Point2D, Double> points = new TreeMap<>();
         try(Scanner scanner = new Scanner(new FileReader(file))) {
             ArrayList<Double> params = new ArrayList<>(3);
-            while (scanner.hasNext()) {
+            while (scanner.hasNextDouble()) {
                 params.add(scanner.nextDouble());
                 if (params.size() == 3) {
                     points.put(new Point2D(params.get(0), params.get(1)), params.get(2));
