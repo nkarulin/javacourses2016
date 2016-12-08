@@ -32,13 +32,14 @@ public class SolverTask15 {
                 }
             }
         }
-        return null;
+        MyFile file = new MyFile(output);
+        file.writeIntoFile(lines);
+        return file;
     }
 
     boolean checkPoints(Line line, Set<Point2D> points) {
         for (Point2D point : points) {
             if (line.isMorePoints(point)) {
-                line.addPoint(point);
                 return true;
             }
         }

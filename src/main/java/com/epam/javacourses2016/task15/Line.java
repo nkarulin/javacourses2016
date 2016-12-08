@@ -28,10 +28,6 @@ public class Line implements SolverTask15.ILine{
         return (point.getX() - x1) * (y2 - y1) - (point.getY() - y1) * (x2 - x1) == 0;
     }
 
-    public void addPoint(Point2D newPoint) {
-        points.add(newPoint);
-    }
-
     @Override
     public Set<Point2D> getPoints() {
         return points;
