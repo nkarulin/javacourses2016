@@ -13,7 +13,8 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class SolverTask11Test {
-    @Test(enabled = true, dataProvider = "people")
+
+    @Test(enabled = false, dataProvider = "people")
     public void testEmulate(String[] arr, String result) throws Exception {
         SolverTask11 task11 = new SolverTask11();
         Assert.assertEquals(task11.emulate(convertToArrayList(arr)), result);
