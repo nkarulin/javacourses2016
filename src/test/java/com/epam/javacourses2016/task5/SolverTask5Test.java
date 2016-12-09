@@ -4,9 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.*;
-
-import static org.testng.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SolverTask5Test {
 
@@ -17,7 +16,7 @@ public class SolverTask5Test {
         Assert.assertEquals(solver.calcResistance(listMeasures), result);
     }
 
-    @Test(enabled = false, dataProvider = "numbers")
+    @Test(enabled = true, dataProvider = "numbers")
     public void testCalcResistance_fromKA(List<Measurement> list,double res) throws Exception {
         SolverTask5 solverTask5 = new SolverTask5();
         Assert.assertEquals(solverTask5.calcResistance(list), res);
