@@ -30,14 +30,19 @@ public class SolverTask18 {
         return maxMatrix;
     }
 
-    public Matrix getSubMatrix(RectangularIntegerMatrix matrix, int x, int y, int rows, int columns) {
-        int[][] newData = new int[rows - x][columns - y];
-        for (int i = 0; i < newData.length; i++) {
-            for (int j = 0; j < newData[i].length; j++) {
-                newData[i][j] = matrix.getValue(i, j);
+    public Integer numberOfEquals(Matrix matrix) {
+        Map<Integer, Integer> rowsAndCols = new HashMap<>();
+        for (int i = 0; i < matrix.getHeight(); i++) {
+            for (int j = 0; j < matrix.getWidth(); j++) {
+                int value = matrix.getValue(i, j);
+                if (rowsAndCols.containsKey(value)) {
+                    rowsAndCols.put(value, rowsAndCols.get(value) + 1);
+                } else {
+                    rowsAndCols.put(value, 1);
+                }
             }
         }
-        return new Matrix(newData);
+        return Collections.max(rowsAndCols.values());
     }
 
     Deque<Matrix> getAllSubMatrix(RectangularIntegerMatrix matrix) {
@@ -58,19 +63,14 @@ public class SolverTask18 {
         return matrices;
     }
 
-        public Integer numberOfEquals(Matrix matrix) {
-        Map<Integer, Integer> rowsAndCols = new HashMap<>();
-            for (int i = 0; i < matrix.getHeight(); i++) {
-                for (int j = 0; j < matrix.getWidth(); j++) {
-                    int value = matrix.getValue(i, j);
-                    if (rowsAndCols.containsKey(value)) {
-                        rowsAndCols.put(value, rowsAndCols.get(value) + 1);
-                    } else {
-                        rowsAndCols.put(value, 1);
-                    }
-                }
+    public Matrix getSubMatrix(RectangularIntegerMatrix matrix, int x, int y, int rows, int columns) {
+        int[][] newData = new int[rows - x][columns - y];
+        for (int i = 0; i < newData.length; i++) {
+            for (int j = 0; j < newData[i].length; j++) {
+                newData[i][j] = matrix.getValue(i, j);
             }
-        return Collections.max(rowsAndCols.values());
+        }
+        return new Matrix(newData);
     }
 
 
@@ -79,14 +79,18 @@ public class SolverTask18 {
      */
     interface RectangularIntegerMatrix {
 
-        /** @return Ширина матрицы. */
+        /**
+         * @return Ширина матрицы.
+         */
         int getWidth();
 
-        /** @return Высота матрицы. */
+        /**
+         * @return Высота матрицы.
+         */
         int getHeight();
 
         /**
-         * @param indexWidth Индекс по ширине.
+         * @param indexWidth  Индекс по ширине.
          * @param indexHeight Индекс по высоте.
          * @return Значение, располагающееся в указанной ячейке.
          */
