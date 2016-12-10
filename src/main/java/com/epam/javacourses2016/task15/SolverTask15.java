@@ -6,7 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -25,31 +27,34 @@ public class SolverTask15 {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(output));
             Set<Line> lines = new HashSet<>();
-            for (Point2D first : points) {
-                for (Point2D second : points) {
-                    if (!((first.getY() == second.getY()) && (first.getX() == second.getX()))) {
-                        Line line = new Line(first, second);
-                        for (Point2D point : points) {
-                            if (((first.getY() != point.getY()) || (first.getX() != point.getX())) &&
-                                    ((second.getY() != point.getY()) || (second.getX() != point.getX())))
-                                line.add(point);
+            while (!points.isEmpty()) {
+                Iterator iterator = points.iterator();
+                Point2D first = (Point2D) iterator.next();
+                iterator.remove();
+                while (iterator.hasNext()) {
+                    Point2D second = (Point2D) iterator.next();
+                    Line line = new Line(first, second);
+                    for (Point2D point : points) {
+                        if ((!point.equals(first)) && (!point.equals(second)))
+                            line.add(point);
 
-                        }
-                        if (line.size() > 2) {
-                            lines.add(line);
-                        }
                     }
+                    if (line.size() > 2) {
+                        lines.add(line);
+                    }
+
                 }
             }
-            for (Line line : lines
+            NumberFormat formatter = NumberFormat.getInstance();
+              for (Line line : lines
                     ) {
-                bw.write(Double.toString(line.getStart().getX()));
+                bw.write(formatter.format(line.getStart().getX()));
                 bw.write(" ");
-                bw.write(Double.toString(line.getStart().getY()));
+                bw.write(formatter.format(line.getStart().getY()));
                 bw.write(" ");
-                bw.write(Double.toString(line.getEnd().getX()));
+                bw.write(formatter.format(line.getEnd().getX()));
                 bw.write(" ");
-                bw.write(Double.toString(line.getEnd().getY()));
+                bw.write(formatter.format(line.getEnd().getY()));
                 bw.write(System.lineSeparator());
             }
             bw.close();

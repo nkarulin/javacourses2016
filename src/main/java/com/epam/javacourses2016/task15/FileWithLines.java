@@ -2,11 +2,10 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -35,13 +34,12 @@ public class FileWithLines implements SolverTask15.IFileWithLines {
     @Override
     public Set<SolverTask15.ILine> getLines() {
         try {
-            BufferedReader bf = new BufferedReader(new FileReader(file));
+            Scanner scanner = new Scanner(file);
             Set<SolverTask15.ILine> lines = new HashSet<>();
-            String s = bf.readLine();
-            while (s != null) {
-                lines.add(new Line(new Point2D(new Double(s), new Double(bf.readLine())),
-                        new Point2D(new Double(bf.readLine()), new Double(bf.readLine()))));
-                s =Integer.toString(bf.read());
+
+            while (scanner.hasNextDouble()) {
+                lines.add(new Line(new Point2D(scanner.nextDouble(), scanner.nextDouble()),
+                        (new Point2D(scanner.nextDouble(), scanner.nextDouble()))));
             }
             return lines;
         } catch (IOException e) {
