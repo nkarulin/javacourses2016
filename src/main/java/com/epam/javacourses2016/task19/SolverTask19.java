@@ -27,14 +27,20 @@ public class SolverTask19 {
             iterator.remove();
             while (iterator.hasNext()) {
                 Car car2 = iterator.next();
-                double time1 = lengthLap * numberLaps / car1.getSpeed();
-                double time2 = lengthLap * numberLaps / car2.getSpeed();
-                if (time1 < time2) {
-                    int leftLap = (int) (numberLaps - (double) car2.getSpeed() * time1 / lengthLap);
-                    result += car1.getStartPosition() < car2.getStartPosition() ? leftLap + 1 : leftLap;
-                } else {
-                    int leftLap = (int) (numberLaps - (double) car1.getSpeed() * time2 / lengthLap);
-                    result += car2.getStartPosition() < car1.getStartPosition() ? leftLap + 1 : leftLap;
+                if (car2.getSpeed() != car1.getSpeed()) {
+                    double time1 = lengthLap * numberLaps / car1.getSpeed();
+                    double time2 = lengthLap * numberLaps / car2.getSpeed();
+                    if (time1 < time2) {
+                        int leftLap = (int) (numberLaps - (double) car2.getSpeed() * time1 / lengthLap);
+                        result += ((car1.getStartPosition() < car2.getStartPosition()) &&
+                                (time1*(double) car2.getSpeed()+car2.getStartPosition()-(double) lengthLap*
+                                        (numberLaps-leftLap)!= car2.getStartPosition())) ? leftLap + 1 : leftLap;
+                    } else {
+                        int leftLap = (int) (numberLaps - (double) car1.getSpeed() * time2 / lengthLap);
+                        result += ((car2.getStartPosition() < car1.getStartPosition()) &&
+                                (time2*(double) car1.getSpeed()+car1.getStartPosition()-(double) lengthLap*
+                                        (numberLaps-leftLap) != car1.getStartPosition())) ? leftLap + 1 : leftLap;
+                    }
                 }
             }
         }
