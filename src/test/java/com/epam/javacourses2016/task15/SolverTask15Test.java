@@ -17,7 +17,7 @@ import static org.testng.Assert.*;
  */
 public class SolverTask15Test {
 
-    @Test(enabled = false, dataProvider = "points")
+    @Test(enabled = true, dataProvider = "points")
     public void testAnalyze(double[][] points, ArrayList<double[][]> result) throws Exception {
 
         SolverTask15 solver = new SolverTask15();
@@ -43,9 +43,9 @@ public class SolverTask15Test {
     @DataProvider(name = "points")
     public Object[][] points() {
         return new Object[][]{
-                {new double[][]{{1, 1}, {2, 2}},
+               /* {new double[][]{{1, 1}, {2, 2}},
                         new ArrayList<double[][]>() {{
-                        }}},
+                        }}},*/
                 {new double[][]{{1, 1}, {2, 2}, {3, 3}},
                         new ArrayList<double[][]>() {{
                             add(new double[][]{{1, 1}, {2, 2}, {3, 3}});

@@ -20,6 +20,7 @@ public class SolverTask18 {
         for (int i = 0; i < matrix.getHeight(); i++) {
             for (int j = 0; j < matrix.getWidth(); j++) {
                 temp = (Matrix) maxSubMatrixFromThisPosition(matrix, i, j);
+                j+=temp.getWidth();
                 if (temp.getWidth() * temp.getHeight() > max.getHeight() * max.getWidth())
                     max = temp;
             }
