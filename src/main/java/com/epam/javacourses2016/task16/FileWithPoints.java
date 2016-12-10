@@ -35,12 +35,10 @@ public class FileWithPoints implements SolverTask16.IFileWithPoints {
      */
     @Override
     public SortedMap<Point2D, Double> getPoints() {
-        try {
-            Scanner scanner = new Scanner(new FileReader(file));
-
+        try (Scanner scanner = new Scanner(new FileReader(file))) {
             SortedMap<Point2D, Double> points = new TreeMap<Point2D, Double>();
             while (scanner.hasNextInt()) {
-                points.put(new Point2D(scanner.nextInt(), scanner.nextInt()),scanner.nextDouble());
+                points.put(new Point2D(scanner.nextInt(), scanner.nextInt()), scanner.nextDouble());
             }
             return points;
         } catch (IOException e) {
