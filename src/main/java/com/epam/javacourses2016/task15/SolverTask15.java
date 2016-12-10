@@ -24,8 +24,7 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(output));
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(output))) {
             Set<Line> lines = new HashSet<>();
             while (!points.isEmpty()) {
                 Iterator iterator = points.iterator();
@@ -46,7 +45,7 @@ public class SolverTask15 {
                 }
             }
             NumberFormat formatter = NumberFormat.getInstance();
-              for (Line line : lines
+            for (Line line : lines
                     ) {
                 bw.write(formatter.format(line.getStart().getX()));
                 bw.write(" ");
@@ -57,7 +56,6 @@ public class SolverTask15 {
                 bw.write(formatter.format(line.getEnd().getY()));
                 bw.write(System.lineSeparator());
             }
-            bw.close();
             IFileWithLines filewithline = new FileWithLines(output);
             return filewithline;
         } catch (IOException e) {
