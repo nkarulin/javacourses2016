@@ -19,7 +19,7 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
-        List<Segment> sortbyX = new LinkedList<>();
+        List<Segment> sortbyX = new ArrayList<>();
 
         sortbyX.addAll(segments);
         Collections.sort(sortbyX, new Comparator<Segment>() {
@@ -70,16 +70,16 @@ public class SolverTask17 {
      */
     private Point2D intersectionPoint(Segment first, Segment second) {
 
-        Point2D firstVector = new Point2D(first.getB().getX() - first.getA().getX(), first.getB().getY() - first.getA().getY());
-        Point2D secondVector = new Point2D(second.getB().getX() - second.getA().getX(), second.getB().getY() - second.getA().getY());
-        double firstVectorMultiply = (secondVector.getY() * second.getA().getX() - secondVector.getX() * second.getA().getY()) -
-                secondVector.getY() * first.getA().getX() + secondVector.getX() * first.getA().getY();
-        double secondVectorMultiply = (secondVector.getY() * second.getA().getX() - secondVector.getX() * second.getA().getY()) -
-                secondVector.getY() * first.getB().getX() + secondVector.getX() * first.getB().getY();
+        Vector firstVector = new Vector(first.getA(), first.getB());
+        Vector secondVector = new Vector(second.getA(), second.getB());
+        double firstVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
+                secondVector.getB() * first.getA().getX() + secondVector.getA() * first.getA().getY();
+        double secondVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
+                secondVector.getB() * first.getB().getX() + secondVector.getA() * first.getB().getY();
 
         return new Point2D(first.getA().getX() + (firstVectorMultiply / (firstVectorMultiply - secondVectorMultiply))
-                * firstVector.getX(), first.getA().getY() + (firstVectorMultiply / (firstVectorMultiply - secondVectorMultiply))
-                * firstVector.getY());
+                * firstVector.getA(), first.getA().getY() + (firstVectorMultiply / (firstVectorMultiply - secondVectorMultiply))
+                * firstVector.getB());
 
     }
 
