@@ -2,10 +2,10 @@ package com.epam.javacourses2016.task15;
 
 
 public class LinesForTask15 {
-    double k;
-    double b;
-    int number;
-    int id;
+    private double k;
+    private double b;
+    private int number;
+    private int id;
 
     public LinesForTask15(double k, double b, int number, int id) {
         this.k = k;
@@ -46,16 +46,9 @@ public class LinesForTask15 {
         this.id = id;
     }
 
-
-
-
-
     public void addNumber() {
         this.number++;
     }
-
-
-
 
 }
 

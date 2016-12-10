@@ -3,6 +3,8 @@ package com.epam.javacourses2016.task15;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,23 +39,42 @@ public class SolverTask15 {
                 }
             }
         }
+
         Iterator<LinesForTask15> iterator = list.iterator();
         LinesForTask15 l;
-        while (iterator.hasNext()){
-            l=iterator.next();
-            if (l.getNumber()<3){
+        while (iterator.hasNext()) {
+            l = iterator.next();
+            if (l.getNumber() < 3) {
                 iterator.remove();
             }
         }
-        return null;
+
+        MyFile out = new MyFile();
+        try (FileWriter write = new FileWriter(String.valueOf(out))) {
+            for (LinesForTask15 line : list) {
+                write.write("k="+line.getK()+"b="+line.getB() + '\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
     private boolean existInList(double k, double b, List<LinesForTask15> list) {
-//        return list.stream()
-////                .filter((item -> item.k == k) & (item -> item.b == b))
-//                .forEach(item -> item.addNumber())
-////                .anyMatch;
-        return false;
+
+        boolean exist = list.stream()
+                .anyMatch(item -> (item.getK() == k & item.getB() == b));
+        if (!exist) {
+            return false;
+        }
+
+        for (LinesForTask15 l : list) {
+            if ((l.getK() == k) & (l.getB() == b)) {
+                l.addNumber();
+                break;
+            }
+        }
+        return true;
 
     }
 
