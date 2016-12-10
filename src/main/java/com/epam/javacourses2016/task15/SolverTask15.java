@@ -38,7 +38,7 @@ public class SolverTask15 {
             }
         }
         Iterator<LinesForTask15> iterator = list.iterator();
-        LinesForTask15 l
+        LinesForTask15 l;
         while (iterator.hasNext()){
             l=iterator.next();
             if (l.getNumber()<3){
@@ -49,10 +49,11 @@ public class SolverTask15 {
     }
 
     private boolean existInList(double k, double b, List<LinesForTask15> list) {
-        return list.stream()
-                .filter((item -> item.k == k) & (item -> item.b == b))
-                .forEach(item -> item.addNumber())
-                .anyMatch;
+//        return list.stream()
+////                .filter((item -> item.k == k) & (item -> item.b == b))
+//                .forEach(item -> item.addNumber())
+////                .anyMatch;
+        return false;
 
     }
 

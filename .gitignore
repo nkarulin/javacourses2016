@@ -2,4 +2,4 @@
 /target/
 /*.iml/
 *.imls
-/test/
+.idea/*
