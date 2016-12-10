@@ -5,14 +5,12 @@ package com.epam.javacourses2016.task13;
  * В конструкторе класса передается количество вершин в графе.
  * Методы должны поддерживать быстрое добавление и удаление ребер.
  */
-public abstract class AbstractGraphCreator {
+public  abstract class AbstractGraphCreator {
     /**
      * @param numberNodes Количество вершин в графе.
      * @return Граф указанной конфигурации.
      */
-    public static AbstractGraph createGraph(int numberNodes){
-        return null;
-    }
+    abstract AbstractGraph createGraph(int numberNodes);
 
     /**
      * Абстрактный граф.
@@ -20,7 +18,7 @@ public abstract class AbstractGraphCreator {
      * Нумерация вершин начинается с 0.
      * Допустимы операции добавления, удаления и проверки существования ребер.
      */
-    abstract class AbstractGraph {
+    abstract static class AbstractGraph {
 
         /** Количество вершин */
         protected final int NUMBER_NODES;
