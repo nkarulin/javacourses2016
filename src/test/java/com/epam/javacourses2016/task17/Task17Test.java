@@ -1,4 +1,4 @@
-package com.epam.javacourses2016.task17;
+package com.epam.javacourses2016.Task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
@@ -91,26 +91,7 @@ public class Task17Test {
                     this.add(new Point2D(2, 2));
                     this.add(new Point2D(2, 5));
                 }})
-                }/*,
-                {
-                        new Segment[]{
-                                new Segment(new Point2D(0, 0), new Point2D(0, 14)),
-
-
-                        }, new HashSet<>(new ArrayList<Point2D>() {{
-
-                    this.add(new Point2D(0, 0));
-
-                }})
-                },
-                {
-                        new Segment[]{
-
-                        }, new HashSet<>(new ArrayList<Point2D>() {{
-
-                    this.add(new Point2D(0, 2));
-                }})
-                }*/
+                }
         };
     }
 
