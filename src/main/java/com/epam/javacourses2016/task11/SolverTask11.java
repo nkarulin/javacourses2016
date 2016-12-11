@@ -2,6 +2,7 @@ package com.epam.javacourses2016.task11;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * В кругу стоят N человек.
@@ -19,14 +20,9 @@ public class SolverTask11 {
      */
     public String emulate(ArrayList<String> peoples) {
         int index = 0;
-        int sizeInStart = 0;
-        while (peoples.size() != 1) {
+        while (peoples.size() > 1) {
             if (index >= peoples.size()) {
-                if (sizeInStart % 2 == 0) {
-                    index = 0;
-                } else {
-                    index = 1;
-                }
+                index %= 2;
             }
             peoples.remove(index);
             index++;
@@ -41,20 +37,19 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        int index = 0;
-        int sizeInStart = peoples.size();
+        ListIterator iterator = peoples.listIterator();
         while (peoples.size() > 1) {
-            peoples.remove(index);
-            index++;
-            if (index >= peoples.size()) {
-                if (sizeInStart % 2 == 0) {
-                    index = 0;
-                } else {
-                    index = 1;
-                }
+            if (!iterator.hasNext()) {
+                iterator = peoples.listIterator();
             }
+            iterator.next();
+            iterator.remove();
+            if (!iterator.hasNext()) {
+                iterator = peoples.listIterator();
+            }
+            iterator.next();
         }
-        return peoples.getFirst();
+        return peoples.removeFirst();
     }
 
 }

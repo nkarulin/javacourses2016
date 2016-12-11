@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by Ivan on 01/12/2016.

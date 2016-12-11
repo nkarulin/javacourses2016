@@ -10,14 +10,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.testng.Assert.*;
-
 /**
  * Created by kodoo on 13.11.16.
  */
 public class SolverTask15Test {
 
-    @Test(enabled = false, dataProvider = "points")
+    @Test(enabled = true, dataProvider = "points")
     public void testAnalyze(double[][] points, ArrayList<double[][]> result) throws Exception {
 
         SolverTask15 solver = new SolverTask15();

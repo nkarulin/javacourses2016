@@ -7,8 +7,9 @@ public class Car {
 
     private int startPosition;
     private int speed;
-    private int currentPosition;
+    private long currentPosition;
     private int farAhead;
+    private int finishedLaps;
 
     public Car(int startPosition, int speed) {
         this.startPosition = startPosition;
@@ -24,7 +25,7 @@ public class Car {
         return speed;
     }
 
-    public int getCurrentPosition() {
+    public long getCurrentPosition() {
         return currentPosition;
     }
 
@@ -36,7 +37,15 @@ public class Car {
         this.farAhead = farAhead;
     }
 
-    public void setCurrentPosition(int currentPosition) {
+    public void setCurrentPosition(long currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public int getFinishedLaps() {
+        return finishedLaps;
+    }
+
+    public void setFinishedLaps(int finishedLaps) {
+        this.finishedLaps = finishedLaps;
     }
 }
