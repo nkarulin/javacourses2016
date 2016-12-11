@@ -14,6 +14,7 @@ import java.util.*;
 public class SolverTask16Test {
     @Test
     public void testAnalyze() throws Exception {
+        System.out.println(5.9 - ((int)(5.9/0.5))*0.5);
     }
 
     @Test(enabled = true, dataProvider = "points")
@@ -21,34 +22,20 @@ public class SolverTask16Test {
         SolverTask16 solverTask16 = new SolverTask16();
         SortedMap<com.epam.javacourses2016.Point2D, Double> sortedMap = convertToSortedMap(doubles);
         SortedMap<com.epam.javacourses2016.Point2D, Double> sortedMap1 = solverTask16.analyze(center,radius,file).getPoints();
+        for(Map.Entry<Point2D,Double> entry : sortedMap.entrySet()) {
+            System.out.println(entry.getKey().getX() + " " + entry.getKey().getY() + " " +  entry.getValue());
+        }
+        System.out.println();
+        for(Map.Entry<Point2D,Double> entry : sortedMap1.entrySet()) {
+            System.out.println(entry.getKey().getX() + " " + entry.getKey().getY() + " " +  entry.getValue());
+        }
+        System.out.println();
+        for(Map.Entry<SolverTask16.Cell,Double> entry : solverTask16.cellDoubleSortedMap.entrySet()) {
+            System.out.println(entry.getKey() + " " +  entry.getValue());
+        }
+
         Assert.assertEquals(sortedMap, sortedMap1);
 
-    }
-
-    SortedSet<Map.Entry<Point2D, Double>> entriesSortedByValues(Map<Point2D, Double> map) {
-        SortedSet<Map.Entry<Point2D, Double>> sortedEntries = new TreeSet<Map.Entry<Point2D, Double>>(
-                new Comparator<Map.Entry<Point2D, Double>>() {
-                    @Override public int compare(Map.Entry<Point2D, Double> e1, Map.Entry<Point2D, Double> e2) {
-                        if(e1.getValue() < e1.getValue())
-                            return -1;
-                        if(e1.getValue() > e2.getValue())
-                            return 1;
-                        else {
-                            if (e1.getKey().getX() < e2.getKey().getX())
-                                return -1;
-                            if (e1.getKey().getX() > e2.getKey().getX())
-                                return 1;
-                            if (e1.getKey().getY() < e2.getKey().getY())
-                                return -1;
-                            if (e1.getKey().getY() > e2.getKey().getY())
-                                return 1;
-                            return 0;
-                        }
-                    }
-                }
-        );
-        sortedEntries.addAll(map.entrySet());
-        return sortedEntries;
     }
 
     private SortedMap<com.epam.javacourses2016.Point2D, Double> convertToSortedMap(Double[][] doubles) {
@@ -62,7 +49,7 @@ public class SolverTask16Test {
     @DataProvider(name = "points")
     public Object[][] getPoints() {
         return new Object[][] {
-                {new com.epam.javacourses2016.Point2D(0.0,0.0), 2, new File("output1.txt"),new Double[][] {
+              /*  {new com.epam.javacourses2016.Point2D(0.0,0.0), 2, new File("output1.txt"),new Double[][] {
                         {0.0, 0.0,  0.0},
                         {-1.0, 0.0,  1.0},
                         {0.0, -1.0,  1.0},
@@ -73,7 +60,7 @@ public class SolverTask16Test {
                         {1.0, -1.0,  1.4142135623730951},
                         {1.0, 1.0,  1.4142135623730951},
                 }},
-                {new com.epam.javacourses2016.Point2D(0.0,0.0), 1, new File("output2.txt"),new Double[][] {}},
+                {new com.epam.javacourses2016.Point2D(0.0,0.0), 1, new File("output2.txt"),new Double[][] {}},*/
                 {new com.epam.javacourses2016.Point2D(0.4,0.4), 2, new File("output3.txt"),new Double[][] {
                         { 0.0, 0.0,  0.5656854249492381},
                         { 0.0, 1.0,  0.7211102550927979},

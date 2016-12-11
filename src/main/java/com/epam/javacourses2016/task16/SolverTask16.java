@@ -20,29 +20,52 @@ public class SolverTask16 implements Serializable {
      * @param output Файл для вывода результатов.
      * @return Файл с результатами анализа.
      */
+    SortedMap<Cell, Double> cellDoubleSortedMap;
     IFileWithPoints analyze(Point2D center, int radius, File output) throws IOException {
         SortedMap<Point2D, Double> doubleSortedMap = new TreeMap<>();
-        SortedMap<Cell, Double> cellDoubleSortedMap = new TreeMap<>();
-        int x_nearest = (int) Math.round(center.getX());
-        int y_nearest = (int) Math.round(center.getY());
-        for(int x = x_nearest - radius; x < x_nearest + radius; x++) {
-            for(int y= y_nearest - radius; y < y_nearest + radius; y++) {
-                Point2D point1 = new Point2D(x,y);
-                Point2D point2 = new Point2D(x+1,y);
-                Point2D point3 = new Point2D(x,y+1);
-                Point2D point4 = new Point2D(x+1,y+1);
-                Cell cell = new Cell(point1,point2,point3,point4);
-                if (cell.isInside(center, radius)) {
-                    Point2D cellcenter = new Point2D(x+0.5,y+0.5);
-                    double dist = cellcenter.getDistanceTo(center);
-                    cell.setCenter(cellcenter);
-                    cellDoubleSortedMap.put(cell,dist);
-                    doubleSortedMap.put(cell.getPoint1(), cell.getPoint1().getDistanceTo(center));
-                    doubleSortedMap.put(cell.getPoint2(), cell.getPoint2().getDistanceTo(center));
-                    doubleSortedMap.put(cell.getPoint3(), cell.getPoint3().getDistanceTo(center));
-                    doubleSortedMap.put(cell.getPoint4(), cell.getPoint4().getDistanceTo(center));
-                }
+        cellDoubleSortedMap = new TreeMap<>();
+
+        double x_diff = center.getX() - (int)center.getX();
+        double y_diff = center.getY() - (int)center.getY();
+        int cell_count = 0;
+        Point2D beginPoint;
+        double x_begin;
+        double y_begin;
+        if(Math.abs(x_diff)>=0.25 && Math.abs(x_diff) <= 0.75 && Math.abs(y_diff)>=0.25 && Math.abs(y_diff)<=0.75) {
+            cell_count = 2*radius-1;
+            x_begin = ((int)(center.getX()/0.5))*0.5 - 0.5*cell_count/2;
+            y_begin = ((int)(center.getX()/0.5))*0.5 - 0.5*cell_count/2;
+            beginPoint = new Point2D(x_begin,y_begin);
+        }
+        else {
+            cell_count = 2*radius-2;
+            x_begin = (int) Math.round(center.getX()) - 0.5*cell_count/2;
+            y_begin = (int) Math.round(center.getY()) - 0.5*cell_count/2;
+            beginPoint = new Point2D(x_begin,y_begin);
+        }
+        int j = 0;
+        for(int i = 1; i <= cell_count*cell_count; i++) {
+            Point2D point1 = new Point2D(beginPoint.getX()-0.5,beginPoint.getY()-0.5);
+            Point2D point2 = new Point2D(beginPoint.getX()+0.5,beginPoint.getY()-0.5);
+            Point2D point3 = new Point2D(beginPoint.getX()+0.5,beginPoint.getY()+0.5);
+            Point2D point4 = new Point2D(beginPoint.getX()-0.5,beginPoint.getY()+0.5);
+            Cell cell = new Cell(point1,point2,point3,point4);
+            if (cell.isInside(center, radius)) {
+                Point2D cellcenter = new Point2D(beginPoint.getX(),beginPoint.getY());
+                double dist = cellcenter.getDistanceTo(center);
+                cell.setCenter(cellcenter);
+                cellDoubleSortedMap.put(cell,dist);
+                doubleSortedMap.put(cell.getPoint1(), cell.getPoint1().getDistanceTo(center));
+                doubleSortedMap.put(cell.getPoint2(), cell.getPoint2().getDistanceTo(center));
+                doubleSortedMap.put(cell.getPoint3(), cell.getPoint3().getDistanceTo(center));
+                doubleSortedMap.put(cell.getPoint4(), cell.getPoint4().getDistanceTo(center));
             }
+            j++;
+            if( j / cell_count == 1) {
+                beginPoint = new Point2D(x_begin,y_begin+1);
+                j = 0;
+            } else beginPoint = new Point2D(beginPoint.getX()+1,beginPoint.getY());
+            System.out.println(i);
         }
         FileWithPoints fileWithPoints = new FileWithPoints(output,doubleSortedMap);
         writeToFile(fileWithPoints,cellDoubleSortedMap);
