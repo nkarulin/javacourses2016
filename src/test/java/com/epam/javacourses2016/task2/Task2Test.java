@@ -58,13 +58,13 @@ public class Task2Test {
 
     private Set<File> getFiles(File directory) {
         Set<File> files = new HashSet<>();
-        files.add(directory);
+        //files.add(directory);
         for (File file : directory.listFiles()) {
-         //   files.add(file);
+            files.add(file);
             if (file.isDirectory()) {
                 files.addAll(getFiles(file));
             }
-            else files.add(file);
+            //else files.add(file);
         }
 
         return files;
