@@ -1,9 +1,10 @@
-package com.epam.javacourses2016.Task17;
+package com.epam.javacourses2016.task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
 
 import java.util.*;
+
 
 /**
  * На плоскости задано N отрезков.
@@ -70,8 +71,8 @@ public class SolverTask17 {
      */
     private Point2D intersectionPoint(Segment first, Segment second) {
 
-        Vector firstVector = new Vector(first.getA(), first.getB());
-        Vector secondVector = new Vector(second.getA(), second.getB());
+        Vec firstVector = new Vec(first.getA(), first.getB());
+        Vec secondVector = new Vec(second.getA(), second.getB());
         double firstVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
                 secondVector.getB() * first.getA().getX() + secondVector.getA() * first.getA().getY();
         double secondVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
