@@ -18,6 +18,17 @@ public class SolverTask7 {
      * @return Многочлен, полученный в результате перемножения.
      */
     public List<Integer> multiplyPolynomials(List<Integer> first, List<Integer> second) {
-        return null;
+        List<Integer> polynom = new ArrayList<>();
+        for (int i = 0; i < first.size() + second.size() - 1; i++) {
+            polynom.add(i, 0);
+        }
+        for (int i = 0; i < first.size(); i++) {
+            for (int j = 0; j < second.size(); j++) {
+                polynom.set(i + j, polynom.get(i + j) + first.get(i) * second.get(j));
+            }
+        }
+        if( polynom.stream().reduce((a,b) -> a+b).get().equals(0) )
+            return new ArrayList<>();
+        else return polynom;
     }
 }

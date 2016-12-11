@@ -5,9 +5,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
-import java.util.HashMap;
-
-import static org.testng.Assert.*;
 
 public class SolverTask6Test {
 
@@ -22,7 +19,7 @@ public class SolverTask6Test {
         Assert.assertEquals(solver.addPolynomials(firstMap, secondMap), resultMap);
     }
 
-    @Test(enabled = false, dataProvider = "polynoms")
+    @Test(enabled = true, dataProvider = "polynoms")
     public void testAddPolynomials_fromKA(HashMap<Integer,Integer> map1, HashMap<Integer,Integer> map2, HashMap<Integer,Integer> res) throws Exception {
         SolverTask6 solverTask6 = new SolverTask6();
         Assert.assertEquals(solverTask6.addPolynomials(map1,map2),res);

@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class SolverTask9Test {
 
-    @Test(enabled = false, dataProvider = "text")
+    @Test(enabled = true, dataProvider = "text")
     public void testGetUniqueWords(String fileName, String fileResult) throws Exception {
         SolverTask9 solver = new SolverTask9();
         ClassLoader classLoader = getClass().getClassLoader();
@@ -38,6 +38,7 @@ public class SolverTask9Test {
                 {"com/epam/javacourses2016/task9/text1.txt", "com/epam/javacourses2016/task9/text1_unique.txt"},
                 {"com/epam/javacourses2016/task9/text2.txt", "com/epam/javacourses2016/task9/text2_unique.txt"},
                 {"com/epam/javacourses2016/task9/text3.txt", "com/epam/javacourses2016/task9/text3_unique.txt"},
+                {"com/epam/javacourses2016/task9/text4.txt", "com/epam/javacourses2016/task9/text4_unique.txt"},
         };
     }
 
