@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by Ivan on 01/12/2016.
@@ -11,10 +11,6 @@ public class Matrix implements SolverTask18.RectangularIntegerMatrix {
 
     public Matrix(int[][] data) {
         this.matrix = data;
-    }
-
-    public int[][] getMatrix() {
-        return matrix;
     }
 
     @Override
@@ -29,18 +25,22 @@ public class Matrix implements SolverTask18.RectangularIntegerMatrix {
 
     @Override
     public int getValue(int indexWidth, int indexHeight) {
-        return matrix[indexWidth][indexHeight];
+        return matrix[indexHeight][indexWidth];
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()){
+            throw new ClassCastException();
+        }
         Matrix matrix1 = (Matrix) o;
-
         return Arrays.deepEquals(matrix, matrix1.matrix);
-
     }
 
     @Override

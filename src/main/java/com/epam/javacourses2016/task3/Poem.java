@@ -1,7 +1,5 @@
 package com.epam.javacourses2016.task3;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 /**
