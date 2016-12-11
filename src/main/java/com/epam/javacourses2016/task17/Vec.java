@@ -26,9 +26,10 @@ public class Vec {
         this.a = second.getX() - first.getX();
         this.b = second.getY() - first.getY();
     }
+
     /**
      * @param multiplier вектор на который умножается данный
-     *@return  псевдоскалярное произведение векторов
+     * @return псевдоскалярное произведение векторов
      */
     public double pseudoScalarMultiply(Vec multiplier) {
         return this.a * multiplier.getB() - this.b * multiplier.getA();

@@ -71,16 +71,15 @@ public class SolverTask17 {
      */
     private Point2D intersectionPoint(Segment first, Segment second) {
 
-        Vec firstVector = new Vec(first.getA(), first.getB());
-        Vec secondVector = new Vec(second.getA(), second.getB());
-        double firstVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
-                secondVector.getB() * first.getA().getX() + secondVector.getA() * first.getA().getY();
-        double secondVectorMultiply = (secondVector.getB() * second.getA().getX() - secondVector.getA() * second.getA().getY()) -
-                secondVector.getB() * first.getB().getX() + secondVector.getA() * first.getB().getY();
-
-        return new Point2D(first.getA().getX() + (firstVectorMultiply / (firstVectorMultiply - secondVectorMultiply))
-                * firstVector.getA(), first.getA().getY() + (firstVectorMultiply / (firstVectorMultiply - secondVectorMultiply))
-                * firstVector.getB());
+        Vec firstSegmentVector = new Vec(first.getA(), first.getB());
+        Vec secondSegmentVector = new Vec(second.getA(), second.getB());
+        Vec fromAtoAVector = new Vec(first.getA(), second.getA());
+        Vec fromAtoBVector = new Vec(first.getB(), second.getA());
+        double firstScalarMultiply = fromAtoAVector.pseudoScalarMultiply(secondSegmentVector);
+        double secondScalarMultiply = fromAtoBVector.pseudoScalarMultiply(secondSegmentVector);
+        return new Point2D(first.getA().getX() + (firstScalarMultiply / (firstScalarMultiply - secondScalarMultiply))
+                * firstSegmentVector.getA(), first.getA().getY() + (firstScalarMultiply / (firstScalarMultiply - secondScalarMultiply))
+                * firstSegmentVector.getB());
 
     }
 
@@ -93,17 +92,12 @@ public class SolverTask17 {
      * @return true, если пересекаются, false, если не пересекаются
      */
     private boolean intersection(Segment first, Segment second) {
-        Point2D firstVector = new Point2D(first.getB().getX() - first.getA().getX(), first.getB().getY() - first.getA().getY());
-        Point2D secondVector = new Point2D(second.getB().getX() - second.getA().getX(), second.getB().getY() - second.getA().getY());
-        double firstVectorMultiply = (secondVector.getY() * second.getA().getX() - secondVector.getX() * second.getA().getY()) -
-                secondVector.getY() * first.getA().getX() + secondVector.getX() * first.getA().getY();
-        double secondVectorMultiply = (secondVector.getY() * second.getA().getX() - secondVector.getX() * second.getA().getY()) -
-                secondVector.getY() * first.getB().getX() + secondVector.getX() * first.getB().getY();
-        double thirdVectorMultiply = (firstVector.getY() * first.getA().getX() - firstVector.getX() * first.getA().getY()) -
-                firstVector.getY() * second.getA().getX() + firstVector.getX() * second.getA().getY();
-        double fourthVectorMultiply = (firstVector.getY() * first.getA().getX() - firstVector.getX() * first.getA().getY()) -
-                firstVector.getY() * second.getB().getX() + firstVector.getX() * second.getB().getY();
-
+        Vec firstVector = new Vec(first.getA(), first.getB());
+        Vec secondVector = new Vec(second.getA(), second.getB());
+        double firstVectorMultiply = new Vec(first.getA(), second.getA()).pseudoScalarMultiply(secondVector);
+        double secondVectorMultiply = new Vec(first.getB(), second.getA()).pseudoScalarMultiply(secondVector);
+        double thirdVectorMultiply = new Vec(second.getA(), first.getA()).pseudoScalarMultiply(firstVector);
+        double fourthVectorMultiply = new Vec(second.getB(), first.getA()).pseudoScalarMultiply(firstVector);
         return !(firstVectorMultiply * secondVectorMultiply >= 0 || thirdVectorMultiply * fourthVectorMultiply >= 0);
 
     }
