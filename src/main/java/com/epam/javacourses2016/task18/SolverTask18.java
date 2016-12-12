@@ -29,7 +29,7 @@ public class SolverTask18 {
         return maxMatrix;
     }
 
-    public Integer numberOfEquals(Matrix matrix) {
+    public int numberOfEquals(Matrix matrix) {
         int value = matrix.getValue(0, 0);
         for (int i = 0; i < matrix.getHeight(); i++) {
             for (int j = 0; j < matrix.getWidth(); j++) {
