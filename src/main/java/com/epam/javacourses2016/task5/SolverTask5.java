@@ -19,6 +19,9 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     double calcResistance(List<Measurement> measurements) {
+        if (measurements.isEmpty()) {
+            return 0.0;
+        }
         BigDecimal R;
         double sumI = 0;
         double sumU = 0;
@@ -32,6 +35,11 @@ public class SolverTask5 {
         }
 
         //BigDecimal eps2=new BigDecimal (Math.pow(eps, 2));
+        BigDecimal znamenatel = new BigDecimal(measurements.size() * sum_sqrtI - Math.pow(sumI, 2));
+        if (znamenatel.compareTo(BigDecimal.ZERO) == 0) {
+            return 0.0;
+        }
+
         R = new BigDecimal((measurements.size() * sumUI - sumI * sumU) / (measurements.size() * sum_sqrtI - Math.pow(sumI, 2)));
         return R.setScale(3, BigDecimal.ROUND_DOWN).doubleValue();
     }

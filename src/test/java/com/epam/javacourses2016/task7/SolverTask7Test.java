@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SolverTask7Test {
 
-    @Test(enabled = false, dataProvider = "polynomials2")
+    @Test(enabled = true, dataProvider = "polynomials2")
     public void testMultiplyPolynomials(int[] first, int[] second, int[] result) throws Exception {
 
         SolverTask7 solver = new SolverTask7();

@@ -2,11 +2,13 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.awt.geom.Line2D;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * На плоскости задано N точек.
@@ -23,63 +25,40 @@ public class SolverTask15 {
 
 
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
-        List<LinesForTask15> list = new ArrayList<>();
-        double x1, x2, y1, y2, k, b;
-        for (Point2D p : points) {
-            x1 = p.getX();
-            y1 = p.getY();
-            for (Point2D p2 : points) {
-                x2 = p2.getX();
-                y2 = p2.getY();
-                k = (y2 - y1) / (x2 - x1);
-                b = (x2 * y1 - x1 * y2) / (x2 - x1);
-                if (!existInList(k, b, list)) {
-                    addLine(k, b, list);
+        Map<Line, Integer> linesMap = new HashMap<>();
+        for (Point2D firstPoint : points) {
+            for (Point2D secondPoint : points) {
+                if (firstPoint.equals(secondPoint)) {
+                    continue;
+                }
+                Line line = new Line(firstPoint, secondPoint);
+                linesMap.put(line, 2);
+            }
+        }
+        Set<ILine> resultSet = new TreeSet<>();
+        for (Map.Entry<Line, Integer> lineEntry : linesMap.entrySet()) {
+            for (Point2D point : points) {
+                boolean isNotLineEnd = !lineEntry.getKey().getA().equals(point) && !lineEntry.getKey().getB().equals(point);
+                if (isNotLineEnd && intersects(lineEntry.getKey(), point) && !resultSet.contains(lineEntry.getKey())) {
+                    resultSet.add(lineEntry.getKey());
                 }
             }
         }
+        return new MyFile(writeFile(output, resultSet));
 
-        Iterator<LinesForTask15> iterator = list.iterator();
-        LinesForTask15 l;
-        while (iterator.hasNext()) {
-            l = iterator.next();
-            if (l.getNumber() < 3) {
-                iterator.remove();
-            }
-        }
+    }
 
-        MyFile out = new MyFile();
-        try (FileWriter write = new FileWriter(String.valueOf(out))) {
-            for (LinesForTask15 line : list) {
-                write.write("k="+line.getK()+"b="+line.getB() + '\n');
-            }
+    private boolean intersects(Line line, Point2D point) {
+        return Line2D.ptLineDist(line.getA().getX(), line.getA().getY(), line.getB().getX(), line.getB().getY(), point.getX(), point.getY()) == 0.0;
+    }
+
+    private File writeFile(File file, Set<ILine> lines) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            objectOutputStream.writeObject(lines);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return out;
-    }
-
-    private boolean existInList(double k, double b, List<LinesForTask15> list) {
-
-        boolean exist = list.stream()
-                .anyMatch(item -> (item.getK() == k & item.getB() == b));
-        if (!exist) {
-            return false;
-        }
-
-        for (LinesForTask15 l : list) {
-            if ((l.getK() == k) & (l.getB() == b)) {
-                l.addNumber();
-                break;
-            }
-        }
-        return true;
-
-    }
-
-    private void addLine(double k, double b, List<LinesForTask15> list) {
-        list.add(new LinesForTask15(k, b, 1, list.size()));
+        return file;
     }
 
     /**

@@ -3,6 +3,7 @@ package com.epam.javacourses2016.task11;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * В кругу стоят N человек.
@@ -19,22 +20,11 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
-        int counter = 0;
-        Iterator<String> iterator = peoples.iterator();
+        int passes = 2;
+        int person = 0;
         while (peoples.size() > 1) {
-            if (counter % 2 == 0) {
-                iterator.remove();
-            }
-            else
-            {
-                counter++;
-            }
-            if (!iterator.hasNext()){
-                iterator = peoples.iterator();
-            }
-            else{
-                iterator.next();
-            }
+            peoples.remove(person);
+            person = (person + passes - 1) % peoples.size();
         }
         return peoples.get(0);
     }
@@ -46,19 +36,21 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        int i = 0;
-        int size = peoples.size();
-        while (peoples.size() > 1) {
-            peoples.remove(i);
-            i++;
-            if (i >= peoples.size()) {
-                if (size % 2 == 0) {
-                    i = 0;
-                } else {
-                    i = 1;
-                }
+        int numberOfPeople = peoples.size();
+        int peopleRemaining = numberOfPeople;
+        ListIterator listIterator = peoples.listIterator();
+        while (peopleRemaining-- > 1) {
+            if (!listIterator.hasNext()) {
+                listIterator = peoples.listIterator();
             }
+            listIterator.next();
+            listIterator.remove();
+            if (!listIterator.hasNext()) {
+                listIterator = peoples.listIterator();
+            }
+            listIterator.next();
         }
-        return peoples.get(0);
+        listIterator = peoples.listIterator();
+        return (String) listIterator.next();
     }
 }

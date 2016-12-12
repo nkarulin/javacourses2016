@@ -11,7 +11,9 @@ public abstract class AbstractGraphCreator {
      * @return Граф указанной конфигурации.
      */
     public static AbstractGraph createGraph(int numberNodes) {
-
+        if (numberNodes > 0) {
+            return new Graph(numberNodes);
+        }
         return null;
     }
 
@@ -21,7 +23,7 @@ public abstract class AbstractGraphCreator {
      * Нумерация вершин начинается с 0.
      * Допустимы операции добавления, удаления и проверки существования ребер.
      */
-    abstract class AbstractGraph {
+    abstract static class AbstractGraph {
 
         /**
          * Количество вершин
