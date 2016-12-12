@@ -1,8 +1,0 @@
-/.idea/
-/target/
-/*.iml/
-*.imls
-.idea/*
-build/
-.gradle/
-.gitignore
