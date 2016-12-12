@@ -4,3 +4,4 @@
 *.imls
 .idea/*
 /build/
+.gitignore
