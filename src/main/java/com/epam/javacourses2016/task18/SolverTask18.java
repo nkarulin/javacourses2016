@@ -13,7 +13,6 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        //TODO
         Deque<Matrix> matrices = getAllSubMatrix(matrix);
         Matrix maxMatrix = null;
         if (!matrices.isEmpty()) {
@@ -31,18 +30,16 @@ public class SolverTask18 {
     }
 
     public Integer numberOfEquals(Matrix matrix) {
-        Map<Integer, Integer> rowsAndCols = new HashMap<>();
+        int value = matrix.getValue(0, 0);
         for (int i = 0; i < matrix.getHeight(); i++) {
             for (int j = 0; j < matrix.getWidth(); j++) {
-                int value = matrix.getValue(i, j);
-                if (rowsAndCols.containsKey(value)) {
-                    rowsAndCols.put(value, rowsAndCols.get(value) + 1);
-                } else {
-                    rowsAndCols.put(value, 1);
+                if (matrix.getValue(i, j) != value) {
+                    return 1;
                 }
             }
         }
-        return Collections.max(rowsAndCols.values());
+        return matrix.getHeight() * matrix.getWidth();
+
     }
 
     Deque<Matrix> getAllSubMatrix(RectangularIntegerMatrix matrix) {
@@ -66,8 +63,8 @@ public class SolverTask18 {
     public Matrix getSubMatrix(RectangularIntegerMatrix matrix, int x, int y, int rows, int columns) {
         int[][] newData = new int[rows - x][columns - y];
         for (int i = 0; i < newData.length; i++) {
-            for (int j = 0; j < newData[i].length; j++) {
-                newData[i][j] = matrix.getValue(i, j);
+            for (int j = 0; j < newData[0].length; j++) {
+                newData[i][j] = matrix.getValue(x + i,y + j);
             }
         }
         return new Matrix(newData);
