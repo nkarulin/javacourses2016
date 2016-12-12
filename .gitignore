@@ -4,4 +4,7 @@
 *.imls
 .idea/*
 /build/
+build/*
 .gitignore
+/.gradle/
+.gradle/*
