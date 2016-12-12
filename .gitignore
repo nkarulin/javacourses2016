@@ -3,8 +3,6 @@
 /*.iml/
 *.imls
 .idea/*
-/build/
-build/*
+build/
+.gradle/
 .gitignore
-/.gradle/
-.gradle/*
