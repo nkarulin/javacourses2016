@@ -49,10 +49,9 @@ public class SolverTask18 {
                 for (int i = x; i < matrix.getHeight(); i++) {
                     for (int j = y; j < matrix.getWidth(); j++) {
                         Matrix subMatrix = getSubMatrix(matrix, x, y, i + 1, j + 1);
-                        if (subMatrix == null || matrices.contains(subMatrix)) {
-                            continue;
+                        if (subMatrix != null && !matrices.contains(subMatrix)) {
+                            matrices.add(subMatrix);
                         }
-                        matrices.addFirst(subMatrix);
                     }
                 }
             }
