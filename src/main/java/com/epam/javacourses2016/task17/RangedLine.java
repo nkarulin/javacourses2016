@@ -59,10 +59,12 @@ public class RangedLine extends Line {
         if (intersection == null)
             return intersection;
 
-
         return pointBelongsToArea(intersection) ? intersection : null;
     }
 
+    public boolean pointBelongs(Point2D point) {
+        return super.belongs(point);
+    }
     public boolean belongs(Point2D point) {
         return super.belongs(point) && pointBelongsToArea(point);
     }
