@@ -59,7 +59,7 @@ public class Task11Test {
                     7, 6
                 },
                 {
-                    8,8
+                     8, 8
                 },
                 {
                      4,4
