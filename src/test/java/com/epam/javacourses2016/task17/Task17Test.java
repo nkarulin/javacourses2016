@@ -13,7 +13,6 @@ import java.util.*;
 /**
  * Created by kodoo on 13.11.16.
  */
-///////
 
 public class Task17Test {
 
@@ -24,7 +23,7 @@ public class Task17Test {
     private boolean compareDoubles(double first, double second) {
         return format.format(first).equals(format.format(second));
     }
-    @Test(enabled=true, dataProvider = "segmentsWithResults")
+    @Test(enabled=false, dataProvider = "segmentsWithResults")
     public void testAnalyze(Segment[] segments, Set<Point2D> expected) throws Exception {
         SolverTask17 solver = new SolverTask17();
         Set<Point2D> result = solver.analyze(new HashSet<>(Arrays.asList(segments)));
