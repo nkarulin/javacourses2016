@@ -6,8 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.testng.Assert.*;
 
@@ -21,12 +20,43 @@ public class SolverTask16Test {
 
     }
 
-    @Test(enabled = false, dataProvider = "points")
+    @Test(enabled = true, dataProvider = "points")
     public void testAnalyze_fromKA(Point2D center, int radius, File file, Double[][] doubles) throws Exception {
         SolverTask16 solverTask16 = new SolverTask16();
         SortedMap<Point2D, Double> sortedMap = convertToSortedMap(doubles);
         SortedMap<Point2D, Double> sortedMap1 = solverTask16.analyze(center,radius,file).getPoints();
-        Assert.assertEquals(sortedMap, sortedMap1);
+        SortedSet<Map.Entry<Point2D, Double>> sortedSet = getSortedSet(sortedMap);
+        SortedSet<Map.Entry<Point2D, Double>> sortedSet1 = getSortedSet(sortedMap1);
+        Assert.assertEquals(sortedSet, sortedSet1);
+    }
+
+    private SortedSet<Map.Entry<Point2D, Double>> getSortedSet(SortedMap<Point2D,Double> sortedMap) {
+        SortedSet<Map.Entry<Point2D, Double>> sortedset = new TreeSet<Map.Entry<Point2D, Double>>(
+                new Comparator<Map.Entry<Point2D, Double>>() {
+                    @Override
+                    public int compare(Map.Entry<Point2D, Double> e1,
+                                       Map.Entry<Point2D, Double> e2) {
+
+                        if(e1.getValue() < e2.getValue())
+                            return -1;
+                        if(e1.getValue() > e2.getValue())
+                            return 1;
+                        else {
+                            if (e1.getKey().getX() < e2.getKey().getX())
+                                return -1;
+                            if (e1.getKey().getX() > e2.getKey().getX())
+                                return 1;
+                            if (e1.getKey().getY() < e2.getKey().getY())
+                                return -1;
+                            if (e1.getKey().getY() > e2.getKey().getY())
+                                return 1;
+                            return 0;
+                        }
+                    }
+                });
+
+        sortedset.addAll(sortedMap.entrySet());
+        return sortedset;
     }
 
     private SortedMap<Point2D, Double> convertToSortedMap(Double[][] doubles) {
