@@ -3,7 +3,6 @@ package com.epam.javacourses2016.task17;
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
 
-import java.awt.*;
 import java.util.*;
 
 /**
@@ -21,10 +20,10 @@ public class SolverTask17 {
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
         Set<Point2D> result = new HashSet<>();
-        TreeMap<Point2D, EventPoint> eventPointTreeMap = new TreeMap<>();//Статус всех событий на карте
-        TreeMap<Point2D,Set<Segment>> point2DSetTreeMap = new TreeMap<>();//Статус пересекающей прямой
+        TreeMap<Point2D, EventPoint> eventPointTreeMap = new TreeMap<>(Collections.reverseOrder());//Статус всех событий на карте
+        TreeMap<Point2D, Segment> segmentTreeMap = new TreeMap<>();//Статус пересекающей прямой
         for(Segment s : segments) {
-            if(s.getA().getY() > s.getB().getY()) {
+            if(s.getA().compareTo(s.getB()) == 1) {
                 if(eventPointTreeMap.containsKey(s.getA())) {
                     eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
                     eventPointTreeMap.get(s.getA()).addSegment(s);
@@ -38,72 +37,80 @@ public class SolverTask17 {
                     eventPointTreeMap.get(s.getB()).addSegment(s);
                 } else {
                     EventPoint eventPoint = new EventPoint(Event.LOWESTPOINT);
-                    eventPoint.addSegment(s);
-                    eventPointTreeMap.put(s.getB(),eventPoint);
-                }
-            } else if(s.getA().getY() < s.getB().getY()) {
-                if(eventPointTreeMap.containsKey(s.getA())) {
-                    eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
-                    eventPointTreeMap.get(s.getA()).addSegment(s);
-                } else {
-                    EventPoint eventPoint = new EventPoint(Event.LOWESTPOINT);
-                    eventPoint.addSegment(s);
-                    eventPointTreeMap.put(s.getA(),eventPoint);
-                }
-                if(eventPointTreeMap.containsKey(s.getB())) {
-                    eventPointTreeMap.get(s.getB()).setEventType(Event.INTERSECTION);
-                    eventPointTreeMap.get(s.getB()).addSegment(s);
-                } else {
-                    EventPoint eventPoint = new EventPoint(Event.TOPPOINT);
                     eventPoint.addSegment(s);
                     eventPointTreeMap.put(s.getB(),eventPoint);
                 }
             } else {
-                if(s.getA().getX() > s.getB().getX()) {
-                    if(eventPointTreeMap.containsKey(s.getA())) {
-                        eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
-                        eventPointTreeMap.get(s.getA()).addSegment(s);
-                    } else {
-                        EventPoint eventPoint = new EventPoint(Event.TOPPOINT);
-                        eventPoint.addSegment(s);
-                        eventPointTreeMap.put(s.getA(),eventPoint);
-                    }
-                    if(eventPointTreeMap.containsKey(s.getB())) {
-                        eventPointTreeMap.get(s.getB()).setEventType(Event.INTERSECTION);
-                        eventPointTreeMap.get(s.getB()).addSegment(s);
-                    } else {
-                        EventPoint eventPoint = new EventPoint(Event.LOWESTPOINT);
-                        eventPoint.addSegment(s);
-                        eventPointTreeMap.put(s.getB(),eventPoint);
-                    }
+                if(eventPointTreeMap.containsKey(s.getA())) {
+                    eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
+                    eventPointTreeMap.get(s.getA()).addSegment(s);
                 } else {
-                    if(eventPointTreeMap.containsKey(s.getA())) {
-                        eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
-                        eventPointTreeMap.get(s.getA()).addSegment(s);
-                    } else {
-                        EventPoint eventPoint = new EventPoint(Event.LOWESTPOINT);
-                        eventPoint.addSegment(s);
-                        eventPointTreeMap.put(s.getA(),eventPoint);
-                    }
-                    if(eventPointTreeMap.containsKey(s.getB())) {
-                        eventPointTreeMap.get(s.getB()).setEventType(Event.INTERSECTION);
-                        eventPointTreeMap.get(s.getB()).addSegment(s);
-                    } else {
-                        EventPoint eventPoint = new EventPoint(Event.TOPPOINT);
-                        eventPoint.addSegment(s);
-                        eventPointTreeMap.put(s.getB(),eventPoint);
-                    }
+                    EventPoint eventPoint = new EventPoint(Event.LOWESTPOINT);
+                    eventPoint.addSegment(s);
+                    eventPointTreeMap.put(s.getA(),eventPoint);
+                }
+                if(eventPointTreeMap.containsKey(s.getB())) {
+                    eventPointTreeMap.get(s.getB()).setEventType(Event.INTERSECTION);
+                    eventPointTreeMap.get(s.getB()).addSegment(s);
+                } else {
+                    EventPoint eventPoint = new EventPoint(Event.TOPPOINT);
+                    eventPoint.addSegment(s);
+                    eventPointTreeMap.put(s.getB(),eventPoint);
                 }
             }
         }
-        for( Map.Entry<Point2D, EventPoint> point2DSetEntry : eventPointTreeMap.entrySet()) {
-            System.out.println(point2DSetEntry);
+        Iterator<Map.Entry<Point2D, EventPoint>> it = eventPointTreeMap.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry<Point2D, EventPoint> point2DSetEntry = it.next();
+            System.out.println(point2DSetEntry.getKey() + " " + point2DSetEntry.getValue());
+            Point2D point2D = handlePoint(point2DSetEntry, segmentTreeMap, eventPointTreeMap).getKey();
+            if(point2D != null)
+                result.add(point2D);
         }
-        return null;
+        return result;
     }
 
-    private void handlePoint(EventPoint eventPoint) {
+    private Map.Entry<Point2D, EventPoint> handlePoint(Map.Entry<Point2D, EventPoint> eventPoint, TreeMap<Point2D, Segment> segmentTreeMap, TreeMap<Point2D, EventPoint> eventPointTreeMap) {
+        Event event = eventPoint.getValue().getEventType();
+        Map.Entry<Point2D, EventPoint> res = null;
+        switch (event) {
+            case TOPPOINT:
+                Iterator<Segment> it = eventPoint.getValue().getEventSegments().iterator();
+                Segment segment = it.next();
+                segmentTreeMap.put(eventPoint.getKey(),segment);
+                for(Map.Entry<Point2D, Segment> s : segmentTreeMap.entrySet()) {
+                    Point2D newPoint = findIntersection(s.getValue().getA(),s.getValue().getB(),segment.getA(),segment.getB());
+                    if(newPoint != null) {
+                        EventPoint eventPoint1 = new EventPoint(Event.INTERSECTION);
+                        eventPoint1.addSegment(segment);
+                        eventPoint1.addSegment(s.getValue());
+                        eventPointTreeMap.put(newPoint, eventPoint1);
+                    }
+                }
+                break;
+            case LOWESTPOINT:
+                eventPointTreeMap.remove(eventPoint);
+                break;
+            case INTERSECTION:
+                res = eventPoint;
+            default:
+                break;
+        }
+        return res;
+    }
 
+    private Point2D findIntersection(Point2D p1, Point2D p2, Point2D p3, Point2D p4) {
+        Point2D result = new Point2D();
+        double k1 = (p2.getX() - p1.getX()) / (p2.getY() - p1.getY());
+        double k2 = (p4.getX() - p3.getX()) / (p4.getY() - p3.getY());
+        if(k1 != k2) {
+            result.setX(((p1.getX() * p2.getY() - p2.getX() * p1.getY()) * (p4.getX() - p3.getX()) -
+                    (p3.getX() * p4.getY() - p4.getX() * p3.getY()) * (p2.getX() - p1.getX())) / ((p1.getY() - p2.getY()) * (p4.getX() - p3.getX()) - (p3.getY() - p4.getY()) * (p2.getX() - p1.getX())));
+            result.setY(((p3.getY() - p4.getY()) * result.getX() - (p3.getX() * p4.getY() - p4.getX() * p3.getY())) / (p4.getX() - p3.getX()));
+        }
+        if((((p1.getX() <= result.getX()) && (p2.getX() >= result.getX()) && (p3.getX() <= result.getX()) && (p4.getX() >= result.getX())) || ((p1.getY() <= result.getY()) && (p2.getY() >= result.getY()) && (p3.getY() <= result.getY()) && (p4.getY() >= result.getY()))) )
+            return result;
+        else return null;
     }
 
     enum Event {
@@ -114,7 +121,7 @@ public class SolverTask17 {
 
     class EventPoint {
         private Event eventType;
-        private Set<Segment> eventSegments = new HashSet<>();
+        private HashSet<Segment> eventSegments = new HashSet<>();
 
         public EventPoint(Event eventType) {
             this.eventType = eventType;
@@ -128,7 +135,7 @@ public class SolverTask17 {
             return eventSegments;
         }
 
-        public void setEventSegments(Set<Segment> eventSegments) {
+        public void setEventSegments(HashSet<Segment> eventSegments) {
             this.eventSegments = eventSegments;
         }
 

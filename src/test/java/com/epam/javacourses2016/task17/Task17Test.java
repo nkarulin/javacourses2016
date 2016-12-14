@@ -27,7 +27,7 @@ public class Task17Test {
         SolverTask17 solver = new SolverTask17();
         Set<Point2D> result = solver.analyze(new HashSet<>(Arrays.asList(segments)));
 
-        /*final DecimalFormat format = new DecimalFormat("#.###");
+        final DecimalFormat format = new DecimalFormat("#.###");
         format.setRoundingMode(RoundingMode.CEILING);
         Comparator<Point2D> comparator =  (first, second) -> {
             if (first == null && second == null)
@@ -55,7 +55,7 @@ public class Task17Test {
         for(int i = 0; i < resultArr.length; i++) {
             if (comparator.compare(expectedArr[i], resultArr[i]) != 0)
                 Assert.fail();
-        }*/
+        }
     }
 
     @DataProvider(name = "segmentsWithResults")
