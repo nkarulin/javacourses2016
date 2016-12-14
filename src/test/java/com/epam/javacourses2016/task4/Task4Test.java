@@ -47,14 +47,14 @@ public class Task4Test {
         };
     }
 
-    @Test(enabled = false, dataProvider = "nums")
+    @Test(enabled = true, dataProvider = "nums")
     public void testIntersection_fromKA(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
         SolverTask4 solverTask4 = new SolverTask4();
         Set<Integer> result = solverTask4.intersection(set1,set2);
         Assert.assertEquals(result,res2);
     }
 
-    @Test(enabled = false, dataProvider = "nums")
+    @Test(enabled = true, dataProvider = "nums")
     public void testUnion_fromKA(Set<Integer> set1, Set<Integer> set2,Set<Integer> res1, Set<Integer> res2) throws Exception {
         SolverTask4 solverTask4 = new SolverTask4();
         Set<Integer> result = solverTask4.union(set1,set2);

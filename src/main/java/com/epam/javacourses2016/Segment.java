@@ -39,4 +39,12 @@ public class Segment {
         result = 31 * result + (getB() != null ? getB().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "a=" + a +
+                ", b=" + b +
+                '}';
+    }
 }

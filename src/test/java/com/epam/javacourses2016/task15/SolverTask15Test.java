@@ -4,10 +4,14 @@ import com.epam.javacourses2016.Point2D;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 import static org.testng.Assert.*;
@@ -17,7 +21,7 @@ import static org.testng.Assert.*;
  */
 public class SolverTask15Test {
 
-    @Test(enabled = false, dataProvider = "points")
+    @Test(enabled = true, dataProvider = "points")
     public void testAnalyze(double[][] points, ArrayList<double[][]> result) throws Exception {
 
         SolverTask15 solver = new SolverTask15();
@@ -59,6 +63,15 @@ public class SolverTask15Test {
                             add(new double[][]{{1, 1}, {2, 2,}, {3, 3}});
                             add(new double[][]{{1, 3}, {2, 2,}, {3, 1}});
                         }}},
+                {new double[][]{{0, 0}, {1, 1}, {2, 2}, {1, 3.1}, {2, 3.1}},
+                        new ArrayList<double[][]>() {{
+                            add(new double[][]{{0, 0}, {1, 1}, {2, 2}});
+                        }}},
+                {new double[][]{{0, 0}, {1, 1}, {2, 2}, {0, 0}, {1, 1}, {2, 2},{0, 0}, {1, 1}, {2, 2}},
+                        new ArrayList<double[][]>() {{
+                            add(new double[][]{{0, 0}, {1, 1}, {2, 2}});
+                        }}},
         };
     }
+
 }

@@ -2,8 +2,8 @@ package com.epam.javacourses2016.task16;
 
 import com.epam.javacourses2016.Point2D;
 
-import java.io.File;
-import java.util.SortedMap;
+import java.io.*;
+import java.util.*;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -11,7 +11,7 @@ import java.util.SortedMap;
  * Выводить в порядке возрастания расстояния от клетки до центра круга.
  * Использовать класс SortedMap.
  */
-public class SolverTask16 {
+public class SolverTask16 implements Serializable {
     /**
      * Осуществляет анализ точек, находя среди них попавших внутрь круга.
      *
@@ -20,10 +20,44 @@ public class SolverTask16 {
      * @param output Файл для вывода результатов.
      * @return Файл с результатами анализа.
      */
-    IFileWithPoints analyze(Point2D center, int radius, File output) {
-        //TODO
-        return null;
+
+    IFileWithPoints analyze(Point2D center, int radius, File output) throws IOException {
+        SortedMap<Point2D, Double> doubleSortedMap = new TreeMap<>();
+        SortedMap<Cell, Double> cellDoubleSortedMap = new TreeMap<>();
+        int x_nearest = (int) Math.round(center.getX());
+        int y_nearest = (int) Math.round(center.getY());
+        for(int x = x_nearest - radius; x < x_nearest + radius; x++) {
+            for(int y= y_nearest - radius; y < y_nearest + radius; y++) {
+                Point2D point1 = new Point2D(x,y);
+                Point2D point2 = new Point2D(x+1,y);
+                Point2D point3 = new Point2D(x,y+1);
+                Point2D point4 = new Point2D(x+1,y+1);
+                Cell cell = new Cell(point1,point2,point3,point4);
+                if (cell.isInside(center, radius)) {
+                    Point2D cellcenter = new Point2D(x+0.5,y+0.5);
+                    double dist = cellcenter.getDistanceTo(center);
+                    cell.setCenter(cellcenter);
+                    cellDoubleSortedMap.put(cell,dist);
+                    doubleSortedMap.put(cell.getPoint1(), cell.getPoint1().getDistanceTo(center));
+                    doubleSortedMap.put(cell.getPoint2(), cell.getPoint2().getDistanceTo(center));
+                    doubleSortedMap.put(cell.getPoint3(), cell.getPoint3().getDistanceTo(center));
+                    doubleSortedMap.put(cell.getPoint4(), cell.getPoint4().getDistanceTo(center));
+                }
+            }
+        }
+        FileWithPoints fileWithPoints = new FileWithPoints(output,doubleSortedMap);
+        writeToFile(fileWithPoints,cellDoubleSortedMap);
+        return fileWithPoints;
     }
+
+    private void writeToFile(FileWithPoints fileWithPoints, SortedMap<Cell,Double> cellDoubleSortedMap) throws IOException {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileWithPoints.getFile()))) {
+            for(Map.Entry<Cell,Double> cellDoubleEntry : cellDoubleSortedMap.entrySet()) {
+                bufferedWriter.write(String.valueOf(cellDoubleEntry.getKey()) + "\n");
+            }
+        }
+    }
+
 
     /**
      * Представляет файл, содержащий информацию о найденных точках.
@@ -40,5 +74,87 @@ public class SolverTask16 {
          * @return Множество пар: точка + расстояние до центра.
          */
         SortedMap<Point2D, Double> getPoints();
+    }
+
+    public class FileWithPoints implements IFileWithPoints {
+
+        private File file;
+        private SortedMap<Point2D, Double> points;
+
+        public FileWithPoints(File file, SortedMap<Point2D,Double> points) {
+            this.file = file;
+            this.points = points;
+        }
+
+        @Override
+        public File getFile() {
+            return file;
+        }
+
+        @Override
+        public SortedMap<Point2D, Double> getPoints() {
+            return points;
+        }
+    }
+
+    class Cell implements Comparable<Cell> {
+
+        private Point2D point1;
+        private Point2D point2;
+        private Point2D point3;
+        private Point2D point4;
+        private Point2D center;
+
+        public Cell(Point2D point1, Point2D point2, Point2D point3, Point2D point4) {
+            this.point1 = point1;
+            this.point2 = point2;
+            this.point3 = point3;
+            this.point4 = point4;
+        }
+
+        public Point2D getPoint1() {
+            return point1;
+        }
+
+        public Point2D getPoint2() {
+            return point2;
+        }
+
+        public Point2D getPoint3() {
+            return point3;
+        }
+
+        public Point2D getPoint4() {
+            return point4;
+        }
+
+        public Point2D getCenter() {
+            return center;
+        }
+
+        public void setCenter(Point2D center) {
+            this.center = center;
+        }
+
+        public boolean isInside(Point2D center, int radius) {
+            return point1.compareWithRadius(center, radius) &&
+                    point2.compareWithRadius(center, radius) &&
+                    point3.compareWithRadius(center, radius) &&
+                    point4.compareWithRadius(center, radius);
+        }
+
+        @Override
+        public String toString() {
+            return point1 +
+                    " " + point2 +
+                    " " + point3 +
+                    " " + point4 +
+                    " " + center.getRadius();
+        }
+
+        @Override
+        public int compareTo(Cell o) {
+            return center.compareTo(o.getCenter());
+        }
     }
 }

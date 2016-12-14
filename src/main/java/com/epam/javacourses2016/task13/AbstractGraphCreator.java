@@ -11,7 +11,10 @@ public abstract class AbstractGraphCreator {
      * @return Граф указанной конфигурации.
      */
     public static AbstractGraph createGraph(int numberNodes){
-        return null;
+        if(numberNodes <= 0) {
+            return null;
+        }
+        return new Graph(numberNodes);
     }
 
     /**
@@ -20,7 +23,7 @@ public abstract class AbstractGraphCreator {
      * Нумерация вершин начинается с 0.
      * Допустимы операции добавления, удаления и проверки существования ребер.
      */
-    abstract class AbstractGraph {
+    static abstract class AbstractGraph {
 
         /** Количество вершин */
         protected final int NUMBER_NODES;
@@ -50,4 +53,5 @@ public abstract class AbstractGraphCreator {
          */
         public abstract boolean isExistEdge(int first, int second);
     }
+
 }

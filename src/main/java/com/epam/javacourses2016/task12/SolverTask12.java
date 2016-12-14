@@ -1,6 +1,9 @@
 package com.epam.javacourses2016.task12;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Задан список целых чисел и число X.
@@ -16,7 +19,14 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
-        //TODO
-        return null;
+        LinkedList<Integer> sortedList = new LinkedList<>();
+        for (Integer listValue : integers) {
+            if (listValue > value) {
+                sortedList.addLast(listValue);
+            } else {
+                sortedList.addFirst(listValue);
+            }
+        }
+        return sortedList;
     }
 }
