@@ -1,5 +1,6 @@
 package com.epam.javacourses2016;
 
+
 public class Point2D{
 
     private double x;

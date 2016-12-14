@@ -6,7 +6,6 @@ import com.epam.javacourses2016.Segment;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
 /**
  * На плоскости задано N отрезков.
  * Найти точку (возможно несколько) пересечения двух отрезков, имеющую минимальную абсциссу.

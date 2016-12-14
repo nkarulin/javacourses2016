@@ -133,7 +133,6 @@ public class SolverTask16 implements Serializable {
     }
 
     class Cell  {
-
         private Point2D point1;
         private Point2D point2;
         private Point2D point3;
