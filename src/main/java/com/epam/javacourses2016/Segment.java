@@ -1,5 +1,7 @@
 package com.epam.javacourses2016;
 
+import java.util.Comparator;
+
 /**
  * Created by kodoo on 13.11.16.
  */
@@ -47,4 +49,5 @@ public class Segment {
                 ", b=" + b +
                 '}';
     }
+
 }

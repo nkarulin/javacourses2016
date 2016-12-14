@@ -62,7 +62,7 @@ public class Task17Test {
     public Object[][] segmentsWithResults() {
         return new Object[][]{
 
-             /*  {
+               {
                     new Segment[] {
                         new Segment(new Point2D(0,0), new Point2D(14,0)),
                         new Segment(new Point2D(-2,2), new Point2D(3,5))
@@ -72,7 +72,7 @@ public class Task17Test {
                     new Segment[]  { new Segment(new Point2D(-3,-4), new Point2D(10,10)),
                             new Segment(new Point2D(-5,6), new Point2D(5,-4)) },
                    new HashSet<>( new ArrayList<Point2D>(){{ this.add(new Point2D(((double)23)/27, ((double)4)/27));  }})
-                },*/
+                },
                 {
                     new Segment[] {
                         new Segment(new Point2D(-2, 4), new Point2D(2, 5)),
@@ -85,7 +85,7 @@ public class Task17Test {
                         this.add(new Point2D(2, 5));
                     }})
                 },
-              /* {
+               {
                         new Segment[] {
                                 new Segment(new Point2D(0,0), new Point2D(0,14)),
 
@@ -103,7 +103,7 @@ public class Task17Test {
 
                               this.add(new Point2D(0,2));
                         }})
-                }*/
+                }
 
         };
     }

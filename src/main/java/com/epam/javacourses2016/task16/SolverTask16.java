@@ -25,15 +25,17 @@ public class SolverTask16 implements Serializable {
         SortedMap<Point2D, Double> doubleSortedMap = new TreeMap<>(new Comparator<Point2D>() {
             @Override
             public int compare(Point2D o1, Point2D o2) {
-                if (o1.getX() < o2.getX())
-                    return -1;
-                if (o1.getX() > o2.getX())
+                if(o1.getY() > o2.getY())
                     return 1;
-                if (o1.getY() < o2.getY())
+                else if(o1.getY() < o2.getY())
                     return -1;
-                if (o1.getY() > o2.getY())
-                    return 1;
-                return 0;
+                else {
+                    if(o1.getX() < o2.getX())
+                        return 1;
+                    if(o1.getX() > o2.getX())
+                        return -1;
+                    else return 0;
+                }
             }
         });
         SortedMap<Cell, Double> cellDoubleSortedMap = new TreeMap<>(new Comparator<Cell>() {

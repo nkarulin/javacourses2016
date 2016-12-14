@@ -6,9 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SolverTask17Test {
 
@@ -19,8 +17,6 @@ public class SolverTask17Test {
         Set<Segment> resultSegments = arrayToSet(segments);
         Set<Point2D> resultPoints = arrayToPoints(points);
         Set<Point2D> solverPoints = solver.analyze(resultSegments);
-
-     //   Assert.assertEquals(solverPoints, resultPoints);
     }
 
     @DataProvider(name = "segments")
