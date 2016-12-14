@@ -12,13 +12,13 @@ import java.util.Set;
 
 public class SolverTask17Test {
 
-    @Test(enabled = false, dataProvider = "segments")
+    @Test(enabled = true, dataProvider = "segments")
     public void testSegmentsIntersection(ArrayList<double[][]> segments, double[][] points) {
         SolverTask17 solver = new SolverTask17();
 
         Set<Segment> resultSegments = arrayToSet(segments);
         Set<Point2D> resultPoints = arrayToPoints(points);
-        //Set<Point2D> solverPoints = solver.analyze(resultSegments);
+        Set<Point2D> solverPoints = solver.analyze(resultSegments);
 
      //   Assert.assertEquals(solverPoints, resultPoints);
     }

@@ -63,9 +63,9 @@ public class SolverTask17 {
         while (it.hasNext()){
             Map.Entry<Point2D, EventPoint> point2DSetEntry = it.next();
             System.out.println(point2DSetEntry.getKey() + " " + point2DSetEntry.getValue());
-            Point2D point2D = handlePoint(point2DSetEntry, segmentTreeMap, eventPointTreeMap).getKey();
+           /* Point2D point2D = handlePoint(point2DSetEntry, segmentTreeMap, eventPointTreeMap).getKey();
             if(point2D != null)
-                result.add(point2D);
+                result.add(point2D);*/
         }
         return result;
     }
