@@ -22,8 +22,40 @@ public class SolverTask16 implements Serializable {
      */
 
     IFileWithPoints analyze(Point2D center, int radius, File output) throws IOException {
-        SortedMap<Point2D, Double> doubleSortedMap = new TreeMap<>();
-        SortedMap<Cell, Double> cellDoubleSortedMap = new TreeMap<>();
+        SortedMap<Point2D, Double> doubleSortedMap = new TreeMap<>(new Comparator<Point2D>() {
+            @Override
+            public int compare(Point2D o1, Point2D o2) {
+                if (o1.getX() < o2.getX())
+                    return -1;
+                if (o1.getX() > o2.getX())
+                    return 1;
+                if (o1.getY() < o2.getY())
+                    return -1;
+                if (o1.getY() > o2.getY())
+                    return 1;
+                return 0;
+            }
+        });
+        SortedMap<Cell, Double> cellDoubleSortedMap = new TreeMap<>(new Comparator<Cell>() {
+            @Override
+            public int compare(Cell o1, Cell o2) {
+                if(o1.getRadius() < o2.getRadius())
+                    return -1;
+                if(o1.getRadius() > o2.getRadius())
+                    return 1;
+                else {
+                    if (o1.getCenter().getX() < o2.getCenter().getX())
+                        return -1;
+                    if (o1.getCenter().getX() > o2.getCenter().getX())
+                        return 1;
+                    if (o1.getCenter().getY() < o2.getCenter().getY())
+                        return -1;
+                    if (o1.getCenter().getY() > o2.getCenter().getY())
+                        return 1;
+                    return 0;
+                }
+            }
+        });
         int x_nearest = (int) Math.round(center.getX());
         int y_nearest = (int) Math.round(center.getY());
         for(int x = x_nearest - radius; x < x_nearest + radius; x++) {
@@ -37,6 +69,7 @@ public class SolverTask16 implements Serializable {
                     Point2D cellcenter = new Point2D(x+0.5,y+0.5);
                     double dist = cellcenter.getDistanceTo(center);
                     cell.setCenter(cellcenter);
+                    cell.setRadius(dist);
                     cellDoubleSortedMap.put(cell,dist);
                     doubleSortedMap.put(cell.getPoint1(), cell.getPoint1().getDistanceTo(center));
                     doubleSortedMap.put(cell.getPoint2(), cell.getPoint2().getDistanceTo(center));
@@ -97,13 +130,14 @@ public class SolverTask16 implements Serializable {
         }
     }
 
-    class Cell implements Comparable<Cell> {
+    class Cell  {
 
         private Point2D point1;
         private Point2D point2;
         private Point2D point3;
         private Point2D point4;
         private Point2D center;
+        private double radius;
 
         public Cell(Point2D point1, Point2D point2, Point2D point3, Point2D point4) {
             this.point1 = point1;
@@ -143,18 +177,22 @@ public class SolverTask16 implements Serializable {
                     point4.compareWithRadius(center, radius);
         }
 
+        public void setRadius(double radius) {
+            this.radius = radius;
+        }
+
+        public double getRadius() {
+            return radius;
+        }
+
         @Override
         public String toString() {
             return point1 +
                     " " + point2 +
                     " " + point3 +
                     " " + point4 +
-                    " " + center.getRadius();
+                    " " + radius;
         }
 
-        @Override
-        public int compareTo(Cell o) {
-            return center.compareTo(o.getCenter());
-        }
     }
 }

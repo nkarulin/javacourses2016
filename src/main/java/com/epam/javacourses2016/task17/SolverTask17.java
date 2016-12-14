@@ -22,8 +22,8 @@ public class SolverTask17 {
         Set<Point2D> result = new HashSet<>();
         TreeMap<Point2D, EventPoint> eventPointTreeMap = new TreeMap<>(Collections.reverseOrder());//Статус всех событий на карте
         TreeMap<Point2D, Segment> segmentTreeMap = new TreeMap<>();//Статус пересекающей прямой
-        for(Segment s : segments) {
-            if(s.getA().compareTo(s.getB()) == 1) {
+        /* for(Segment s : segments) {
+           if(s.getA().compareTo(s.getB()) == 1) {
                 if(eventPointTreeMap.containsKey(s.getA())) {
                     eventPointTreeMap.get(s.getA()).setEventType(Event.INTERSECTION);
                     eventPointTreeMap.get(s.getA()).addSegment(s);
@@ -63,10 +63,10 @@ public class SolverTask17 {
         while (it.hasNext()){
             Map.Entry<Point2D, EventPoint> point2DSetEntry = it.next();
             System.out.println(point2DSetEntry.getKey() + " " + point2DSetEntry.getValue());
-           /* Point2D point2D = handlePoint(point2DSetEntry, segmentTreeMap, eventPointTreeMap).getKey();
+            Point2D point2D = handlePoint(point2DSetEntry, segmentTreeMap, eventPointTreeMap).getKey();
             if(point2D != null)
-                result.add(point2D);*/
-        }
+                result.add(point2D);
+        }*/
         return result;
     }
 

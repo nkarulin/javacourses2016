@@ -54,15 +54,27 @@ public class SolverTask16Test {
                         }
                     }
                 });
-
         sortedset.addAll(sortedMap.entrySet());
         return sortedset;
     }
 
     private SortedMap<Point2D, Double> convertToSortedMap(Double[][] doubles) {
-        SortedMap<Point2D, Double> sortedMap = new TreeMap<>();
+        SortedMap<Point2D, Double> sortedMap = new TreeMap<>(new Comparator<Point2D>() {
+            @Override
+            public int compare(Point2D o1, Point2D o2) {
+                if (o1.getX() < o2.getX())
+                    return -1;
+                if (o1.getX() > o2.getX())
+                    return 1;
+                if (o1.getY() < o2.getY())
+                    return -1;
+                if (o1.getY() > o2.getY())
+                    return 1;
+                return 0;
+            }
+        });
         for (Double[] aDouble : doubles) {
-            sortedMap.put(new Point2D(aDouble[0], aDouble[1], aDouble[2]), aDouble[2]);
+            sortedMap.put(new Point2D(aDouble[0], aDouble[1]), aDouble[2]);
         }
         return sortedMap;
     }
