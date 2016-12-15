@@ -1,11 +1,10 @@
 package com.epam.javacourses2016.task10;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -23,20 +22,18 @@ public class SolverTask10 {
      */
     public HashMap<String, Integer> countNumberWords(File input) {
         HashMap<String, Integer> result = new HashMap<>();
-        String str;
-        try (FileReader fr = new FileReader(input); BufferedReader br = new BufferedReader(fr)) {
-            while ((str = br.readLine()) != null) {
-                String[] words = str.split("\\|");
-                for (String s : words) {
-                    if (result.containsKey(s)) {
-                        result.put(s, result.get(s) + 1);
-                    } else {
-                        result.put(s, 1);
-                    }
+        try (Scanner scanner = new Scanner(new FileReader(input))) {
+            while (scanner.hasNext()) {
+                String word = scanner.next();
+                if(result.containsKey(word)) {
+                    result.put(word, result.get(word) + 1);
+                }
+                else {
+                    result.put(word, 1);
                 }
             }
-
         } catch (IOException e) {
+            System.out.println("I/O ex");
             e.printStackTrace();
         }
         return result;

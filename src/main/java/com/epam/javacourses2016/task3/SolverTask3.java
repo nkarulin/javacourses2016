@@ -3,8 +3,6 @@ package com.epam.javacourses2016.task3;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.*;
-
 /**
  * Занести строки, составляющие стихотворения указанного автора, в список.
  * Провести сортировку по возрастанию длин строк.
