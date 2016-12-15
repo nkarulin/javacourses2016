@@ -1,6 +1,6 @@
 package com.epam.javacourses2016.task18;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Дана матрица из целых чисел.
@@ -13,48 +13,76 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        int maxUniqueCount = 0;
-        int currUniqueCount = 0;
-        //Stack<int[][]> matrixStack = new Stack<>();
-        Stack<Integer> stack = new Stack<>();
-        int[][] arr = convertMatrixToArray(matrix);
-        int tmp;
 
-        //by cols
+        Stack<Integer> rowStack = new Stack<>();
+        Stack<Integer> colStack = new Stack<>();
+        int[][] arr = convertMatrixToArray(matrix);
+        int element=mostMetElement(arr);
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if (stack.empty()) {
-                    stack.push(arr[i][j]);
-                    currUniqueCount=1;
-                } else
-                {
-                    tmp=stack.pop();
-                    if (tmp==arr[i][j]){
-                        currUniqueCount++;
-                    }
-                    else
-                    {
-                        stack.clear();
-                        stack.push(arr[i][j]);
-                        if (currUniqueCount>maxUniqueCount){
-                            maxUniqueCount=currUniqueCount;
-                        }
-                    }
+                if (arr[i][j]==element){
+                    colStack.push(j);
+                    rowStack.push(i);
                 }
 
             }
         }
-        return null;
+
+        int[][] resultMatrix = new int[rowStack.size()][colStack.size()];
+        List<Integer> cols=new ArrayList(colStack);
+        List<Integer> rows=new ArrayList(rowStack);
+        Collections.sort(cols);
+        Collections.sort(rows);
+        int i=0;
+        int j;
+        for (int r:rows){
+            j=0;
+            for (int c:cols){
+                resultMatrix[i][j]=arr[r][c];
+                j++;
+            }
+            i++;
+        }
+
+        return ( new Matrix(resultMatrix) );
     }
 
     private int[][] convertMatrixToArray(SolverTask18.RectangularIntegerMatrix matrix) {
-        int[][] arrayMatrix = new int[matrix.getWidth()][matrix.getHeight()];
-        for (int i = 0; i < arrayMatrix.length; i++) {
-            for (int j = 0; j < arrayMatrix[i].length; j++) {
+        int width=matrix.getWidth();
+        int height=matrix.getHeight();
+        int[][] arrayMatrix = new int[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 arrayMatrix[i][j] = matrix.getValue(i, j);
             }
         }
+
         return arrayMatrix;
+    }
+
+    private int mostMetElement(int[][] matrix) {
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        int tmp;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (hashMap.get(matrix[i][j])!=null) {
+                    tmp = hashMap.get(matrix[i][j]);
+                }else{
+                    tmp=0;
+                }
+                hashMap.put(matrix[i][j], tmp++);
+            }
+        }
+        int uniqueElement = 0;
+        int maxValueInMap=(Collections.max(hashMap.values()));
+        for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
+            if (entry.getValue()==maxValueInMap) {
+                uniqueElement=entry.getKey();
+            }
+        }
+
+        return uniqueElement;
     }
 
     /**
