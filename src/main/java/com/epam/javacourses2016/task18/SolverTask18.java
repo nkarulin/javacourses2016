@@ -83,11 +83,7 @@ public class SolverTask18 {
         int[][] resM = new int[resMatrixHeight][resMatrixWidth];
         for (int i = maxI; i < maxI + resMatrixHeight; i++) {
             for (int j = maxJ; j < maxJ + resMatrixWidth; j++) {
-                for (int k = 0; k < resMatrixHeight; k++) {
-                    for (int l = 0; l < resMatrixWidth; l++) {
-                        resM[k][l] = matrix.getValue(i,j);
-                    }
-                }
+                        resM[i - maxI][j - maxJ] = matrix.getValue(i,j);
             }
         }
         return new Matrix(resM);
