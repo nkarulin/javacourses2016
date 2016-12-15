@@ -24,8 +24,9 @@ public class SolverTask17 {
      * @return Множество точек пересечения, имеющих минимальную абсциссу.
      */
     public Set<Point2D> analyze(Set<Segment> segments) {
+        Set<Point2D> minAbscissPoints = new HashSet();
         if (segments.isEmpty() || segments.size() <= 1) {
-            return null;
+            return minAbscissPoints;
         }
         TreeMap<Segment, Double> sortedSegments = new TreeMap<>((o1, o2) -> {
             double x11 = o1.getA().getX();
@@ -55,7 +56,8 @@ public class SolverTask17 {
             sortedSegments.put(segment, getMinX(segment));
         }
         double minX = Double.MAX_VALUE;
-        Set<Point2D> minAbscissPoints = new HashSet();
+
+        minAbscissPoints.clear();
         A:
         for (Map.Entry<Segment, Double> firstEntry : sortedSegments.entrySet()) {
             for (Map.Entry<Segment, Double> secondEntry : sortedSegments.entrySet()) {
@@ -107,10 +109,10 @@ public class SolverTask17 {
         double x = ((x11 * y12 - y11 * x12) * (x21 - x22) - (x11 - x12) * (x21 * y22 - y21 * x22)) / d;
         double y = ((x11 * y12 - y11 * x12) * (y21 - y22) - (y11 - y12) * (x21 * y22 - y21 * x22)) / d;
 
-        boolean isIntersect = (((x11 <= x) && (x12 >= x) && (x21 <= x) && (x22 >= x)) || ((y11 <= y) && (y12 >= y) && (y21 <= y) && (y22 >= y)));
+        boolean isInters = (((x11 <= x) && (x12 >= x) && (x21 <= x) && (x22 >= x)) || ((y11 <= y) && (y12 >= y) && (y21 <= y) && (y22 >= y)));
 
         Point2D point = null;
-        if (isIntersect) {
+        if (isInters) {
             point = new Point2D(x, y);
         }
         return point;
