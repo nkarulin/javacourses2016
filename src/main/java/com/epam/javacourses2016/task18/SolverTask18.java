@@ -13,44 +13,37 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-
-        Stack<Integer> rowStack = new Stack<>();
-        Stack<Integer> colStack = new Stack<>();
         int[][] arr = convertMatrixToArray(matrix);
-        int element=mostMetElement(arr);
-
+        int element = mostMetElement(arr);
+        TreeSet<Integer> cols = new TreeSet<>();
+        TreeSet<Integer> rows = new TreeSet<>();
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j]==element){
-                    colStack.push(j);
-                    rowStack.push(i);
+                if (arr[i][j] == element) {
+                    cols.add(j);
+                    rows.add(i);
                 }
 
             }
         }
 
-        int[][] resultMatrix = new int[rowStack.size()][colStack.size()];
-        List<Integer> cols=new ArrayList(colStack);
-        List<Integer> rows=new ArrayList(rowStack);
-        Collections.sort(cols);
-        Collections.sort(rows);
-        int i=0;
+        int[][] resultMatrix = new int[rows.size()][cols.size()];
+        int i = 0;
         int j;
-        for (int r:rows){
-            j=0;
-            for (int c:cols){
-                resultMatrix[i][j]=arr[r][c];
+        for (int r : rows) {
+            j = 0;
+            for (int c : cols) {
+                resultMatrix[i][j] = arr[r][c];
                 j++;
             }
             i++;
         }
-
-        return ( new Matrix(resultMatrix) );
+        return (new Matrix(resultMatrix));
     }
 
     private int[][] convertMatrixToArray(SolverTask18.RectangularIntegerMatrix matrix) {
-        int width=matrix.getWidth();
-        int height=matrix.getHeight();
+        int width = matrix.getWidth();
+        int height = matrix.getHeight();
         int[][] arrayMatrix = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -66,19 +59,21 @@ public class SolverTask18 {
         int tmp;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                if (hashMap.get(matrix[i][j])!=null) {
+                if (hashMap.get(matrix[i][j]) != null) {
                     tmp = hashMap.get(matrix[i][j]);
-                }else{
-                    tmp=0;
+                } else {
+                    tmp = 0;
                 }
-                hashMap.put(matrix[i][j], tmp++);
+                tmp++;
+                hashMap.put(matrix[i][j], tmp);
             }
         }
+
         int uniqueElement = 0;
-        int maxValueInMap=(Collections.max(hashMap.values()));
+        int maxValueInMap = (Collections.max(hashMap.values()));
         for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-            if (entry.getValue()==maxValueInMap) {
-                uniqueElement=entry.getKey();
+            if (entry.getValue() == maxValueInMap) {
+                uniqueElement = entry.getKey();
             }
         }
 
