@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class SolverTask19Test {
 
-    @Test(enabled = false, dataProvider = "cars")
+    @Test(enabled = true, dataProvider = "cars")
     public void testGetNumberOvertaking(long lengthLap, int numberLaps, int overtake, int[][] cars) throws Exception {
         SolverTask19 solver = new SolverTask19();
         Set<Car> carSet = createCars(cars);
@@ -20,9 +20,9 @@ public class SolverTask19Test {
     public static Set<Car> createCars(int[][] carArray) {
         Set<Car> cars = new HashSet<>();
 
-//        for (int[] car : carArray) {
-//            cars.add(new Car(car[0], car[1]));
-//        }
+        for (int[] car : carArray) {
+            cars.add(new Car(car[0], car[1]));
+        }
 
         return cars;
     }
