@@ -15,29 +15,31 @@ public class SolverTask18 {
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
         int[][] arr = convertMatrixToArray(matrix);
         int element = mostMetElement(arr);
-        TreeSet<Integer> cols = new TreeSet<>();
-        TreeSet<Integer> rows = new TreeSet<>();
+        Stack<Integer> cols=new Stack<>();
+        Stack<Integer> rows=new Stack<>();
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 if (arr[i][j] == element) {
-                    cols.add(j);
-                    rows.add(i);
+                    cols.push(j);
+                    rows.push(i);
                 }
 
             }
         }
-
-        int[][] resultMatrix = new int[rows.size()][cols.size()];
         int i = 0;
         int j;
-        for (int r : rows) {
+        TreeSet<Integer> rowsSet = new TreeSet<>(rows);
+        TreeSet<Integer> colsSet = new TreeSet<>(cols);
+        int[][] resultMatrix = new int[rowsSet.size()][colsSet.size()];
+        for (int r : rowsSet) {
             j = 0;
-            for (int c : cols) {
+            for (int c : colsSet) {
                 resultMatrix[i][j] = arr[r][c];
                 j++;
             }
             i++;
         }
+
         return (new Matrix(resultMatrix));
     }
 
