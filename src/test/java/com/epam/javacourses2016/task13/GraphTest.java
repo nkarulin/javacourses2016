@@ -23,7 +23,7 @@ public class GraphTest {
 
     }
 
-    @Test(enabled = false, dataProvider = "remove-edges")
+    @Test(enabled = true, dataProvider = "remove-edges")
     public void testRemoveEdge(int numberNodes, Integer[][] edges, Integer[][] edgesForDel) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodes);
         for (int i = 0; i < edges.length; i++) {
@@ -37,7 +37,7 @@ public class GraphTest {
         }
     }
 
-    @Test(enabled = false, dataProvider = "exist-edges")
+    @Test(enabled = true, dataProvider = "exist-edges")
     public void testIsExistEdge(int numberNodes, Integer[][] edges, Integer[][] exist, Boolean[] result) throws Exception {
         AbstractGraphCreator.AbstractGraph graph = AbstractGraphCreator.createGraph(numberNodes);
         List<Boolean> isExistList = new ArrayList<>();
