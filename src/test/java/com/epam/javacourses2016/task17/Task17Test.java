@@ -51,6 +51,8 @@ public class Task17Test {
         Arrays.sort(resultArr, comparator);
         for(int i = 0; i < resultArr.length; i++) {
             if (comparator.compare(expectedArr[i], resultArr[i]) != 0)
+                System.out.println("expected x="+expectedArr[i].getX()+" y="+expectedArr[i].getY());
+                System.out.println("result x="+resultArr[i].getX()+" y="+resultArr[i].getY());
                 Assert.fail();
         }
     }

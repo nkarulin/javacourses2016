@@ -28,6 +28,7 @@ public class SolverTask17 {
         if (segments.isEmpty() || segments.size() <= 1) {
             return minAbscissPoints;
         }
+
         TreeMap<Segment, Double> sortedSegments = new TreeMap<>((o1, o2) -> {
             double x11 = o1.getA().getX();
             double x12 = o1.getB().getX();
@@ -57,7 +58,6 @@ public class SolverTask17 {
         }
         double minX = Double.MAX_VALUE;
 
-        minAbscissPoints.clear();
         A:
         for (Map.Entry<Segment, Double> firstEntry : sortedSegments.entrySet()) {
             for (Map.Entry<Segment, Double> secondEntry : sortedSegments.entrySet()) {
