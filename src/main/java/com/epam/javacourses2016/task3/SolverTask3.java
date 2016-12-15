@@ -19,20 +19,15 @@ public class SolverTask3 {
      * @return Список, упорядоченных по длине строк, составляющих стихотворения автора.
      */
     public List<String> sortPoems(Set<Poem> poems, String author) {
-        List<String> authorLines = new ArrayList<>();
-        poems.stream()
-                .filter(poem -> poem.getAuthor().equals(author))
-                .map(Poem::getLines)
-                .forEach(authorLines::addAll);
-
-//        for (Poem p : poems) {
-//            if (Objects.equals(p.getAuthor(), author)) {
-//                authorLines.addAll(p.getLines());
-//            }
-//        }
-        authorLines.sort((a1,a2)->a1.compareTo(a2));
-
-
-        return authorLines;
+        List<String> allLines = new ArrayList<>();
+        for (Poem poem : poems) {
+            if (poem.getAuthor().equals(author)) {
+                allLines = poem.getLines();
+                break;
+            }
+        }
+        return allLines.stream()
+                .sorted(Comparator.comparingInt(String::length))
+                .collect(Collectors.toList());
     }
-}
+ }
