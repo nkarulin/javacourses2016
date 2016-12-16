@@ -1,19 +1,26 @@
 package com.epam.javacourses2016;
 
-public class Point2D implements Comparable<Point2D>{
 
-    private final double x;
-    private final double y;
-    private double radius;
+public class Point2D{
+
+    private double x;
+    private double y;
+
+    public Point2D() {
+
+    }
 
     public Point2D(double x, double y) {
         this.x = x;
         this.y = y;
     }
-    public Point2D(double x, double y, double radius) {
+
+    public void setX(double x) {
         this.x = x;
+    }
+
+    public void setY(double y) {
         this.y = y;
-        this.radius = radius;
     }
 
     public double getX() {
@@ -24,22 +31,13 @@ public class Point2D implements Comparable<Point2D>{
         return y;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
     public boolean compareWithRadius(Point2D center, int radius) {
         double temp_R = Math.sqrt( Math.pow(x-center.getY(),2) + Math.pow(y-center.getY(),2));
         return temp_R <= radius;
     }
 
     public double getDistanceTo(Point2D center) {
-        radius = Math.sqrt( Math.pow(x-center.getY(),2) + Math.pow(y-center.getY(),2));
-        return radius;
+        return Math.sqrt( Math.pow(x-center.getY(),2) + Math.pow(y-center.getY(),2));
     }
 
     @Override
@@ -71,22 +69,4 @@ public class Point2D implements Comparable<Point2D>{
                 " ";
     }
 
-    @Override
-    public int compareTo(Point2D o) {
-        if(radius < o.radius)
-            return -1;
-        if(radius > o.radius)
-            return 1;
-        else {
-            if (x < o.getX())
-                return -1;
-            if (x > o.getX())
-                return 1;
-            if (y < o.getY())
-                return -1;
-            if (y > o.getY())
-                return 1;
-            return 0;
-        }
-    }
 }

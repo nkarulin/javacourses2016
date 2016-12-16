@@ -5,19 +5,18 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.awt.*;
 import java.io.File;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
+import java.util.*;
 import static org.testng.Assert.*;
 
 /**
  * Created by kodoo on 13.11.16.
  */
 public class SolverTask16Test {
+
     @Test
     public void testAnalyze() throws Exception {
+
     }
 
     @Test(enabled = true, dataProvider = "points")
@@ -25,14 +24,56 @@ public class SolverTask16Test {
         SolverTask16 solverTask16 = new SolverTask16();
         SortedMap<Point2D, Double> sortedMap = convertToSortedMap(doubles);
         SortedMap<Point2D, Double> sortedMap1 = solverTask16.analyze(center,radius,file).getPoints();
-        Assert.assertEquals(sortedMap, sortedMap1);
+        SortedSet<Map.Entry<Point2D, Double>> sortedSet = getSortedSet(sortedMap);
+        SortedSet<Map.Entry<Point2D, Double>> sortedSet1 = getSortedSet(sortedMap1);
+        Assert.assertEquals(sortedSet, sortedSet1);
+    }
 
+    private SortedSet<Map.Entry<Point2D, Double>> getSortedSet(SortedMap<Point2D,Double> sortedMap) {
+        SortedSet<Map.Entry<Point2D, Double>> sortedset = new TreeSet<Map.Entry<Point2D, Double>>(
+                new Comparator<Map.Entry<Point2D, Double>>() {
+                    @Override
+                    public int compare(Map.Entry<Point2D, Double> e1,
+                                       Map.Entry<Point2D, Double> e2) {
+
+                        if(e1.getValue() < e2.getValue())
+                            return -1;
+                        if(e1.getValue() > e2.getValue())
+                            return 1;
+                        else {
+                            if (e1.getKey().getX() < e2.getKey().getX())
+                                return -1;
+                            if (e1.getKey().getX() > e2.getKey().getX())
+                                return 1;
+                            if (e1.getKey().getY() < e2.getKey().getY())
+                                return -1;
+                            if (e1.getKey().getY() > e2.getKey().getY())
+                                return 1;
+                            return 0;
+                        }
+                    }
+                });
+        sortedset.addAll(sortedMap.entrySet());
+        return sortedset;
     }
 
     private SortedMap<Point2D, Double> convertToSortedMap(Double[][] doubles) {
-        SortedMap<Point2D, Double> sortedMap = new TreeMap<>();
+        SortedMap<Point2D, Double> sortedMap = new TreeMap<>(new Comparator<Point2D>() {
+            @Override
+            public int compare(Point2D o1, Point2D o2) {
+                if (o1.getX() < o2.getX())
+                    return -1;
+                if (o1.getX() > o2.getX())
+                    return 1;
+                if (o1.getY() < o2.getY())
+                    return -1;
+                if (o1.getY() > o2.getY())
+                    return 1;
+                return 0;
+            }
+        });
         for (Double[] aDouble : doubles) {
-            sortedMap.put(new Point2D(aDouble[0], aDouble[1], aDouble[2]), aDouble[2]);
+            sortedMap.put(new Point2D(aDouble[0], aDouble[1]), aDouble[2]);
         }
         return sortedMap;
     }
@@ -40,7 +81,7 @@ public class SolverTask16Test {
     @DataProvider(name = "points")
     public Object[][] getPoints() {
         return new Object[][] {
-                {new Point2D(0.0,0.0), 2, new File("output1.txt"),new Double[][] {
+                {new com.epam.javacourses2016.Point2D(0.0,0.0), 2, new File("output1.txt"),new Double[][] {
                         {0.0, 0.0,  0.0},
                         {-1.0, 0.0,  1.0},
                         {0.0, -1.0,  1.0},
@@ -51,8 +92,8 @@ public class SolverTask16Test {
                         {1.0, -1.0,  1.4142135623730951},
                         {1.0, 1.0,  1.4142135623730951},
                 }},
-                {new Point2D(0.0,0.0), 1, new File("output2.txt"),new Double[][] {}},
-                {new Point2D(0.4,0.4), 2, new File("output3.txt"),new Double[][] {
+                {new com.epam.javacourses2016.Point2D(0.0,0.0), 1, new File("output2.txt"),new Double[][] {}},
+                {new com.epam.javacourses2016.Point2D(0.4,0.4), 2, new File("output3.txt"),new Double[][] {
                         { 0.0, 0.0,  0.5656854249492381},
                         { 0.0, 1.0,  0.7211102550927979},
                         { 1.0, 0.0,  0.7211102550927979},
@@ -67,7 +108,7 @@ public class SolverTask16Test {
                         { 2.0, 1.0,  1.7088007490635064},
                         { -1.0, -1.0,  1.979898987322333},
                 }},
-                {new Point2D(0.7,0.7), 2, new File("output4.txt"),new Double[][] {
+                {new com.epam.javacourses2016.Point2D(0.7,0.7), 2, new File("output4.txt"),new Double[][] {
                         { 1.0, 1.0,  0.42426406871192857},
                         { 0.0, 1.0,  0.7615773105863908},
                         { 1.0, 0.0, 0.7615773105863908},
@@ -85,4 +126,5 @@ public class SolverTask16Test {
                 }},
         };
     }
+
 }

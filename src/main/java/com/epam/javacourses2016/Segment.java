@@ -1,5 +1,7 @@
 package com.epam.javacourses2016;
 
+import java.util.Comparator;
+
 /**
  * Created by kodoo on 13.11.16.
  */
@@ -38,5 +40,13 @@ public class Segment {
         int result = getA() != null ? getA().hashCode() : 0;
         result = 31 * result + (getB() != null ? getB().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "a=" + a +
+                ", b=" + b +
+                '}';
     }
 }

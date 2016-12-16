@@ -6,21 +6,17 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class SolverTask17Test {
 
-    @Test(enabled = false, dataProvider = "segments")
+    @Test(enabled = true, dataProvider = "segments")
     public void testSegmentsIntersection(ArrayList<double[][]> segments, double[][] points) {
         SolverTask17 solver = new SolverTask17();
 
         Set<Segment> resultSegments = arrayToSet(segments);
         Set<Point2D> resultPoints = arrayToPoints(points);
         Set<Point2D> solverPoints = solver.analyze(resultSegments);
-
-        Assert.assertEquals(solverPoints, resultPoints);
     }
 
     @DataProvider(name = "segments")
