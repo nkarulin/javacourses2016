@@ -60,7 +60,6 @@ public class Task2Test {
         Set<File> files = new HashSet<>();
         files.add(directory);
         for (File file : directory.listFiles()) {
-         //   files.add(file);
             if (file.isDirectory()) {
                 files.addAll(getFiles(file));
             }

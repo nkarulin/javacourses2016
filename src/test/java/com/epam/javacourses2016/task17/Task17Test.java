@@ -12,19 +12,19 @@ import java.util.*;
 
 public class Task17Test {
 
-   private final DecimalFormat format = new DecimalFormat("#.###");
-   {
-       format.setRoundingMode(RoundingMode.CEILING);
-   }
+    private final DecimalFormat format = new DecimalFormat("#.###");
+    {
+        format.setRoundingMode(RoundingMode.CEILING);
+    }
     private boolean compareDoubles(double first, double second) {
         return format.format(first).equals(format.format(second));
     }
-    @Test(enabled=false, dataProvider = "segmentsWithResults")
+    @Test(enabled=true, dataProvider = "segmentsWithResults")
     public void testAnalyze(Segment[] segments, Set<Point2D> expected) throws Exception {
         SolverTask17 solver = new SolverTask17();
         Set<Point2D> result = solver.analyze(new HashSet<>(Arrays.asList(segments)));
 
-         final DecimalFormat format = new DecimalFormat("#.###");
+        final DecimalFormat format = new DecimalFormat("#.###");
         format.setRoundingMode(RoundingMode.CEILING);
         Comparator<Point2D> comparator =  (first, second) -> {
             if (first == null && second == null)
@@ -59,16 +59,16 @@ public class Task17Test {
     public Object[][] segmentsWithResults() {
         return new Object[][]{
 
-               {
-                    new Segment[] {
-                        new Segment(new Point2D(0,0), new Point2D(14,0)),
-                        new Segment(new Point2D(-2,2), new Point2D(3,5))
-                    }, new HashSet<Point2D>()
+                {
+                        new Segment[] {
+                                new Segment(new Point2D(0,0), new Point2D(14,0)),
+                                new Segment(new Point2D(-2,2), new Point2D(3,5))
+                        }, new HashSet<Point2D>()
                 },
                 {
-                    new Segment[]  { new Segment(new Point2D(-3,-4), new Point2D(10,10)),
-                            new Segment(new Point2D(-5,6), new Point2D(5,-4)) },
-                   new HashSet<>( new ArrayList<Point2D>(){{ this.add(new Point2D(((double)23)/27, ((double)4)/27));  }})
+                        new Segment[]  { new Segment(new Point2D(-3,-4), new Point2D(10,10)),
+                                new Segment(new Point2D(-5,6), new Point2D(5,-4)) },
+                        new HashSet<>( new ArrayList<Point2D>(){{ this.add(new Point2D(((double)23)/27, ((double)4)/27));  }})
                 },
 //                {
 //                    new Segment[] {
@@ -82,24 +82,24 @@ public class Task17Test {
 //                        this.add(new Point2D(2, 5));
 //                    }})
 //                },
-               {
+                {
                         new Segment[] {
                                 new Segment(new Point2D(0,0), new Point2D(0,14)),
 
 
                         }, new HashSet<>(new ArrayList<Point2D>() {{
 
-                            this.add(new Point2D(0,0));
+                    this.add(new Point2D(0,0));
 
-                        }})
+                }})
                 },
                 {
                         new Segment[] {
 
                         }, new HashSet<>(new ArrayList<Point2D>() {{
 
-                              this.add(new Point2D(0,2));
-                        }})
+                    this.add(new Point2D(0,2));
+                }})
                 }
 
         };

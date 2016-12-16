@@ -6,9 +6,10 @@ import org.testng.annotations.Test;
 
 public class SolverTask8Test {
 
-    @Test(enabled = false, dataProvider = "myString")
+    @Test(enabled = true, dataProvider = "myString")
     public void testIsNormalBrackets(String string, boolean result) throws Exception {
         SolverTask8 solver = new SolverTask8();
+        System.out.println(string);
         Assert.assertEquals(solver.isNormalBrackets(string), result);
     }
 

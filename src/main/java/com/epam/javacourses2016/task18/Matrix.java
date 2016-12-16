@@ -28,8 +28,8 @@ public class Matrix implements SolverTask18.RectangularIntegerMatrix {
     }
 
     @Override
-    public int getValue(int indexWidth, int indexHeight) {
-        return matrix[indexWidth][indexHeight];
+    public int getValue(int indexHeight, int indexWidth) {
+        return matrix[indexHeight][indexWidth];
     }
 
     @Override

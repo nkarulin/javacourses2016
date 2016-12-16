@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class SolverTask19Test {
 
-    @Test(enabled = false, dataProvider = "cars")
+    @Test(enabled = true, dataProvider = "cars")
     public void testGetNumberOvertaking(long lengthLap, int numberLaps, int overtake, int[][] cars) throws Exception {
         SolverTask19 solver = new SolverTask19();
         Set<Car> carSet = createCars(cars);
@@ -34,9 +34,9 @@ public class SolverTask19Test {
                 {100, 1, 1, new int[][]{{1, 50}, {2, 25}}},
                 {100, 1, 0, new int[][]{{1, 25}, {2, 25}}},
                 {100, 1, 0, new int[][]{{1, 25}, {2, 50}}},
-                {100, 1, 0, new int[][]{{1, 35}, {90, 25}}},
+                {100, 1, 1, new int[][]{{1, 35}, {90, 25}}},
                 {100, 10, 3, new int[][]{{1, 50}, {2, 35}}},
-                {100, 10, 3, new int[][]{{1, 35}, {2, 50}}},
+                {100, 10, 3, new int[][]{{1, 35}, {2, 50}}}
         };
     }
 }
