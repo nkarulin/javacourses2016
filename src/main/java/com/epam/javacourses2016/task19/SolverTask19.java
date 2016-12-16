@@ -18,8 +18,6 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        //TODO
-//        HashMap<Integer,Integer> hashMap=new HashMap<>();
         List<Integer> arr = new ArrayList<>();
 
         List<Car> carsList = new LinkedList<>();
@@ -31,30 +29,32 @@ public class SolverTask19 {
             return speedA.compareTo(speedB);
         });
 
-        Collections.reverse(carsList);
+        Collections.reverse(carsList); //first car with max speed
         int maxSpeed=carsList.get(0).getSpeed();
         int time= (int) (lengthLap*numberLaps/maxSpeed);
 
-        System.out.println("LengthLap="+lengthLap+" numberLaps"+numberLaps);
-        System.out.println("maxSpeed="+maxSpeed+"time="+time);
         for (Car car : carsList) {
-            car.setDistance(car.getSpeed()*time);
+            car.setDistance(car.getSpeed()*time+car.getStartPosition());
             arr.add(car.getDistance());
         }
 
         System.out.println("arr of distance:"+arr.toString());
         int overlaps=0;
+
         if ((arr.get(0)==0)||(arr.get(1)==0)){
             overlaps=0;
             return overlaps;
         }
+
         if (arr.get(0)>arr.get(1)){
             overlaps= (int) ((arr.get(0)-arr.get(1)) /lengthLap);
         }
 
-//        else{
-//            overlaps=(int)arr.get(1)/arr.get(0);
-//        }
+        if ((carsList.get(0).getStartPosition()<carsList.get(1).getStartPosition())&&
+                (carsList.get(0).getSpeed()>carsList.get(1).getSpeed())&&
+                (carsList.get(0).getDistance()>carsList.get(1).getDistance())){
+            overlaps++;
+        }
 
         return overlaps;
     }
