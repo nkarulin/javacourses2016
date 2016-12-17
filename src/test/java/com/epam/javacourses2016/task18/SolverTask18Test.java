@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
  */
 public class SolverTask18Test {
 
-    @Test(enabled = true, dataProvider = "matrix")
+    @Test(enabled = false, dataProvider = "matrix")
     public void testGetMaxSubMatrix(int[][] data, int[][] result) throws Exception {
         SolverTask18 task18 = new SolverTask18();
         SolverTask18.RectangularIntegerMatrix matrix = task18.getMaxSubMatrix(convertToMatrix(data));
