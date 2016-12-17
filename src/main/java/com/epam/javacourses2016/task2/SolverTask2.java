@@ -1,6 +1,7 @@
 package com.epam.javacourses2016.task2;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,7 +15,15 @@ public class SolverTask2 {
      * @return Множество элементов корневого каталога и подкаталогов.
      */
     public Set<File> getFiles(File directory) {
-        //TODO: realize solver of a task
-        return null;
+        Set<File> files = new HashSet<>();
+        files.add(directory);
+        for (File file : directory.listFiles()) {
+            if (file.isDirectory()) {
+                files.addAll(getFiles(file));
+            }
+            else files.add(file);
+        }
+
+        return files;
     }
 }

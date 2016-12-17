@@ -14,7 +14,7 @@ public abstract class AbstractCollectionCreator {
      * @return Коллекция для хранения чисел с поддержкой операций добавления/удаления и поиска числа.
      */
     public static  <T extends Number> NumberCollection<T> createCollection(Class<T> required){
-        return null;
+        return new MyCollection<T>();
     }
 
     /**
