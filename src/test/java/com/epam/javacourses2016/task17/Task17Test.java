@@ -15,7 +15,7 @@ import java.util.*;
  */
 
 public class Task17Test {
-
+////
    private final DecimalFormat format = new DecimalFormat("#.###");
    {
        format.setRoundingMode(RoundingMode.CEILING);
