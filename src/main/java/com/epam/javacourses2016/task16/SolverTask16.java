@@ -3,7 +3,7 @@ package com.epam.javacourses2016.task16;
 import com.epam.javacourses2016.Point2D;
 
 import java.io.File;
-import java.util.SortedMap;
+import java.util.*;
 
 /**
  * На клетчатой бумаге нарисован круг.
@@ -12,6 +12,8 @@ import java.util.SortedMap;
  * Использовать класс SortedMap.
  */
 public class SolverTask16 {
+
+    private static final double CELL_SIZE = 1;
     /**
      * Осуществляет анализ точек, находя среди них попавших внутрь круга.
      *
@@ -20,9 +22,17 @@ public class SolverTask16 {
      * @param output Файл для вывода результатов.
      * @return Файл с результатами анализа.
      */
-    IFileWithPoints analyze(Point2D center, int radius, File output) {
-        //TODO
-        return null;
+    IFileWithPoints analyze(Set<Point2D> points, Point2D center, int radius, File output) {
+        Circle circle = new Circle(radius, center);
+        List<Point2D> result = new ArrayList<>();
+        FileWithPoints file = new FileWithPoints(output);
+
+        for(Point2D point : points) {
+            if (circle.belongs(new Cell(point, CELL_SIZE)))
+                result.add(point);
+        }
+        file.writeIntoFile(result);
+        return file;
     }
 
     /**
