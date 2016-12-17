@@ -1,5 +1,7 @@
 package com.epam.javacourses2016.task12;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,7 +18,7 @@ public class SolverTask12 {
      * @return Преобразованный список.
      */
     List<Integer> transform(List<Integer> integers, int value) {
-        //TODO
-        return null;
+        Collections.sort(integers);
+        return integers;
     }
 }
