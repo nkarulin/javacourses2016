@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by kodoo on 13.11.16.
  */
-//////
+
 public class Task17Test {
 
    private final DecimalFormat format = new DecimalFormat("#.###");
