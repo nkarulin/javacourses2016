@@ -1,7 +1,7 @@
 package com.epam.javacourses2016.task10;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class SolverTask10 {
      * @param input Файл с исходными данными.
      * @return Множество пар <слово, количество вхождений в файле>.
      */
-    public HashMap<String, Integer> countNumberWords(File input) throws FileNotFoundException {
+    public HashMap<String, Integer> countNumberWords(File input) throws IOException {
         Scanner scanner = new Scanner(input);
         HashMap<String, Integer> result = new HashMap<>();
 
@@ -28,6 +28,5 @@ public class SolverTask10 {
         }
 
         return result;
-
     }
 }

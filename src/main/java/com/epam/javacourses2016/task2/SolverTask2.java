@@ -16,12 +16,12 @@ public class SolverTask2 {
      */
     public Set<File> getFiles(File directory) {
         Set<File> files = new HashSet<>();
-        files.add(directory);
+
         for (File file : directory.listFiles()) {
+            files.add(file);
             if (file.isDirectory()) {
                 files.addAll(getFiles(file));
             }
-            else files.add(file);
         }
 
         return files;
