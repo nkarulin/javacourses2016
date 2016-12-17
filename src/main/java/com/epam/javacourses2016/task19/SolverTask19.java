@@ -51,7 +51,7 @@ public class SolverTask19 {
                     (currentCar.getSpeed() >= (car2 % lengthLap - car1 % lengthLap + anotherCar.getSpeed())))
                 count++;
 
-            
+
         }
         return count;
     }
