@@ -2,6 +2,7 @@ package com.epam.javacourses2016.task11;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * В кругу стоят N человек.
@@ -13,19 +14,38 @@ public class SolverTask11 {
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
-        return null;
+        int deletedPerson = 0;
+        for (; peoples.size() > 1; ) {
+            peoples.remove(deletedPerson);
+            deletedPerson = (deletedPerson + 1) % peoples.size();
+        }
+        return peoples.get(0);
     }
 
     /**
      * Выполняет эмуляцию поставленной задачи.
+     *
      * @param peoples Список с именами участников.
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        return null;
+        ListIterator listIterator = peoples.listIterator();
+        for (; peoples.size() > 1; ) {
+            if (!listIterator.hasNext()) {
+                listIterator = peoples.listIterator();
+            }
+            listIterator.next();
+            listIterator.remove();
+            if (!listIterator.hasNext()) {
+                listIterator = peoples.listIterator();
+            }
+            listIterator.next();
+        }
+        return peoples.get(0);
     }
 }

@@ -1,7 +1,9 @@
 package com.epam.javacourses2016.task9;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Задан файл, содержащий английские слова (без знаков препинания).
@@ -16,7 +18,13 @@ public class SolverTask9 {
      * @param input Анализируемый файл.
      * @return Множество полученных слов.
      */
-    public HashSet<String> getUniqueWords(File input) {
-        return null;
+    public HashSet<String> getUniqueWords(File input) throws FileNotFoundException {
+        HashSet<String> hashSet = new HashSet<>();
+        Scanner scanner = new Scanner(input);
+
+        while (scanner.hasNext()) {
+            hashSet.add(scanner.next().toLowerCase());
+        }
+        return hashSet;
     }
 }
