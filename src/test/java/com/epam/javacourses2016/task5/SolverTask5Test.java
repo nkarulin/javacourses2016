@@ -10,14 +10,14 @@ import static org.testng.Assert.*;
 
 public class SolverTask5Test {
 
-    @Test(enabled = false, dataProvider = "measurements")
+    @Test(enabled = true, dataProvider = "measurements")
     public void testCalcResistance(double[][] measurements, double result) throws Exception {
         SolverTask5 solver = new SolverTask5();
         List<Measurement> listMeasures = getMeasurements(measurements);
         Assert.assertEquals(solver.calcResistance(listMeasures), result);
     }
 
-    @Test(enabled = false, dataProvider = "numbers")
+    @Test(enabled = true, dataProvider = "numbers")
     public void testCalcResistance_fromKA(List<Measurement> list,double res) throws Exception {
         SolverTask5 solverTask5 = new SolverTask5();
         Assert.assertEquals(solverTask5.calcResistance(list), res);
