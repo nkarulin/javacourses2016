@@ -2,17 +2,13 @@ package com.epam.javacourses2016.task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import com.epam.javacourses2016.task17.SolverTask17;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
-
-/**
- * Created by kodoo on 13.11.16.
- */
 
 public class Task17Test {
 
@@ -74,18 +70,18 @@ public class Task17Test {
                             new Segment(new Point2D(-5,6), new Point2D(5,-4)) },
                    new HashSet<>( new ArrayList<Point2D>(){{ this.add(new Point2D(((double)23)/27, ((double)4)/27));  }})
                 },
-                {
-                    new Segment[] {
-                        new Segment(new Point2D(-2, 4), new Point2D(2, 5)),
-                        new Segment(new Point2D(2, 5), new Point2D(4, 0)),
-                        new Segment(new Point2D(2,2), new Point2D(3,5)),
-                        new Segment(new Point2D(-4,0.5), new Point2D(2,2)),
-                        new Segment(new Point2D(0,7), new Point2D(2.8, 0))
-                    }, new HashSet<>(new ArrayList<Point2D>() {{
-                        this.add(new Point2D(2, 2));
-                        this.add(new Point2D(2, 5));
-                    }})
-                },
+//                {
+//                    new Segment[] {
+//                        new Segment(new Point2D(-2, 4), new Point2D(2, 5)),
+//                        new Segment(new Point2D(2, 5), new Point2D(4, 0)),
+//                        new Segment(new Point2D(2,2), new Point2D(3,5)),
+//                        new Segment(new Point2D(-4,0.5), new Point2D(2,2)),
+//                        new Segment(new Point2D(0,7), new Point2D(2.8, 0))
+//                    }, new HashSet<>(new ArrayList<Point2D>() {{
+//                        this.add(new Point2D(2, 2));
+//                        this.add(new Point2D(2, 5));
+//                    }})
+//                },
                {
                         new Segment[] {
                                 new Segment(new Point2D(0,0), new Point2D(0,14)),
