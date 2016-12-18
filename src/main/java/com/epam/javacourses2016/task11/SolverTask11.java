@@ -17,7 +17,14 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(ArrayList<String> peoples) {
-        return null;
+        int index = 0;
+        while (peoples.size() != 1) {
+            peoples.remove(index);
+            index+=1;
+            index = index%peoples.size();
+        }
+        return peoples.get(0);
+
     }
 
     /**
@@ -26,6 +33,12 @@ public class SolverTask11 {
      * @return Имя последнего оставшегося.
      */
     public String emulate(LinkedList<String> peoples) {
-        return null;
+        int index = 0;
+        while(peoples.size() != 1){
+            peoples.remove(index);
+            index+=1;
+            index = index%peoples.size();
+        }
+        return peoples.get(0);
     }
 }
