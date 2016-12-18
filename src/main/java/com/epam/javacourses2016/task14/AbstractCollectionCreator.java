@@ -13,8 +13,8 @@ public abstract class AbstractCollectionCreator {
      * @param required Тип, которым типизируется создаваемая коллекция.
      * @return Коллекция для хранения чисел с поддержкой операций добавления/удаления и поиска числа.
      */
-    public static  <T extends Number> NumberCollection<T> createCollection(Class<T> required){
-        return null;
+    public static  <T extends Number> MyNumberCollection<T> createCollection(Class<T> required){
+        return new MyNumberCollection<T>();
     }
 
     /**

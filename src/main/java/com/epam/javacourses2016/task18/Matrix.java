@@ -17,6 +17,7 @@ public class Matrix implements SolverTask18.RectangularIntegerMatrix {
         return matrix;
     }
 
+
     @Override
     public int getWidth() {
         return matrix[0].length;
