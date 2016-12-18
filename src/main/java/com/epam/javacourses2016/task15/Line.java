@@ -2,7 +2,7 @@ package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import com.epam.javacourses2016.task17.RangedLine;
+import com.epam.javacourses2016.Task17.RangedLine;
 
 import java.util.*;
 

@@ -2,7 +2,6 @@ package com.epam.javacourses2016.Task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import com.epam.javacourses2016.task17.SolverTask17;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 public class SolverTask17Test {
 
-    @Test(enabled = false, dataProvider = "segments")
+    @Test(enabled = true, dataProvider = "segments")
     public void testSegmentsIntersection(ArrayList<double[][]> segments, double[][] points) {
         SolverTask17 solver = new SolverTask17();
 

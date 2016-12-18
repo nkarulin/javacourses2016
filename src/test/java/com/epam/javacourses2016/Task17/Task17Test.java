@@ -2,7 +2,6 @@ package com.epam.javacourses2016.Task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;
-import com.epam.javacourses2016.task17.SolverTask17;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +22,7 @@ public class Task17Test {
     private boolean compareDoubles(double first, double second) {
         return format.format(first).equals(format.format(second));
     }
-    @Test(enabled=false, dataProvider = "segmentsWithResults")
+    @Test(enabled=true, dataProvider = "segmentsWithResults")
     public void testAnalyze(Segment[] segments, Set<Point2D> expected) throws Exception {
         SolverTask17 solver = new SolverTask17();
         Set<Point2D> result = solver.analyze(new HashSet<>(Arrays.asList(segments)));
