@@ -11,8 +11,8 @@ public class SolverTask18 {
      * @return Подматрица, состоящая из максимального количества одинаковых элементов.
      */
     RectangularIntegerMatrix getMaxSubMatrix(RectangularIntegerMatrix matrix) {
-        //TODO
-        return null;
+        Matrix mainMatrix = new Matrix(matrix);
+        return mainMatrix.findMaxMatrixWithUniqs();
     }
 
     /**

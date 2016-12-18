@@ -3,7 +3,7 @@ package com.epam.javacourses2016;
 /**
  * Created by kodoo on 13.11.16.
  */
-public class Car {
+public class Car implements Comparable<Car> {
 
     private int startPosition;
     private int speed;
@@ -19,5 +19,10 @@ public class Car {
 
     public int getSpeed() {
         return speed;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return o.getSpeed() - speed;
     }
 }
