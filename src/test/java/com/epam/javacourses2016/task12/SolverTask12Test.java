@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SolverTask12Test {
 
-    @Test(enabled = false, dataProvider = "numbers")
+    @Test(enabled = true, dataProvider = "numbers")
     public void testTransform(int[] array, int value) throws Exception {
         SolverTask12 solver = new SolverTask12();
 
@@ -44,3 +44,6 @@ public class SolverTask12Test {
         };
     }
 }
+
+//4 6 5 8 1
+//4 1 5 6 8

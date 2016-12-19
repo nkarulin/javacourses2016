@@ -2,6 +2,7 @@ package com.epam.javacourses2016.task19;
 
 import com.epam.javacourses2016.Car;
 
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -18,7 +19,23 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        //TODO
-        return 0;
+        final int[] overtakes = {0};
+        HashMap<Car, Integer> carDistance = new HashMap<>();
+        Car slowestCar = cars.stream().peek((c) -> {
+            carDistance.put(c, c.getStartPosition() - c.getSpeed());
+        }).min((c1, c2) -> Integer.compare(c1.getSpeed(), c2.getSpeed())).get();
+        int t = -1;
+        while (t * slowestCar.getSpeed() + slowestCar.getStartPosition() <= lengthLap * numberLaps) {
+            t++;
+            carDistance.keySet().stream().forEach((c1) -> {
+                carDistance.put(c1, carDistance.get(c1) + c1.getSpeed());
+                if (carDistance.get(c1) < lengthLap * numberLaps) {
+                    carDistance.keySet().stream().forEach((c2) -> {
+                        if (c1.getSpeed() > c2.getSpeed() && carDistance.get(c1)%lengthLap >= carDistance.get(c2) % lengthLap && carDistance.get(c1)%lengthLap - c1.getSpeed() < carDistance.get(c2) % lengthLap) overtakes[0]++;
+                    });
+                }
+            });
+        }
+        return overtakes[0];
     }
 }
