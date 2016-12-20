@@ -1,4 +1,4 @@
-package com.epam.javacourses2016.task17;
+package com.epam.javacourses2016.Task17;
 
 import com.epam.javacourses2016.Point2D;
 import com.epam.javacourses2016.Segment;

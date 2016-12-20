@@ -18,7 +18,8 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        //TODO
-        return 0;
+        Race race = new Race(numberLaps, lengthLap, cars.toArray(new Car[cars.size()]));
+        race.race();
+        return race.getOverlaps();
     }
 }

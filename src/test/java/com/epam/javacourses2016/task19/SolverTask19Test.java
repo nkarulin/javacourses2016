@@ -10,11 +10,12 @@ import java.util.Set;
 
 public class SolverTask19Test {
 
-    @Test(enabled = false, dataProvider = "cars")
+    @Test(enabled = true, dataProvider = "cars")
     public void testGetNumberOvertaking(long lengthLap, int numberLaps, int overtake, int[][] cars) throws Exception {
         SolverTask19 solver = new SolverTask19();
         Set<Car> carSet = createCars(cars);
-        Assert.assertEquals(solver.getNumberOvertaking(carSet, lengthLap, numberLaps), overtake);
+        int result = solver.getNumberOvertaking(carSet, lengthLap, numberLaps);
+        Assert.assertEquals(result, overtake);
     }
 
     public static Set<Car> createCars(int[][] carArray) {

@@ -29,6 +29,11 @@ public class SolverTask11 {
     public String emulate(ArrayList<String> peoples) {
 
         int N = peoples.size();
+        if(N < 2 && N > 0)
+            return peoples.get(0);
+        else if (N < 1)
+            return "";
+
         int index = 1;
         int step = 1;
         int i = 1;
@@ -55,6 +60,12 @@ public class SolverTask11 {
      */
 
     public String emulate(LinkedList<String> peoples) {
+        int N = peoples.size();
+        if(N < 2 && N > 0)
+            return peoples.get(0);
+        else if (N < 1)
+            return "";
+
         String result = null;
         boolean even = true;
         while (peoples.size() > 2) {

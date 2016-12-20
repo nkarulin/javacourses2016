@@ -1,9 +1,14 @@
 package com.epam.javacourses2016.task15;
 
 import com.epam.javacourses2016.Point2D;
+import com.epam.javacourses2016.Segment;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * На плоскости задано N точек.
@@ -17,8 +22,24 @@ public class SolverTask15 {
      * @return Файл с результатами анализа.
      */
     IFileWithLines analyze(Set<Point2D> points, File output) {
-        //TODO
-        return null;
+        Set<Line> lines = new HashSet<>();
+        List<Point2D> pointsList = points.stream().collect(Collectors.toList());
+        int ind = 1;
+        for(int i = 0; i < pointsList.size(); i++) {
+            for(int j = i + 1; j < pointsList.size(); j++) {
+                Line line = new Line(new Segment(pointsList.get(i), pointsList.get(j)));
+                if (line.belongs(pointsList.get(j)))
+                    lines.add(line);
+            }
+        }
+        FileWithLines file = new FileWithLines(output);
+        try {
+            file.writeToFile(lines);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return file;
     }
 
     /**

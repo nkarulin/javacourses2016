@@ -1,5 +1,6 @@
 package com.epam.javacourses2016.task5;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -11,6 +12,21 @@ import java.util.List;
  */
 public class SolverTask5 {
 
+    double currentSquareSum = 0;
+    double resistanceSum = 0;
+    double currentSum = 0;
+    double voltageSum = 0;
+
+    private BigDecimal lsm(int N) {
+
+        if (currentSum == 0) {
+            return BigDecimal.valueOf(0);
+        }
+
+        BigDecimal result = new BigDecimal((N * resistanceSum - currentSum * voltageSum) /
+                (N * currentSquareSum - currentSum * currentSum));
+        return result;
+    }
     /**
      * Вычисляет сопротивление методом наименьших квадратов.
      *
@@ -18,7 +34,21 @@ public class SolverTask5 {
      * @return Вычисленное по исходным данным сопротивление.
      */
     double calcResistance(List<Measurement> measurements) {
-        //TODO
-        return 0;
+        if (measurements.size() < 1)
+            return 0.0;
+
+        for(Measurement measurement : measurements) {
+
+            double current = measurement.getCurrent();
+            double voltage = measurement.getVoltage();
+
+            currentSquareSum +=  Math.pow(current, 2);
+            resistanceSum += current * voltage;
+            currentSum += current;
+            voltageSum += voltage;
+        };
+
+        BigDecimal result = lsm(measurements.size());
+        return result.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 }
