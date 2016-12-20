@@ -19,23 +19,28 @@ public class SolverTask19 {
      * @return Количество осуществленных обгонов.
      */
     int getNumberOvertaking(Set<Car> cars, long lengthLap, int numberLaps) {
-        final int[] overtakes = {0};
-        HashMap<Car, Integer> carDistance = new HashMap<>();
-        Car slowestCar = cars.stream().peek((c) -> {
-            carDistance.put(c, c.getStartPosition() - c.getSpeed());
-        }).min((c1, c2) -> Integer.compare(c1.getSpeed(), c2.getSpeed())).get();
-        int t = -1;
-        while (t * slowestCar.getSpeed() + slowestCar.getStartPosition() <= lengthLap * numberLaps) {
-            t++;
-            carDistance.keySet().stream().forEach((c1) -> {
-                carDistance.put(c1, carDistance.get(c1) + c1.getSpeed());
-                if (carDistance.get(c1) < lengthLap * numberLaps) {
-                    carDistance.keySet().stream().forEach((c2) -> {
-                        if (c1.getSpeed() > c2.getSpeed() && carDistance.get(c1)%lengthLap >= carDistance.get(c2) % lengthLap && carDistance.get(c1)%lengthLap - c1.getSpeed() < carDistance.get(c2) % lengthLap) overtakes[0]++;
-                    });
+        int overtakes = 0;
+        HashMap<Car, Integer> carsDistances = new HashMap<>();
+        Car slowestCar = cars.stream().peek((c) -> carsDistances.put(c, c.getStartPosition())).min((c1, c2) -> {
+            return Integer.compare(c1.getSpeed(), c2.getSpeed());
+        }).get();
+        while (carsDistances.get(slowestCar) < lengthLap * numberLaps){
+            for (Car car1: carsDistances.keySet()) {
+                if (carsDistances.get(car1) < lengthLap * numberLaps) {
+                    for (Car car2 : carsDistances.keySet()) {
+                        if (carsDistances.get(car2) < lengthLap * numberLaps) {
+                            if (car1.getSpeed() > car2.getSpeed() && Math.abs(carsDistances.get(car1) % lengthLap - carsDistances.get(car2) % lengthLap) <= car1.getSpeed() - car2.getSpeed() && carsDistances.get(car1) % lengthLap < carsDistances.get(car2) % lengthLap) {
+                                overtakes++;
+                            }
+                        }
+                    }
                 }
+            }
+            carsDistances.keySet().stream().forEach((c) -> {
+                carsDistances.put(c, carsDistances.get(c) + c.getSpeed());
             });
+
         }
-        return overtakes[0];
+        return overtakes;
     }
 }
